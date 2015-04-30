@@ -1,3 +1,2 @@
-# InClock
-InClock
-This is  a first line
+## InClock
+InClock is a project in active development and by no means useable.
