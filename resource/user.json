@@ -1,0 +1,39 @@
+{
+	"user": {
+		"template_types": ["b1", "b2"],
+		"color_scheme": "normal",
+		"data_preference": "m1"
+		},
+	"b1": {
+		"p": {
+			"id": "B1P0",
+			"x": 300,
+			"y": 460,
+			"pain": 7,
+			"status": 1								
+		},
+		"p": {
+			"id": "B1P1",
+			"x": 250,
+			"y": 300,
+			"pain": 4,
+			"status": 2								
+		},
+		"p": {
+			"id": "B1P3",
+			"x": 510,
+			"y": 310,
+			"pain": 5,
+			"status": 3								
+		}
+	},
+	"b2": {
+		"p1": {
+			"id": "B2P0",
+			"x": 330,
+			"y": 420,
+			"pain": 9,
+			"status": 1								
+		}
+	}
+}

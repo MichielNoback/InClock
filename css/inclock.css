@@ -1,26 +1,103 @@
 body {
 	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    overflow-x: hidden;
+    min-width: 1000px;
+    background: #F5F5F5;
+}
+
+#toolbar {
+    width: 110%;
+    height: 50px;
+    margin-left: -5%;
+    margin-top: -10px;
+    position: relative;
+    border-bottom: solid 1px #666;
+    -webkit-box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.75);
+	box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.75);
+}
+
+#toolbar .bar {
+    width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#toolbar .bar .logo {
+    width: 180px;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    border-left: solid 1px #999;
+    border-right: solid 1px #999;
+    background: linear-gradient(#FCFCFC, #EEE);
+}
+
+#toolbar .bar .logo span {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#toolbar .bar .logo sup {
+    color: #0DA8BF;
+}
+
+#footer {
+    width: 110%;
+    margin-left: -5%;
+    position: relative;
+}
+
+#footer .divider {
+    width: 100%;
+    height: 10px;
+    -webkit-box-shadow: 0px -4px 10px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow: 0px -4px 10px 0px rgba(50, 50, 50, 0.75);
+	box-shadow: 0px -4px 10px 0px rgba(50, 50, 50, 0.75);
+}
+
+#footer .info {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 30px;
+    color: #999;
+}
+
+#footer .info span {
+    color: #0DA8BF;
+    font-weight: bold;
+}
+
+#ui_wrap {
+    width: 110%;
+    margin-left: -5%;
+    background: url(../img/honeycomb.png) repeat;
 }
 
 #ui_panel {
     width: 1000px;
-    height: auto;
+    height: 800px;
     margin: 0 auto;
     overflow: hidden;
-    border: solid 1px #333;
 }
 
 #ui_panel .window {
     width: 600px;
     height: 800px;
     float: left;
+    border: solid 1px #666;
 }
 
 #ui_panel .window .bottom {
     width: 100%;
     height: 100%;
     float: left;
-    background: url(../img/honeycomb.png) repeat;
+}
+
+#ui_panel .window .bottom img {
+    width: 96%;
+    height: 100%;
+    margin-left: 2%;
 }
 
 #ui_panel .window .top {
@@ -31,86 +108,176 @@ body {
 }
 
 #ui_panel .control {
-    width: 400px;
+    width: 380px;
     height: auto;
     float: left;
+    -webkit-box-shadow: 0px 0px 22px 4px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow: 0px 0px 22px 4px rgba(50, 50, 50, 0.75);
+	box-shadow: 0px 0px 22px 4px rgba(50, 50, 50, 0.75);
+}
+
+#ui_panel .control .move, #ui_panel .control .advice, #ui_panel .control .edit {
+    width: 100%;
+    float: left;
+    padding-top: 30px;
+    background: rgba(245, 245, 245, 1);
 }
 
 #ui_panel .control .move {
-    width: 100%;
-    height: 300px;
-    float: left;
-    background: #999;
+    height: 80px;
 }
 
-#ui_panel .tooltip {
-	width: 200px;
+#ui_panel .control .advice {
+    height: 350px;
+    margin-top: 3px;
+}
+
+#ui_panel .control .edit {
+    height: 150px;
+    margin-top: 3px;
+}
+
+#ui_panel .control .title div:nth-child(1) {
+    width: 80%;
+    float: left;
+    margin-left: 10%;
+    margin-top: -10px;
+    font-size: 18px;
+}
+
+#ui_panel .control .title div:nth-child(2) {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 10px;
+    float: left;
+    border-bottom: solid 1px #666;
+}
+
+#ui_panel .control .button {
+    float: left;
+    padding: 10px 20px 10px 20px;
+    margin-left: 18px;
+    margin-top: 10px;
+    background: linear-gradient(#FCFCFC, #EEE);
+    border: solid 1px #999;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    cursor: pointer;
+}
+
+#ui_panel .control .move .first_button {
+    margin-left: 40px;
+}
+
+#ui_panel .control .move .button:hover div {
+    color: #0DA8BF;
+}
+
+#ui_panel .control .move .button div {
+    font-weight: bold;
+    color: 333;
+}
+
+#ui_panel .control .pain_wrap {
+    float: left;
+    margin-left: 30px;
+}
+
+#ui_panel .control .edit .other {
+    float: left;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+#ui_panel .control .edit .value_field {
+    padding: 10px 20px 10px 20px;
+    margin-top: 10px;
+    margin-left: 18px;
+    float: left;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    background: #FFF;
+    border: solid 1px #999;
+}
+
+#ui_panel .control .edit .button {
+    font-weight: bold;
+}
+
+#ui_panel .control .edit .button:hover {
+    color: #0DA8BF;
+}
+
+#ui_panel .control .edit .warning_button:hover {
+    color: #FF3624;
+}
+
+#tooltip {
+    width: 200px;
 	height: 80px;
 	position: relative;
 }
 
-#ui_panel .tooltip .box {
+#tooltip .box {
 	width: 100%;
 	height: 60px;
 	float: left;
-	background: #FFF;
 	border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
 	-webkit-box-shadow: 0px 0px 22px 4px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 22px 4px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 22px 4px rgba(0,0,0,0.75);
+    cursor: pointer;
 }
 
-#ui_panel .tooltip .triangle {
+#tooltip .triangle {
 	width: 0;
 	height: 0;
 	border-left: 15px solid transparent;
 	border-right: 15px solid transparent;
-	border-top: 20px solid #FFF;
+	/*border-top: 20px solid #FF7300;*/
+    opacity: 0.8;
 	margin-left: 10px;
 	float: left;
 }
 
-#ui_panel .tooltip .box .pain {
-	width: 35%;
-	height: 30px;
+#tooltip .box .pain {
+    width: 30%;
+    height: 100%;
 	float:left;
+    opacity: 0.7;
 }
 
-#ui_panel .tooltip .box .pain span, #ui_panel .tooltip .box .tminus span {
-	font-size: 18px;
+#tooltip .box .tminus {
+	width: 70%;
+	height: 100%;
 	float: left;
-	margin-left: 8px;
-	margin-top: 5px;
+    box-shadow: -1px 0px 6px 0px rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: -1px 0px 6px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: -1px 0px 6px 0px rgba(50, 50, 50, 0.75);
+    background: #FFF;
 }
 
-#ui_panel .tooltip .box .pain div {
-	width: 25px;
-	height: 25px;
-	background: #1485CC;
-	border-radius: 30px;
+#tooltip .box .pain div {
+	width: 40px;
+	height: 40px;
 	float: left;
-	margin-left: 3px;
-	margin-top: 3px;
+	margin-left: 10px;
+	margin-top: 10px;
 	text-align: center;
-	font-size: 20px;
-	color: #FFF;
+	font-size: 35px;
+	color: #000;
 }
 
-#ui_panel .tooltip .box .tminus {
-	width: 65%;
-	height: 30px;
+#tooltip .box .tminus div{
+	width: 100%;
+	height: 100%;
 	float: left;
-}
-
-#ui_panel .tooltip .box .tminus div{
-	width: 50px;
-	height: 25px;
-	background: #1485CC;
-	border-radius: 30px;
-	float: left;
-	margin-left: 8px;
-	margin-top: 3px;
+	margin-top: 15px;
+    font-style: italic;
 	text-align: center;
-	font-size: 15px;
-	color: #FFF;
+	font-size: 25px;
 }

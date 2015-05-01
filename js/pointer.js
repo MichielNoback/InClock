@@ -1,8 +1,8 @@
 /***********************************************************************
 *   Name:   pointer.js (part of InClock)                                         
 *   Date:   5/2015
-*   Desc:   Contains all methods and classes
-*           related to the pointer objects
+*   Desc:   Contains all methods and classes related to the pointer 
+            objects and Tooltips
 *   Author: J. Vuopionpera
 ***********************************************************************/
 
@@ -25,8 +25,8 @@ function Pointer(data) {
         var xmlns = 'http://www.w3.org/2000/svg';
         // Color ring circle
         var new_point = document.createElementNS(xmlns, 'circle');
-        new_point.setAttributeNS(null, "cx", data.x);
-        new_point.setAttributeNS(null, "cy", data.y);
+        new_point.setAttributeNS(null, "cx", this.data.x);
+        new_point.setAttributeNS(null, "cy", this.data.y);
         new_point.setAttributeNS(null, "r", 10);
         new_point.setAttributeNS(null, "stroke", this.color());
         new_point.setAttributeNS(null, "stroke-width", 5);
@@ -34,17 +34,17 @@ function Pointer(data) {
         document.getElementById("svg_frame").appendChild(new_point);
         // Center dot
         new_point = document.createElementNS(xmlns, 'circle');
-        new_point.setAttributeNS(null, "cx", data.x);
-        new_point.setAttributeNS(null, "cy", data.y);
+        new_point.setAttributeNS(null, "cx", this.data.x);
+        new_point.setAttributeNS(null, "cy", this.data.y);
         new_point.setAttributeNS(null, "r", 5);
         new_point.setAttributeNS(null, "fill", "#333");
         document.getElementById("svg_frame").appendChild(new_point);
         // Cover circle
         new_point = document.createElementNS(xmlns, 'circle');
         new_point.setAttributeNS(null, "class", 'point');
-        new_point.setAttributeNS(null, "id", data.id);
-        new_point.setAttributeNS(null, "cx", data.x);
-        new_point.setAttributeNS(null, "cy", data.y);
+        new_point.setAttributeNS(null, "id", this.data.id);
+        new_point.setAttributeNS(null, "cx", this.data.x);
+        new_point.setAttributeNS(null, "cy", this.data.y);
         new_point.setAttributeNS(null, "r", 14);
         new_point.setAttributeNS(null, "opacity", 0.0);
         new_point.setAttributeNS(null, "cursor", 'pointer');
@@ -58,8 +58,12 @@ function Pointer(data) {
 		 * Out      -> An RGB color in HEX format
 		 **************************************************************/
         // Needs proper determination
-        var colors = ['red', 'orange', 'green'];
-        return colors[parseInt(data.status) - 1];
+        var colors = ['#FF3624', '#FF7300', '#FFE000', '#9BFF24'];
+        var days = parseInt(this.data.status);
+        if (days <= 3) { return colors[0] };
+        if (days <= 5) { return colors[1] };
+        if (days <= 7) { return colors[2] };
+        return colors[3]
     };
     
     this.update = function (point_property, value) {
@@ -80,7 +84,8 @@ function Pointer(data) {
 		 * Function :: destroy()
 		 * Desc     -> Remove a point from the SVG
 		 **************************************************************/
-		$("." + this.data.id).remove();
+		var point = document.getElementById(this.data.id);
+        point.parentNode.removeChild(point);
 	};
     
 };
@@ -96,13 +101,20 @@ function SVGObjects() {
 	this.test = function () {
 		// Make test points
 		var handle = $('#ui_panel svg');
-		var points = [{'id': 'p1', 'x': 200, 'y': 600, 'status': 1}, {'id': 'p2', 'x': 200, 'y': 500, 'status': 2}, {'id': 'p3', 'x': 300, 'y': 450, 'status': 1}, {'id': 'p4', 'x': 367, 'y': 423, 'status': 3}, {'id': 'p5', 'x': 345, 'y': 402, 'status': 3}, {'id': 'p6', 'x': 480, 'y': 280, 'status': 3}];
+        
+		var points = [{'id': 'p1', 'x': 200, 'y': 600, 'status': 5, 'pain': 7}, 
+                      {'id': 'p2', 'x': 200, 'y': 500, 'status': 11, 'pain': 3}, 
+                      {'id': 'p3', 'x': 300, 'y': 450, 'status': 22, 'pain': 5}, 
+                      {'id': 'p4', 'x': 367, 'y': 423, 'status': 7, 'pain': 9}, 
+                      {'id': 'p5', 'x': 345, 'y': 402, 'status': 0, 'pain': 6}, 
+                      {'id': 'p6', 'x': 480, 'y': 280, 'status': 3, 'pain': 2}];
+        
 		for (var k in points) {
-			this.add(points[k].id, points[k].x, points[k].y, points[k].status);
+			this.add(points[k].id, points[k].x, points[k].y, points[k].pain, points[k].status);
 		};
 	};
 	
-	this.add = function (pid, x, y, ps) {
+	this.add = function (pid, x, y, ps, status) {
 		/***************************************************************
 		 * Function :: add()
 		 * Desc     -> Add a new data point
@@ -116,7 +128,7 @@ function SVGObjects() {
 		point.x = x;
 		point.y = y;
 		point.pain = ps;
-		point.status = 3;
+		point.status = status;
 		point = new Pointer(point);
 		point.place();
 		this.point_tracker[pid] = point;
@@ -144,23 +156,70 @@ function SVGObjects() {
 	
 };
 
+/***********************************************************************
+* Class :: ToolTip
+* Desc  -> Spawn and manipulate the tooltip
+***********************************************************************/
 function ToolTip(point) {
 
 	this.point = point;
+    this.element_id = "tooltip";
 	
 	this.place = function () {
+        /***************************************************************
+		 * Function :: place()
+		 * Desc     -> Spawn a Tooltip at a point location
+		 **************************************************************/
 		this.reset();
-		console.log(point)
-		var html = '<div class="tooltip" style="margin:' + (point.data.y - 880) + 'px 0px 0px ' + 
-				   (point.data.x - 25) + 'px;"><div class="box"><div class="pain"><span>Pijn</span>'+
-				   '<div>' + point.data.pain + '</div></div><div class="tminus">' + '<span>Dagen</span><div>' + point.data.status + 
-				   '</div></div><div class="recommendation"></div><div class="controls"></div></div>' +
-				   '<div class="triangle"></div></div>';
-		$("#ui_panel .top").append(html);
+        // Create the tooltip from template
+        var tooltip_template = [
+            '<div id="', this.element_id ,'" ',
+            ['style="margin:', (point.data.y - 880), 'px 0px 0px ', (point.data.x - 25), 'px;">'].join(""),
+            '   <div class="box">',
+            '       <div class="pain" style="background:', this.get_color(point.data.pain) ,';">',
+            '           <div>', point.data.pain, '</div>',
+            '       </div>',
+            '       <div class="tminus">',
+            '           <div>', this.status(point.data.status), '</div>',
+            '       </div>',
+            '   </div>',
+            '   <div class="triangle" style="border-top:20px solid', 
+                this.get_color(point.data.pain) ,';"></div>',
+            '</div>'].join("");
+
+		$("#ui_panel .top").append(tooltip_template);
 	};
 	
+    this.status = function (status) {
+        /***************************************************************
+		 * Function :: status()
+		 * Desc     -> Get a status based on days passed
+         * Input    -> status [int | string] :: days passed | none
+         * Out      -> string
+		 **************************************************************/
+        if (status !== 'none' && status > 1) { return ['&plusmn; ' + point.data.status + ' d'].join("") };
+        if (status === 0) { return 'Vandaag' };    
+        if (status === 1) { return 'Gisteren' };
+        return 'Nooit'
+    };
+    
+    this.get_color = function (pain) {
+        /***************************************************************
+		 * Function :: get_color()
+		 * Desc     -> Get a HEX color for a pain value
+         * Input    -> pain [int] :: pain value
+         * Out      -> HEX color as string
+		 **************************************************************/
+        var colors = ['#FF3624', '#FF7300', '#FFE000', '#9BFF24'];
+        if (pain <= 4) { return colors[3] };
+        if (pain <= 6) { return colors[2] };
+        if (pain <= 8) { return colors[1] };
+        return colors[0];
+    };
+
 	this.reset = function () {
-		$('.tooltip').remove();
+		var tool = document.getElementById(this.element_id);
+        if (tool !== null) {tool.parentNode.removeChild(tool)};
 	};
 };
 
@@ -169,8 +228,13 @@ $(document).ready(function (){
     var points = new SVGObjects();
     points.test();
     // Listen for point triggers
+    var tooltip = null;
     $('.point').click(function () {
 		tooltip = new ToolTip(points.point_tracker[$(this).attr("id")]);
 		tooltip.place();
+        // Listen for tooltip triggers
+        $('#tooltip .box').click(function () {
+            tooltip.reset();        
+        });
 	});
 });
