@@ -12,10 +12,9 @@
 * Input -> data [object] :: simple point data object
 * 		   pageHandle [object] :: jQuery handle  
 ***********************************************************************/
-function Pointer(data, pageHandle) {
+function Pointer(data) {
     
     this.data = data;
-    this.handle = pageHandle;
     
     this.place = function () {
 		/***************************************************************
@@ -76,6 +75,14 @@ function Pointer(data, pageHandle) {
         }
     };
     
+    this.destroy = function () {
+		/***************************************************************
+		 * Function :: destroy()
+		 * Desc     -> Remove a point from the SVG
+		 **************************************************************/
+		$("." + this.data.id).remove();
+	};
+    
 };
 
 /***********************************************************************
@@ -91,10 +98,48 @@ function SVGObjects() {
 		var handle = $('#ui_panel svg');
 		var points = [{'id': 'p1', 'x': 200, 'y': 600, 'status': 1}, {'id': 'p2', 'x': 200, 'y': 500, 'status': 2}, {'id': 'p3', 'x': 300, 'y': 450, 'status': 1}, {'id': 'p4', 'x': 367, 'y': 423, 'status': 3}, {'id': 'p5', 'x': 345, 'y': 402, 'status': 3}, {'id': 'p6', 'x': 480, 'y': 280, 'status': 3}];
 		for (var k in points) {
-			var _p = new Pointer(points[k], handle);
-			_p.place();
-			this.point_tracker[_p.data.id] = _p;
+			this.add(points[k].id, points[k].x, points[k].y, points[k].status);
 		};
+	};
+	
+	this.add = function (pid, x, y, ps) {
+		/***************************************************************
+		 * Function :: add()
+		 * Desc     -> Add a new data point
+		 * Input    -> pid [string] :: key value
+		 * 			-> x [float] :: x-coordinate
+		 *          -> y [float] :: y-coordinate
+		 *          -> ps [int] :: pain rating 
+		 **************************************************************/
+		var point = {};
+		point.id = pid;
+		point.x = x;
+		point.y = y;
+		point.pain = ps;
+		point.status = 3;
+		point = new Pointer(point);
+		point.place();
+		this.point_tracker[pid] = point;
+	};
+	
+	this.destroy_one = function (point_id) {
+		/***************************************************************
+		 * Function :: destroy_one()
+		 * Desc     -> Remove a points from SVG
+		 * Input    -> point_id [string] :: key value
+		 **************************************************************/
+		this.point_tracker.point_id.destroy();
+		delete this.point_tracker.point_id;
+	};
+	
+	this.destroy_all = function () {
+		/***************************************************************
+		 * Function :: destroy_all()
+		 * Desc     -> Remove all points from SVG
+		 **************************************************************/
+		 for (var k in this.point_tracker) {
+			 this.destroy_one(k);
+		 }
 	};
 	
 };
@@ -105,9 +150,10 @@ function ToolTip(point) {
 	
 	this.place = function () {
 		this.reset();
+		console.log(point)
 		var html = '<div class="tooltip" style="margin:' + (point.data.y - 880) + 'px 0px 0px ' + 
 				   (point.data.x - 25) + 'px;"><div class="box"><div class="pain"><span>Pijn</span>'+
-				   '<div>?</div></div><div class="tminus">' + '<span>Dagen</span><div>' + point.data.status + 
+				   '<div>' + point.data.pain + '</div></div><div class="tminus">' + '<span>Dagen</span><div>' + point.data.status + 
 				   '</div></div><div class="recommendation"></div><div class="controls"></div></div>' +
 				   '<div class="triangle"></div></div>';
 		$("#ui_panel .top").append(html);
