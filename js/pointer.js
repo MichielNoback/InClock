@@ -25,6 +25,7 @@ function Pointer(data) {
         var xmlns = 'http://www.w3.org/2000/svg';
         // Color ring circle
         var new_point = document.createElementNS(xmlns, 'circle');
+        new_point.setAttributeNS(null, "id", '0pr' + this.data.id);
         new_point.setAttributeNS(null, "cx", this.data.x);
         new_point.setAttributeNS(null, "cy", this.data.y);
         new_point.setAttributeNS(null, "r", 10);
@@ -34,6 +35,7 @@ function Pointer(data) {
         document.getElementById("svg_frame").appendChild(new_point);
         // Center dot
         new_point = document.createElementNS(xmlns, 'circle');
+        new_point.setAttributeNS(null, "id", '1pr' + this.data.id);
         new_point.setAttributeNS(null, "cx", this.data.x);
         new_point.setAttributeNS(null, "cy", this.data.y);
         new_point.setAttributeNS(null, "r", 5);
@@ -41,7 +43,7 @@ function Pointer(data) {
         document.getElementById("svg_frame").appendChild(new_point);
         // Cover circle
         new_point = document.createElementNS(xmlns, 'circle');
-        new_point.setAttributeNS(null, "class", 'point');
+        new_point.setAttributeNS(null, "class", "point");
         new_point.setAttributeNS(null, "id", this.data.id);
         new_point.setAttributeNS(null, "cx", this.data.x);
         new_point.setAttributeNS(null, "cy", this.data.y);
@@ -84,8 +86,11 @@ function Pointer(data) {
 		 * Function :: destroy()
 		 * Desc     -> Remove a point from the SVG
 		 **************************************************************/
-		var point = document.getElementById(this.data.id);
-        point.parentNode.removeChild(point);
+        var nodeNames = [this.data.id, '0pr'+this.data.id, '1pr'+this.data.id];
+        for (var i = 0; i < nodeNames.length; i++) {
+            var point = document.getElementById(nodeNames[i]);
+            document.getElementById("svg_frame").removeChild(point);
+        }
 	};
     
 };
@@ -96,11 +101,11 @@ function Pointer(data) {
 ***********************************************************************/
 function SVGObjects() {
 	
+    this.maxId = 6;
 	this.point_tracker = {};
 	
 	this.test = function () {
 		// Make test points
-		var handle = $('#ui_panel svg');
         
 		var points = [{'id': 'p1', 'x': 200, 'y': 600, 'status': 5, 'pain': 7}, 
                       {'id': 'p2', 'x': 200, 'y': 500, 'status': 11, 'pain': 3}, 
@@ -134,14 +139,14 @@ function SVGObjects() {
 		this.point_tracker[pid] = point;
 	};
 	
-	this.destroy_one = function (point_id) {
+	this.destroy_one = function (point) {
 		/***************************************************************
 		 * Function :: destroy_one()
 		 * Desc     -> Remove a points from SVG
-		 * Input    -> point_id [string] :: key value
+		 * Input    -> point [Pointer] :: Pointer object
 		 **************************************************************/
-		this.point_tracker.point_id.destroy();
-		delete this.point_tracker.point_id;
+		point.destroy();
+		delete this.point_tracker[point.id];
 	};
 	
 	this.destroy_all = function () {
@@ -150,7 +155,7 @@ function SVGObjects() {
 		 * Desc     -> Remove all points from SVG
 		 **************************************************************/
 		 for (var k in this.point_tracker) {
-			 this.destroy_one(k);
+			 this.destroy_one(this.point_tracker[k]);
 		 }
 	};
 	
@@ -188,6 +193,8 @@ function ToolTip(point) {
             '</div>'].join("");
 
 		$("#ui_panel .top").append(tooltip_template);
+        // Reveal options window
+        $("#ui_panel .edit").slideDown();
 	};
 	
     this.status = function (status) {
@@ -219,22 +226,9 @@ function ToolTip(point) {
 
 	this.reset = function () {
 		var tool = document.getElementById(this.element_id);
-        if (tool !== null) {tool.parentNode.removeChild(tool)};
+        if (tool !== null) {
+            tool.parentNode.removeChild(tool);
+            $("#ui_panel .edit").slideUp();
+        };
 	};
 };
-
-$(document).ready(function (){
-	// Setup SVG 
-    var points = new SVGObjects();
-    points.test();
-    // Listen for point triggers
-    var tooltip = null;
-    $('.point').click(function () {
-		tooltip = new ToolTip(points.point_tracker[$(this).attr("id")]);
-		tooltip.place();
-        // Listen for tooltip triggers
-        $('#tooltip .box').click(function () {
-            tooltip.reset();        
-        });
-	});
-});

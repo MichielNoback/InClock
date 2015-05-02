@@ -210,6 +210,16 @@ body {
     color: #0DA8BF;
 }
 
+#ui_panel .control .edit .button_new {
+    background: linear-gradient(#008FFF, #006BBF);
+    color: #F5F5F5;
+}
+
+#ui_panel .control .edit .button_new:hover {
+    background: linear-gradient(#008FFF, #0080E5);
+    color: #F5F5F5;
+}
+
 #ui_panel .control .edit .warning_button:hover {
     color: #FF3624;
 }

@@ -4,6 +4,8 @@
         <link style="text/css" rel="stylesheet" href="../css/inclock.css" />
         <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="../js/pointer.js"></script>
+        <script type="text/javascript" src="../js/comms.js"></script>
+        <script type="text/javascript" src="../js/listeners.js"></script>
     </head>
     <body>
         <div id="toolbar">
@@ -15,7 +17,7 @@
             <div id='ui_panel'>
                 <div class="window">
                     <div class="bottom">
-                        <!--<img src="../img/back.png" />-->
+                        <img src="../img/back.png" />
                     </div>
                     <div class="top">
                         <svg id="svg_frame" width="600" height="800"></svg>
@@ -30,7 +32,7 @@
                         <div class="button first_button">
                             <div>Omdraaien</div>
                         </div>
-                        <div class="button">
+                        <div class="button" id="addnewpoint">
                             <div>Punt toevoegen</div>
                         </div>
                     </div>
@@ -40,14 +42,14 @@
                             <div></div>
                         </div>
                         <div class="pain_wrap">
-                            <div class="button">-</div>
-                            <div class="value_field">8</div>
-                            <div class="button">+</div>
-                            <div class="button">Save</div>
+                            <div class="button button_neg">-</div>
+                            <div class="value_field"></div>
+                            <div class="button button_add">+</div>
+                            <div class="button button_save">Save</div>
                         </div>
                         <div class="other">
-                            <div class="button">Nieuwe injectie</div>
-                            <div class="button warning_button">Delete punt</div>
+                            <div class="button button_new">Nieuwe injectie</div>
+                            <div class="button warning_button button_delete">Delete punt</div>
                         </div>
                     </div>
                     <div class="advice">

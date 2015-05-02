@@ -10,21 +10,24 @@
 			"x": 300,
 			"y": 460,
 			"pain": 7,
-			"status": 1								
+			"status": 1,
+            "timestamp": "02/05/2015"
 		},
 		"p": {
 			"id": "B1P1",
 			"x": 250,
 			"y": 300,
 			"pain": 4,
-			"status": 2								
+			"status": 2,
+            "timestamp": "02/05/2015"
 		},
 		"p": {
 			"id": "B1P3",
 			"x": 510,
 			"y": 310,
 			"pain": 5,
-			"status": 3								
+			"status": 3,
+            "timestamp": "02/05/2015"
 		}
 	},
 	"b2": {
@@ -33,7 +36,8 @@
 			"x": 330,
 			"y": 420,
 			"pain": 9,
-			"status": 1								
+			"status": 1,
+            "timestamp": "02/05/2015"
 		}
 	}
 }
