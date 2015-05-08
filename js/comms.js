@@ -1,43 +1,65 @@
 /***********************************************************************
 *   Name:   comms.js (part of InClock)                                         
-*   Date:   6/2015
+*   Date:   5/2015
 *   Desc:   Contains all methods and classes related too server 
 * 	        communications and JSON interpration.
 *   Author: J. Vuopionpera
 * 
-* 	Dependencies: pointer.js
+* 	Dependencies: listeners.js, pointer.js
 ***********************************************************************/
 
 function UserData() {
 	
 	this.data = null;
 	
-	this.get_from_dropbox = function () {
+	this.getFromDropbox = function () {
 		// Dropbox API
 	};
 	
-	this.get_from_database = function () {
+	this.getFromDatabase = function () {
 		// Get from database
 	};
 	
-	this.get_from_local = function () {
+	this.getFromLocal = function () {
 		
 	};
+    
+    this.getFromTest =  function () {
+        // Test protocol with server file
+        var filename = '../resource/user.json';
+        var caller = $.ajax({
+            url: '../cgi-bin/comms.py',
+            data: {prc: 'test', fn: filename},
+            dataType: 'json',
+            method: 'POST',
+            async: true
+        });
+        return caller;
+    };
 	
-	this.process_json = function () {
-		// Transform JSON into SVG points
-	};
-	
-	this.save_to_database = function () {
+	this.saveToDatabase = function () {
 		// Store data in database
 	};
 	
-	this.save_to_dropbox = function () {
+	this.saveToDropbox = function () {
 		// Send data to dropbox
 	};
 	
-	this.save_to_local = function () {
+	this.saveToLocal = function () {
 		// Save data to local
 	};
+    
+    this.saveToTest = function (jsonData) {
+        // Save to server test file
+        var filename = '../resource/user.json';
+        $.ajax({
+            url: '../cgi-bin/comms.py',
+            data: {prc: 'test', fn: filename, data: JSON.stringify(jsonData)},
+            method: 'POST',
+            success: function () {
+                console.log('File was saved!');    
+            }
+        });
+    };
 	
 };

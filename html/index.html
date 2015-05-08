@@ -3,7 +3,7 @@
         <title>InClock UI</title>
         <link style="text/css" rel="stylesheet" href="../css/inclock.css" />
         <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
-        <script type="text/javascript" src="../js/pointer.js"></script>
+	<script type="text/javascript" src="../js/pointer.js"></script>
         <script type="text/javascript" src="../js/comms.js"></script>
         <script type="text/javascript" src="../js/listeners.js"></script>
     </head>
@@ -11,13 +11,14 @@
         <div id="toolbar">
             <div class="bar">
                 <div class="logo"><span>InClock </span><sup>Development</sup></div>
+                <div class="button button_signout"><div>Sign Out</div></div>
             </div>
         </div>
         <div id="ui_wrap">
             <div id='ui_panel'>
                 <div class="window">
                     <div class="bottom">
-                        <img src="../img/back.png" />
+                        <img id="templateIMG" src="../img/front.png" />
                     </div>
                     <div class="top">
                         <svg id="svg_frame" width="600" height="800"></svg>
@@ -29,7 +30,7 @@
                             <div>Controls</div>
                             <div></div>
                         </div>
-                        <div class="button first_button">
+                        <div class="button first_button" id="switch">
                             <div>Omdraaien</div>
                         </div>
                         <div class="button" id="addnewpoint">

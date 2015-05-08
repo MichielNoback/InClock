@@ -4,13 +4,14 @@
 *   Desc:   Contains all methods and classes related to the pointer 
             objects and Tooltips
 *   Author: J. Vuopionpera
+*
+*   Dependencies: comms.js, listeners.js
 ***********************************************************************/
 
 /***********************************************************************
 * Class :: Pointer
 * Desc  -> Simple object for creating and manipulating point objects.
 * Input -> data [object] :: simple point data object
-* 		   pageHandle [object] :: jQuery handle  
 ***********************************************************************/
 function Pointer(data) {
     
@@ -65,7 +66,7 @@ function Pointer(data) {
         if (days <= 3) { return colors[0] };
         if (days <= 5) { return colors[1] };
         if (days <= 7) { return colors[2] };
-        return colors[3]
+        return colors[3];
     };
     
     this.update = function (point_property, value) {
@@ -86,12 +87,24 @@ function Pointer(data) {
 		 * Function :: destroy()
 		 * Desc     -> Remove a point from the SVG
 		 **************************************************************/
-        var nodeNames = [this.data.id, '0pr'+this.data.id, '1pr'+this.data.id];
+        var nodeNames = [this.data.id, '0pr' + this.data.id, '1pr' + this.data.id];
         for (var i = 0; i < nodeNames.length; i++) {
             var point = document.getElementById(nodeNames[i]);
             document.getElementById("svg_frame").removeChild(point);
         }
 	};
+    
+    this.inject = function () {
+        /***************************************************************
+		 * Function :: inject()
+		 * Desc     -> Register an injection
+		 **************************************************************/
+        this.data.status = 0;
+        var dt = new Date();
+        this.data.timestamp = dt.getTime();
+        this.destroy();
+        this.place();
+    };
     
 };
 
@@ -101,25 +114,41 @@ function Pointer(data) {
 ***********************************************************************/
 function SVGObjects() {
 	
-    this.maxId = 6;
+    this.DEFAULT_PAIN_VALUE = 5;
+    this.DEFAULT_STATUS = 'n';
+    this.templateId = null;
 	this.point_tracker = {};
 	
-	this.test = function () {
+	this.make = function (points) {
 		// Make test points
-        
-		var points = [{'id': 'p1', 'x': 200, 'y': 600, 'status': 5, 'pain': 7}, 
-                      {'id': 'p2', 'x': 200, 'y': 500, 'status': 11, 'pain': 3}, 
-                      {'id': 'p3', 'x': 300, 'y': 450, 'status': 22, 'pain': 5}, 
-                      {'id': 'p4', 'x': 367, 'y': 423, 'status': 7, 'pain': 9}, 
-                      {'id': 'p5', 'x': 345, 'y': 402, 'status': 0, 'pain': 6}, 
-                      {'id': 'p6', 'x': 480, 'y': 280, 'status': 3, 'pain': 2}];
-        
 		for (var k in points) {
-			this.add(points[k].id, points[k].x, points[k].y, points[k].pain, points[k].status);
+			point = new Pointer(points[k]);
+            point.place();
+            this.point_tracker[k] = point;
 		};
 	};
+    
+    this.getNewKey = function () {
+        /***************************************************************
+		 * Function :: getNewKey()
+		 * Desc     -> Generate a new ID relative for template point
+         * Out      -> new id [string]
+		 **************************************************************/
+        var keys = [];
+        for (var key in this.point_tracker) { keys.push(key) };
+        // Check if template is empty
+        if (keys.length === 0) { return [this.templateId, 'P', 0].join(''); };
+        // Find max key
+        var maxN = keys[0].split('P'); maxN = parseInt(maxN[maxN.length - 1]);
+        for (var key in keys) {
+            // Extract numeral from ID
+            var n = keys[key].split('P'); n = parseInt(n[n.length - 1]);
+            if (n > maxN) { maxN = n; };
+        };
+        return [this.templateId, 'P', maxN + 1].join('');
+    };
 	
-	this.add = function (pid, x, y, ps, status) {
+	this.add = function (x, y) {
 		/***************************************************************
 		 * Function :: add()
 		 * Desc     -> Add a new data point
@@ -129,14 +158,14 @@ function SVGObjects() {
 		 *          -> ps [int] :: pain rating 
 		 **************************************************************/
 		var point = {};
-		point.id = pid;
+		point.id = this.getNewKey();
 		point.x = x;
 		point.y = y;
-		point.pain = ps;
-		point.status = status;
+		point.pain = this.DEFAULT_PAIN_VALUE;
+		point.status = this.DEFAULT_STATUS;
 		point = new Pointer(point);
 		point.place();
-		this.point_tracker[pid] = point;
+		this.point_tracker[point.data.id] = point;
 	};
 	
 	this.destroy_one = function (point) {
@@ -175,7 +204,7 @@ function ToolTip(point) {
 		 * Function :: place()
 		 * Desc     -> Spawn a Tooltip at a point location
 		 **************************************************************/
-		this.reset();
+        this.reset('place');
         // Create the tooltip from template
         var tooltip_template = [
             '<div id="', this.element_id ,'" ',
@@ -194,7 +223,7 @@ function ToolTip(point) {
 
 		$("#ui_panel .top").append(tooltip_template);
         // Reveal options window
-        $("#ui_panel .edit").slideDown();
+        if (!$("#ui_panel .edit").is(':visible')) { $("#ui_panel .edit").slideDown() };
 	};
 	
     this.status = function (status) {
@@ -224,11 +253,12 @@ function ToolTip(point) {
         return colors[0];
     };
 
-	this.reset = function () {
+	this.reset = function (eventType) {
 		var tool = document.getElementById(this.element_id);
         if (tool !== null) {
             tool.parentNode.removeChild(tool);
-            $("#ui_panel .edit").slideUp();
+            if (eventType === 'place') { return };
+            if ($("#ui_panel .edit")) { $("#ui_panel .edit").slideUp() };
         };
 	};
 };

@@ -24,6 +24,7 @@ body {
 }
 
 #toolbar .bar .logo {
+    float: left;
     width: 180px;
     padding: 10px 20px 10px 20px;
     text-align: center;
@@ -39,6 +40,15 @@ body {
 
 #toolbar .bar .logo sup {
     color: #0DA8BF;
+}
+
+#toolbar .bar .button {
+    margin-top: 6px;
+    float: right;
+}
+
+#toolbar .bar .button_signout {
+
 }
 
 #footer {
@@ -153,7 +163,7 @@ body {
     border-bottom: solid 1px #666;
 }
 
-#ui_panel .control .button {
+#ui_panel .control .button, #toolbar .button {
     float: left;
     padding: 10px 20px 10px 20px;
     margin-left: 18px;
