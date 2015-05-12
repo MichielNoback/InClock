@@ -5,8 +5,11 @@
             hierarchy used for data manipulation.
 *   Author: J. Vuopionpera
 *   
-*   Dependencies: comms.js, pointer.js
+*   Dependencies: comms.js, pointer.js, translate.js
 ***********************************************************************/
+
+// Globals
+var LANGUAGE_DATA = null;
 
 $(document).ready(function (){
     /*******************************************************************
@@ -18,12 +21,85 @@ $(document).ready(function (){
     var server_status = userdata.getFromTest();
     server_status.done(function (data) {
         // Start contruction
+        LANGUAGE_DATA = getLanguageData(data['user'].language);
+        makeTemplate();
         userdata.data = data;
         var dashboard = new DashBoard(userdata);
         var supervisor = new SuperListener(dashboard);
         supervisor.init();
     });
 });
+
+function makeTemplate() {
+     /***************************************************************
+     * Function :: makeTemplate
+     * Desc     -> Create Dashboard HTML
+     ***************************************************************/
+    
+    var data = LANGUAGE_DATA;
+    var dt = new Date();
+    var template = [
+        '<div id="toolbar">',
+        '   <div class="bar">',
+        '       <div class="logo"><span>InClock </span><sup>Development</sup></div>',
+        '       <div class="button button_signout"><div>', data['button1'], '</div></div>',
+        '   </div>',
+        '</div>',
+        '<div id="ui_wrap">',
+        '   <div id="ui_panel">',
+        '       <div class="window">',
+        '           <div class="bottom">',
+        '               <img id="templateIMG" src="../img/front.png" />',
+        '           </div>',
+        '           <div class="top">',
+        '               <svg id="svg_frame" width="600" height="800"></svg>',
+        '           </div>',
+        '       </div>',
+        '       <div class="control">',
+        '           <div class="move">',
+        '               <div class="title">',
+        '                   <div>', data['title1'], '</div>',
+        '                   <div></div>',
+        '               </div>',
+        '               <div class="button first_button" id="switch">',
+        '                   <div>', data['button2'], '</div>',
+        '               </div>',
+        '               <div class="button" id="addnewpoint">',
+        '                   <div>', data['button3'], '</div>',
+        '               </div>',
+        '           </div>',
+        '           <div class="edit">',
+        '               <div class="title">',
+        '                   <div>', data['title2'], '</div>',
+        '                   <div></div>',
+        '               </div>',
+        '               <div class="pain_wrap">',
+        '                   <div class="button button_neg">-</div>',
+        '                   <div class="value_field"></div>',
+        '                   <div class="button button_add">+</div>',
+        '                   <div class="button button_save">', data['button4'], '</div>',
+        '               </div>',
+        '               <div class="other">',
+        '                  <div class="button button_new">', data['button5'], '</div>',
+        '                   <div class="button warning_button button_delete">', data['button6'], '</div>',
+        '               </div>',
+        '           </div>',
+        '           <div class="advice">',
+        '               <div class="title">',
+        '                    <div>', data['title3'], '</div>',
+        '                    <div></div>',
+        '                </div>',
+        '            </div>',
+        '        </div>',
+        '    </div>',
+        '</div>',
+        '<div id="footer">',
+        '    <div class="divider"></div>',
+        '    <div class="info">Inclock ( <span>in Development</span> ) &copy; ', dt.getFullYear(), '</div>',
+        '</div>'
+    ].join("");
+    document.body.innerHTML = template;
+};
 
 /***********************************************************************
 * Class :: DashBoard
@@ -46,10 +122,27 @@ function DashBoard(userdata) {
 		 * Function :: init()
 		 * Desc     -> Spawn SVGObjects class for current template
 		 **************************************************************/
+        this.updateStatus();
         document.getElementById('templateIMG').src = this.TEMPLATE_IMG[this.templates[this.tid]];
         this.points = new SVGObjects();
         this.points.templateId = this.templates[this.tid];
         this.points.make(this.data[this.templates[this.tid]]);
+    };
+    
+    this.updateStatus = function () {
+        /***************************************************************
+		 * Function :: updateStatus()
+		 * Desc     -> Update point statusses based on timestamps
+		 **************************************************************/
+        var points = this.data[this.templates[this.tid]];
+        for (var key in points) {
+            var dt = new Date(new Date().getTime());
+            // Calculate hours passed since injection
+            dt = dt - new Date(points[key].timestamp);
+            dt = Math.round(dt / (24*60*60*1000));
+            if (points[key].status === 'n') { dt = 'n'; };
+            this.data[this.templates[this.tid]][key].status = dt;
+        };
     };
     
     this.switchTemplate = function () {

@@ -1,150 +1,152 @@
 {
   "B2": {
-    "B2P3": {
-      "y": 549,
-      "pain": 5,
-      "x": 222,
-      "id": "B2P3",
-      "status": 5,
-      "timestamp": 1431110565174
-    },
-    "B2P1": {
-      "y": 461,
-      "pain": 5,
-      "x": 251,
-      "id": "B2P1",
-      "status": "n",
-      "timestamp": 1431023803421
-    },
-    "B2P2": {
-      "y": 476,
-      "pain": 7,
-      "x": 368,
-      "id": "B2P2",
-      "status": 7,
-      "timestamp": 1431023806903
-    },
-    "B2P0": {
-      "y": 420,
-      "pain": 9,
-      "x": 330,
-      "id": "B2P0",
-      "status": 0,
-      "timestamp": 1431023240959
-    },
     "B2P4": {
-      "y": 562,
+      "timestamp": 1431110565174,
       "pain": 5,
-      "x": 394,
       "id": "B2P4",
       "status": "n",
-      "timestamp": 1431110565174
+      "x": 394,
+      "y": 562
+    },
+    "B2P1": {
+      "timestamp": 1431023803421,
+      "pain": 5,
+      "id": "B2P1",
+      "status": "n",
+      "x": 251,
+      "y": 461
+    },
+    "B2P0": {
+      "timestamp": 1431023240959,
+      "pain": 9,
+      "id": "B2P0",
+      "status": 0,
+      "x": 330,
+      "y": 420
+    },
+    "B2P2": {
+      "timestamp": 1431023806903,
+      "pain": 7,
+      "id": "B2P2",
+      "status": 7,
+      "x": 368,
+      "y": 476
+    },
+    "B2P3": {
+      "timestamp": 1431110565174,
+      "pain": 5,
+      "id": "B2P3",
+      "status": 5,
+      "x": 222,
+      "y": 549
+    }
+  },
+  "B1": {
+    "B1P7": {
+      "timestamp": 1431024160148,
+      "pain": 5,
+      "id": "B1P7",
+      "status": 0,
+      "x": 354.5,
+      "y": 350
+    },
+    "B1P2": {
+      "timestamp": 1431024356333,
+      "pain": 5,
+      "id": "B1P2",
+      "status": 0,
+      "x": 246.5,
+      "y": 434
+    },
+    "B1P11": {
+      "timestamp": 1431024160148,
+      "pain": 5,
+      "id": "B1P11",
+      "status": 0,
+      "x": 285.5,
+      "y": 422
+    },
+    "B1P3": {
+      "timestamp": 1431023784385,
+      "pain": 5,
+      "id": "B1P3",
+      "status": 0,
+      "x": 227.5,
+      "y": 382
+    },
+    "B1P0": {
+      "timestamp": 1431023225327,
+      "pain": 7,
+      "id": "B1P0",
+      "status": 0,
+      "x": 300,
+      "y": 460
+    },
+    "B1P6": {
+      "timestamp": 1431111500241,
+      "pain": 5,
+      "id": "B1P6",
+      "status": 0,
+      "x": 330.5,
+      "y": 316
+    },
+    "B1P10": {
+      "timestamp": 1431024160148,
+      "pain": 5,
+      "id": "B1P10",
+      "status": 0,
+      "x": 309.5,
+      "y": 354
+    },
+    "B1P5": {
+      "timestamp": 1431111195080,
+      "pain": 7,
+      "id": "B1P5",
+      "status": 0,
+      "x": 284.5,
+      "y": 316
+    },
+    "B1P1": {
+      "timestamp": 1431109843611,
+      "pain": 5,
+      "id": "B1P1",
+      "status": 0,
+      "x": 355.5,
+      "y": 420
+    },
+    "B1P9": {
+      "timestamp": 1431024160148,
+      "pain": 5,
+      "id": "B1P9",
+      "status": 0,
+      "x": 271.5,
+      "y": 375
+    },
+    "B1P4": {
+      "timestamp": 1431111518209,
+      "pain": 5,
+      "id": "B1P4",
+      "status": "n",
+      "x": 246.5,
+      "y": 339
+    },
+    "B1P8": {
+      "timestamp": 1431111383823,
+      "pain": 5,
+      "id": "B1P8",
+      "status": 0,
+      "x": 326.5,
+      "y": 392
     }
   },
   "user": {
-    "color_scheme": "normal",
     "template_types": [
       "B1",
       "B2"
     ],
-    "data_preference": "m1"
-  },
-  "B1": {
-    "B1P0": {
-      "y": 460,
-      "pain": 7,
-      "x": 300,
-      "id": "B1P0",
-      "status": 5,
-      "timestamp": 1431023225327
-    },
-    "B1P8": {
-      "y": 392,
-      "pain": 5,
-      "x": 326.5,
-      "id": "B1P8",
-      "status": 0,
-      "timestamp": 1431111383823
-    },
-    "B1P7": {
-      "y": 350,
-      "pain": 5,
-      "x": 354.5,
-      "id": "B1P7",
-      "status": "n",
-      "timestamp": 1431024160148
-    },
-    "B1P5": {
-      "y": 316,
-      "pain": 7,
-      "x": 284.5,
-      "id": "B1P5",
-      "status": 0,
-      "timestamp": 1431111195080
-    },
-    "B1P11": {
-      "y": 422,
-      "pain": 5,
-      "x": 285.5,
-      "id": "B1P11",
-      "status": "n",
-      "timestamp": 1431024160148
-    },
-    "B1P2": {
-      "y": 434,
-      "pain": 5,
-      "x": 246.5,
-      "id": "B1P2",
-      "status": 0,
-      "timestamp": 1431024356333
-    },
-    "B1P1": {
-      "y": 420,
-      "pain": 5,
-      "x": 355.5,
-      "id": "B1P1",
-      "status": 0,
-      "timestamp": 1431109843611
-    },
-    "B1P6": {
-      "y": 316,
-      "pain": 5,
-      "x": 330.5,
-      "id": "B1P6",
-      "status": 6,
-      "timestamp": 1431111500241
-    },
-    "B1P10": {
-      "y": 354,
-      "pain": 5,
-      "x": 309.5,
-      "id": "B1P10",
-      "status": "n",
-      "timestamp": 1431024160148
-    },
-    "B1P9": {
-      "y": 375,
-      "pain": 5,
-      "x": 271.5,
-      "id": "B1P9",
-      "status": "n",
-      "timestamp": 1431024160148
-    },
-    "B1P3": {
-      "y": 382,
-      "pain": 5,
-      "x": 227.5,
-      "id": "B1P3",
-      "status": "n",
-      "timestamp": 1431023784385
-    },
-    "B1P4": {
-      "y": 339,
-      "pain": 5,
-      "x": 246.5,
-      "id": "B1P4",
-      "status": 0,
-      "timestamp": 1431111518209
-    }
+    "language": "en",
+    "data_preference": "m1",
+    "color_scheme": "normal",
+    "time_offset": 2
   }
 }

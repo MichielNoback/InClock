@@ -5,7 +5,7 @@
             objects and Tooltips
 *   Author: J. Vuopionpera
 *
-*   Dependencies: comms.js, listeners.js
+*   Dependencies: comms.js, listeners.js, translate.js
 ***********************************************************************/
 
 /***********************************************************************
@@ -210,10 +210,11 @@ function ToolTip(point) {
             '<div id="', this.element_id ,'" ',
             ['style="margin:', (point.data.y - 880), 'px 0px 0px ', (point.data.x - 25), 'px;">'].join(""),
             '   <div class="box">',
-            '       <div class="pain" style="background:', this.get_color(point.data.pain) ,';">',
+            '       <div class="pain" title="', LANGUAGE_DATA['tooltext4'], '"', 
+            '           style="background:', this.get_color(point.data.pain) ,';">',
             '           <div>', point.data.pain, '</div>',
             '       </div>',
-            '       <div class="tminus">',
+            '       <div class="tminus" title="', LANGUAGE_DATA['tooltext5'], '">',
             '           <div>', this.status(point.data.status), '</div>',
             '       </div>',
             '   </div>',
@@ -233,10 +234,21 @@ function ToolTip(point) {
          * Input    -> status [int | string] :: days passed | none
          * Out      -> string
 		 **************************************************************/
-        if (status !== 'none' && status > 1) { return ['&plusmn; ' + point.data.status + ' d'].join("") };
-        if (status === 0) { return 'Vandaag' };    
-        if (status === 1) { return 'Gisteren' };
-        return 'Nooit'
+        if (status !== 'none' && status > 1) { 
+            // Derive user date from GMT time
+            var offset = new Date().getTimezoneOffset();
+            if (offset < 0) { 
+                offset = Math.abs(offset * 60000); 
+            } else { 
+                offset = offset * 60000; 
+            };
+            var userDate = new Date(point.data.timestamp + offset);
+            userDate = [userDate.getUTCDate(), userDate.getUTCMonth() + 1, userDate.getUTCFullYear()];
+            return userDate.join("/");
+        };
+        if (status === 0) { return LANGUAGE_DATA['tooltext1'] };    
+        if (status === 1) { return LANGUAGE_DATA['tooltext2'] };
+        return LANGUAGE_DATA['tooltext1']
     };
     
     this.get_color = function (pain) {
