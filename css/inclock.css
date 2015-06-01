@@ -47,10 +47,6 @@ body {
     float: right;
 }
 
-#toolbar .bar .button_signout {
-
-}
-
 #footer {
     width: 110%;
     margin-left: -5%;
@@ -126,25 +122,24 @@ body {
 	box-shadow: 0px 0px 22px 4px rgba(50, 50, 50, 0.75);
 }
 
-#ui_panel .control .move, #ui_panel .control .advice, #ui_panel .control .edit {
+#ui_panel .control .tile {
+    height: auto;
     width: 100%;
     float: left;
+    margin-top: 3px;
     padding-top: 30px;
+    padding-bottom: 10px;
     background: rgba(245, 245, 245, 1);
 }
 
-#ui_panel .control .move {
-    height: 80px;
+#ui_panel .control .tile:nth-child(1) {
+    margin-top: 0px !important;
 }
 
-#ui_panel .control .advice {
-    height: 350px;
-    margin-top: 3px;
-}
-
-#ui_panel .control .edit {
-    height: 150px;
-    margin-top: 3px;
+#ui_panel .control .tile .button_wrap {
+    width: 80%;
+    float: left;
+    margin-left: 10%;
 }
 
 #ui_panel .control .title div:nth-child(1) {
@@ -165,7 +160,7 @@ body {
 
 #ui_panel .control .button, #toolbar .button {
     float: left;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 15px 10px 15px;
     margin-left: 18px;
     margin-top: 10px;
     background: linear-gradient(#FCFCFC, #EEE);
@@ -174,64 +169,227 @@ body {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     cursor: pointer;
-}
-
-#ui_panel .control .move .first_button {
-    margin-left: 40px;
-}
-
-#ui_panel .control .move .button:hover div {
-    color: #0DA8BF;
-}
-
-#ui_panel .control .move .button div {
     font-weight: bold;
-    color: 333;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
 }
 
-#ui_panel .control .pain_wrap {
-    float: left;
-    margin-left: 30px;
+#ui_panel .button .info {
+    color: #FF3624;
 }
 
-#ui_panel .control .edit .other {
+#ui_panel .control .button_wrap, #ui_panel .control .pain_wrap  {
     float: left;
-    margin-left: 20px;
+    width: 80%;
+    height: auto;
+    margin-left: 10%;
+    margin-top: 10px;
+    border: dashed 1px #666;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+#ui_panel .control .subtitle {
+    font-size: 16px;
+    font-style: italic;
+    text-align: center;
+    float: left;
+    width: 100%;
     margin-top: 15px;
 }
 
-#ui_panel .control .edit .value_field {
-    padding: 10px 20px 10px 20px;
+#ui_panel .control .pain_wrap div:nth-child(2) {
+    width: auto;
+    float: left;
+    margin-left: 50px;
+}
+
+#ui_panel .control .pain_wrap div:nth-child(2) div {
+    width: 10px;
+    text-align: center;
+}
+
+#ui_panel .control .pain_wrap .value_field {
+    width: auto !important;
+    padding: 10px 15px 10px 15px;
     margin-top: 10px;
-    margin-left: 18px;
+    margin-left: 18px !important;
     float: left;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     background: #FFF;
     border: solid 1px #999;
+    text-align: center;
 }
 
-#ui_panel .control .edit .button {
-    font-weight: bold;
-}
-
-#ui_panel .control .edit .button:hover {
+#ui_panel .control .button:hover {
     color: #0DA8BF;
 }
 
-#ui_panel .control .edit .button_new {
-    background: linear-gradient(#008FFF, #006BBF);
-    color: #F5F5F5;
+#btnNWIJ {
+    background: linear-gradient(#008FFF, #006BBF) !important;
+    color: #F5F5F5 !important;
 }
 
-#ui_panel .control .edit .button_new:hover {
-    background: linear-gradient(#008FFF, #0080E5);
-    color: #F5F5F5;
+#btnNWIJ:hover {
+    background: linear-gradient(#008FFF, #0080E5) !important;
+    color: #F5F5F5 !important;
 }
 
-#ui_panel .control .edit .warning_button:hover {
-    color: #FF3624;
+#ui_panel .control .warning_button:hover {
+    color: #FF3624 !important;
+}
+
+#ui_panel .control .add_button {
+    background: linear-gradient(#81FF00, #61BF00) !important;
+    color: #FFF !important;
+}
+
+#ui_panel .control .add_button:hover {
+    color: #333 !important;
+}
+
+#ui_panel .control .note_wrap {
+    width: 80%;
+    height: auto;
+    float: left;
+    padding-bottom: 10px;
+    margin-left: 10%;
+    margin-top: 10px;
+    border: dashed 1px #333;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+#ui_panel .control .note_wrap .value_wrap {
+    width: 100%;
+    float: left;
+    margin-left: 8px;
+    margin-top: 10px;
+}
+
+#ui_panel .control .note_wrap .value_wrap input {
+    width: 40px;
+    height: 40px;
+    padding: 5px 5px 5px 5px;
+    font-size: 18px;
+    float: left;
+    margin-left: 5px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border: solid 1px #999;
+    text-align: center;
+}
+
+#ui_panel .control .note_wrap .value_wrap span {
+    float: left;
+    height: 40px;
+    font-size: 40px;
+    margin-left: 5px;
+    color: #999;
+}
+
+#ui_panel .control .note_wrap .value_wrap .hour {
+    margin-top: -5px;
+}
+
+#ui_panel .control .note_wrap textarea {
+    overflow: hidden;
+    width: 90%;
+    height: 80px;
+    float: left;
+    margin-left: 5%;
+    margin-top: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+#ui_panel .config_panel {
+    width: 80%;
+    height: auto;
+    float: left;
+    padding-bottom: 30px;
+    margin-top: -750px;
+    margin-left: 10%;
+    background: #F5F5F5;
+    -webkit-box-shadow: 0px 0px 22px 4px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow: 0px 0px 22px 4px rgba(50, 50, 50, 0.75);
+	box-shadow: 0px 0px 22px 4px rgba(50, 50, 50, 0.75);
+    display: none;
+    position: relative;
+}
+
+#ui_panel .config_panel .header {
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+}
+
+#ui_panel .config_panel .header div {
+    float: right;
+    background: #666;
+    width: 32px;
+    height: 32px;
+    font-size: 25px;
+    color: #FFF;
+    text-align: center;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    font-family: monospace;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+#ui_panel .config_panel .note_wrap {
+    width: 90%;
+    float: left;
+    margin-left: 5%;
+    border: dashed 1px #666;
+    padding-bottom: 8px;
+    padding: 10px 0px 10px 0px;
+    cursor: pointer;
+}
+
+#ui_panel .config_panel .note_wrap:hover .title {
+    color: #0DA8BF;
+}
+
+#ui_panel .config_panel .note_wrap .title {
+    font-size: 18px;
+    font-style: italic;
+    margin-left: 10px;
+}
+
+#ui_panel .config_panel .note_wrap .title span {
+    float: right;
+    margin-right: 30px;
+    color: #0DA8BF;
+}
+
+#ui_panel .config_panel .note_wrap .note {
+    width: 90%;
+    float: left;
+    margin-left: 5%;
+    padding: 10px 0px 10px 0px;
+    font-size: 14px;
+    word-wrap: break-word;
+    display: none;
 }
 
 #tooltip {

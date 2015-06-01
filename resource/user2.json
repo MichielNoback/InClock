@@ -1,0 +1,354 @@
+{
+    "user": {
+        "dataCorruptionHash": "SHA256 string",
+        "language": "en",
+        "timeZoneOffset": 2,
+        "templatesUsed": ["BodyFront", "BodyBack"],
+        "colorScheme": "greenToRed"
+    },
+    "BodyFront": {
+        "BF0": {
+            "pointId": "BF0",
+            "x": 387,
+            "y": 396,
+            "reactivity": 8,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF1": {
+            "pointId": "BF1",
+            "x": 382,
+            "y": 423,
+            "reactivity": 10,
+            "daysSinceLastInjection": 6,
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF2": {
+            "pointId": "BF2",
+            "x": 369,
+            "y": 448,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF3": {
+            "pointId": "BF3",
+            "x": 349,
+            "y": 468,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF4": {
+            "pointId": "BF4",
+            "x": 324,
+            "y": 481,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF5": {
+            "pointId": "BF5",
+            "x": 297,
+            "y": 486,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF6": {
+            "pointId": "BF6",
+            "x": 269,
+            "y": 481,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF7": {
+            "pointId": "BF7",
+            "x": 244,
+            "y": 468,
+            "reactivity": 2,
+            "daysSinceLastInjection": 7,
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF8": {
+            "pointId": "BF8",
+            "x": 224,
+            "y": 448,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF9": {
+            "pointId": "BF9",
+            "x": 211,
+            "y": 423,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF10": {
+            "pointId": "BF10",
+            "x": 207,
+            "y": 396,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF11": {
+            "pointId": "BF11",
+            "x": 211,
+            "y": 368,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF12": {
+            "pointId": "BF12",
+            "x": 224,
+            "y": 343,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF13": {
+            "pointId": "BF13",
+            "x": 244,
+            "y": 323,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF14": {
+            "pointId": "BF14",
+            "x": 269,
+            "y": 310,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF15": {
+            "pointId": "BF15",
+            "x": 297,
+            "y": 306,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF16": {
+            "pointId": "BF16",
+            "x": 324,
+            "y": 310,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF17": {
+            "pointId": "BF17",
+            "x": 349,
+            "y": 323,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF18": {
+            "pointId": "BF18",
+            "x": 369,
+            "y": 343,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        },
+        "BF19": {
+            "pointId": "BF19",
+            "x": 382,
+            "y": 368,
+            "reactivity": 2,
+            "daysSinceLastInjection": "n",
+            "unixTimeStamp": 1431110565174,
+            "localTimeStamp": "4d:5h:23m",
+            "clusterAffiliation": "standardBodyFrontRing2",
+            "notes": {
+                "DH7F9": {
+                    "localTimeStamp": "7/5/2015 12:56",
+                    "ranking": 0,
+                    "note": "Injection Point related message"
+                }
+            }
+        }
+    },
+    "BodyBack": {
+        
+    }
+}
