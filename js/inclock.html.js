@@ -144,17 +144,17 @@ function constructNoteWindow(localData) {
     var template = ['<div class="header"><div>x</div></div>'];
     
     var notes = [];
-    for (var note in localData.notes) {notes.push(localData.notes[note])};
+    for (var note in localData.notes) {notes.push([localData.notes[note], note])};
     notes.sort(function (note1, note2) { // Custom sort
-        if (note1.ranking < note2.ranking) { return -1 };
-        if (note1.ranking > note2.ranking) { return 1 };
+        if (note1[0].ranking < note2[0].ranking) { return -1 };
+        if (note1[0].ranking > note2[0].ranking) { return 1 };
         return 0;
     });
     
     for (var noteIndex = 0; noteIndex < notes.length; noteIndex++) {
-        var title = ['<div class="title">', notes[noteIndex].localTimeStamp, '<span>+</span></div>'].join('');
-        var msg = ['<div class="note">', notes[noteIndex].note, '</div>'].join('');
-        template.push.apply(template, ['<div class="note_wrap">', title, msg, '</div>']);
+        var title = ['<div class="title">', notes[noteIndex][0].localTimeStamp, '<div class="button warning_button">Delete</div></div>'].join('');
+        var msg = ['<div class="note">', notes[noteIndex][0].note, '</div>'].join('');
+        template.push.apply(template, ['<div class="note_wrap" name="', notes[noteIndex][1], '">', title, msg, '</div>']);
     };
     
     document.getElementById('noteConfig').innerHTML += template.join('');

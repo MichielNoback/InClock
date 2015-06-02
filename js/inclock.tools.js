@@ -215,6 +215,8 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
         var notes = document.getElementById('noteConfig').getElementsByClassName('note_wrap');
         
         var activateNote = function (event) {
+            // Stop Bubbling
+            (event.stopPropagation) ? event.stopPropagation() : event.cancelBubble = true;
             // Show note contents
             var target = (event.target.className !== 'note_wrap') ? event.target.parentElement : event.target;
             $(target).find('.note').slideDown();
@@ -222,6 +224,8 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
         };
         
         var disableNote = function (event) {
+            // Stop Bubbling
+            (event.stopPropagation) ? event.stopPropagation() : event.cancelBubble = true;
             // Hide note contents
             var target = (event.target.className !== 'note_wrap') ? event.target.parentElement : event.target;
             $(target).find('.note').slideUp();
@@ -231,6 +235,7 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
         // Bind event listeners to all notes
         for (var noteIndex = 0; noteIndex < notes.length; noteIndex++) {
             notes[noteIndex].onclick = activateNote;
+            notes[noteIndex].children[0].children[0].onclick = self.removeNote; // No bubbling for button
         };
     
     };
@@ -337,8 +342,8 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
         *   Function    >> PointConfigurator.slideUp
         *   Desc        >> Hide configurator panel
         *********************************************************/ 
-        $('#' + self.panelId).hide();
-        $('#' + self.notePanelId).hide();
+        $('#' + self.panelId).slideUp();
+        $('#' + self.notePanelId).slideUp();
     };
     
     this.addNote = function () {
@@ -347,6 +352,18 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
         *   Desc        >> in progress
         *********************************************************/
         $('#' + self.notePanelId).slideDown();
+    };
+    
+    this.removeNote = function (event) {
+        /*********************************************************
+        *   Function    >> PointConfigurator.removeNote
+        *   Desc        >> Remove note from history
+        *********************************************************/
+        var noteId = event.target.parentElement.parentElement.getAttribute('name');
+        delete self.localData.notes[noteId];
+        self.loadNoteCount();
+        self.hideNoteHistory();
+        self.showNoteHistory();
     };
     
     this.cancelNote = function () {
@@ -400,7 +417,6 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
                 noteObj.ranking = self.totalNotes + 1;
                 self.localData.notes[noteId] = noteObj;
             };
-            self.updatePoint();
             self.cancelNote();
             self.loadNoteCount();
             self.updatePoint();
@@ -520,7 +536,7 @@ function Point(dataLink, localData, canvasHandle) {
         *********************************************************/ 
         // Call exit function on related classes
         if (self.configHandle !== null) {
-            self.configHandle.exit();    
+            self.configHandle.exit();   
         };
         if (self.toolHandle !== null) {
             self.toolHandle.removeFromCanvas();

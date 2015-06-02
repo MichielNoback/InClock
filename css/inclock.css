@@ -158,7 +158,7 @@ body {
     border-bottom: solid 1px #666;
 }
 
-#ui_panel .control .button, #toolbar .button {
+#ui_panel .button, #toolbar .button {
     float: left;
     padding: 10px 15px 10px 15px;
     margin-left: 18px;
@@ -242,16 +242,16 @@ body {
     color: #F5F5F5 !important;
 }
 
-#ui_panel .control .warning_button:hover {
+#ui_panel .warning_button:hover {
     color: #FF3624 !important;
 }
 
-#ui_panel .control .add_button {
+#ui_panel .add_button {
     background: linear-gradient(#81FF00, #61BF00) !important;
     color: #FFF !important;
 }
 
-#ui_panel .control .add_button:hover {
+#ui_panel .add_button:hover {
     color: #333 !important;
 }
 
@@ -361,8 +361,7 @@ body {
     float: left;
     margin-left: 5%;
     border: dashed 1px #666;
-    padding-bottom: 8px;
-    padding: 10px 0px 10px 0px;
+    padding: 0px 0px 10px 0px;
     cursor: pointer;
 }
 
@@ -370,16 +369,22 @@ body {
     color: #0DA8BF;
 }
 
+#ui_panel .config_panel .note_wrap:hover .button {
+    color: #333;
+}
+
 #ui_panel .config_panel .note_wrap .title {
     font-size: 18px;
     font-style: italic;
-    margin-left: 10px;
+    margin: 10px 0px 0px 20px;
+    padding-top: 10px;
 }
 
-#ui_panel .config_panel .note_wrap .title span {
+#ui_panel .config_panel .note_wrap .title .button {
     float: right;
-    margin-right: 30px;
-    color: #0DA8BF;
+    margin-right: 20px;
+    margin-top: -10px !important;
+    font-size: 12px;
 }
 
 #ui_panel .config_panel .note_wrap .note {
