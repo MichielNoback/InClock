@@ -349,9 +349,46 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
     this.addNote = function () {
         /*********************************************************
         *   Function    >> PointConfigurator.addNote
-        *   Desc        >> in progress
+        *   Desc        >> Add a new note to history
         *********************************************************/
-        $('#' + self.notePanelId).slideDown();
+        self.hideNoteHistory();
+        constructNoteWindow(self.localData, true); // isNoteMode = true
+        $('#noteConfig').slideDown();
+
+        var cancel = function () {
+            document.getElementById('btnCNNT2').removeEventListener('click', cancel);
+            document.getElementById('btnSVNT2').removeEventListener('click', save);
+            self.hideNoteHistory();
+        };
+
+        var save = function () {
+            var title = document.getElementById('vlNTLE');
+            var msg = document.getElementById('vlNTXT');
+
+            title.style.border = (title.value === '') ? 'solid 2px #FF3624' : 'solid 1px #999';
+            msg.style.border = (msg.value === '') ? 'solid 2px #FF3624' : 'solid 1px #999';
+            if (title.value === ''|| msg.value === '') {return false;};
+
+            // Create new entry
+            self.loadNoteCount();
+            var noteId = Math.random().toString(36).substr(2, 5);
+            var noteObj = {};
+            noteObj.localTimeStamp = title.value;
+            noteObj.note = msg.value;
+            noteObj.ranking = self.noteCount + 1;
+            self.localData.notes[noteId] = noteObj;
+
+            // Reset environment
+            self.loadNoteCount();
+            self.updatePoint();
+            cancel();
+        };
+
+         // Bind event listeners
+        document.getElementById('btnCNNT2').addEventListener('click', cancel);
+        document.getElementById('btnSVNT2').addEventListener('click', save);
+        $('#noteConfig .header div').get(0).addEventListener('click', cancel);
+
     };
     
     this.removeNote = function (event) {

@@ -135,7 +135,7 @@ function constructToolTip(language, color, localData, standardId) {
     document.getElementById('pointWindow').appendChild(newNode);
 };
 
-function constructNoteWindow(localData) {
+function constructNoteWindow(localData, isNoteMode) {
     /**************************************************************
     *   Function   >> constructNoteWindow
     *   Desc       >> construct HTML for note history window
@@ -151,12 +151,26 @@ function constructNoteWindow(localData) {
         return 0;
     });
     
-    for (var noteIndex = 0; noteIndex < notes.length; noteIndex++) {
-        var title = ['<div class="title">', notes[noteIndex][0].localTimeStamp, '<div class="button warning_button">Delete</div></div>'].join('');
-        var msg = ['<div class="note">', notes[noteIndex][0].note, '</div>'].join('');
-        template.push.apply(template, ['<div class="note_wrap" name="', notes[noteIndex][1], '">', title, msg, '</div>']);
+    // Note entry
+    if (isNoteMode !== true) {
+        for (var noteIndex = 0; noteIndex < notes.length; noteIndex++) {
+            var title = ['<div class="title">', notes[noteIndex][0].localTimeStamp, '<div class="button warning_button">Delete</div></div>'].join('');
+            var msg = ['<div class="note">', notes[noteIndex][0].note, '</div>'].join('');
+            template.push.apply(template, ['<div class="note_wrap" name="', notes[noteIndex][1], '">', title, msg, '</div>']);
+        };
     };
     
+    // Form
+    if (isNoteMode === true) {
+        var noteForm = ['<div id="noteFormWrap">', '<input type="text" id="vlNTLE" />', 
+                        '<textarea id="vlNTXT" maxlength="300"></textarea>', '<div class="button_wrap">', 
+                        '<div id="btnSVNT2" class="button add_button">Save</div>', 
+                        '<div id="btnCNNT2" class="button">Cancel</div>', 
+                        '</div>', '</div>'].join('');
+        template.push(noteForm);
+    };
+
+    // Add to document
     document.getElementById('noteConfig').innerHTML += template.join('');
     
 };
