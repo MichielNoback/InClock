@@ -86,6 +86,9 @@ function AppConstructor() {
         *   Function    >> AppConstructor.exit
         *   Desc        >> Exit class and unbind event listeners 
         *********************************************************/
+        var userdata = new UserData();
+        userdata.saveToTest(JSON.stringify(self.dataLink));
+        // Remove event listeners
         document.getElementById('btnSGOT').removeEventListener('click', self.exit);
         document.getElementById('btnSWTP').removeEventListener('click', self.switchTemplate);
     };
@@ -137,7 +140,7 @@ function UserData(callback) {
         xmlhttp.send();
         xmlhttp.onreadystatechange = function () {
             // If server responds with "OK"
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200 && self.callback !== undefined) {
                 // Setup callback class with data configuration
                 self.callback.dataLink = JSON.parse(xmlhttp.responseText);
                 self.callback.userTemplates = self.callback.dataLink.user.templatesUsed;
@@ -175,7 +178,8 @@ function UserData(callback) {
     
     this.saveToTest = function (jsonData) {
         // Save to server test file
-        
+        var data = {prc: 'test', fn: this.TESTFILE, data: jsonData};
+        self.openAjaxChannel(data);
     };
 	
 };

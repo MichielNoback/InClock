@@ -8,7 +8,14 @@
 """
 
 import cgi
+import cgitb
 import json
+import hashlib
+import base64
+import Crypto
+import datetime
+
+cgitb.enable()
 
 
 class UserData:
@@ -36,8 +43,29 @@ class UserData:
         In:  filename -> [str] path to server file
              data -> [str] JSON formatted string
         """
+        self.data = json.loads(data)
+        self.update_file_timestamps()
         with open(filename, 'w') as user_file:
-            json.dump(json.loads(data), user_file, indent=2)
+            json.dump(self.data, user_file, indent=2)
+
+    def update_file_timestamps(self):
+        data = self.data
+        json_keys = [key for key in data.keys() if key != 'user']
+        # Iterate through relevant json dicts and update timestamps
+        for template in json_keys:
+            for point_id, point_data in data[template].items():
+                unix_timestamp = int(point_data['unixTimeStamp'])
+                # Adjust for JavaScript format
+                unix_timestamp /= 1000.0
+                unix_timestamp += int(data['user']['timeZoneOffset']) * 60**2
+                # Make datetime and subtract from current time
+                unix_timestamp = datetime.datetime.utcfromtimestamp(unix_timestamp)
+                unix_diff = datetime.datetime.now() - unix_timestamp
+                human_format = "".join([str(unix_diff.days if unix_diff.days > 0 else 0), 'd:',
+                                        str(unix_diff.seconds//3600), 'h:', str((unix_diff.seconds//60) % 60), 'm'])
+                data[template][point_id]['localTimeStamp'] = human_format
+                if data[template][point_id]['daysSinceLastInjection'] != 'n':
+                    data[template][point_id]['daysSinceLastInjection'] = unix_diff.days if unix_diff.days > 0 else 0
 
     def parse(self, active=True):
         """
@@ -58,10 +86,7 @@ def main():
     protocol = parameters.getvalue('prc')
     session_data = UserData()
     active = True  # Default
-    if protocol == 'dropbox':
-        filename = parameters.getvalue('fn')
-        session_data.get_from_dropbox(filename)
-    elif protocol == 'test':
+    if protocol == 'test':
         test_file = parameters.getvalue('fn')
         if 'data' in parameters is not None:
             # Save to file
