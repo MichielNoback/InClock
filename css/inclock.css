@@ -228,7 +228,7 @@ body {
     text-align: center;
 }
 
-#ui_panel .control .button:hover {
+#ui_panel .button:hover {
     color: #0DA8BF;
 }
 
@@ -311,6 +311,7 @@ body {
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
+    resize: none;
 }
 
 #ui_panel .config_panel {
@@ -378,6 +379,50 @@ body {
     font-style: italic;
     margin: 10px 0px 0px 20px;
     padding-top: 10px;
+}
+
+#noteFormWrap {
+    float: left;
+    width: 90%;
+    margin-left: 5%;
+    border: dashed 1px #666;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    margin-top: 10px;
+}
+
+#noteFormWrap input {
+    width: 90%;
+    float: left;
+    margin-left: 5%;
+    margin-top: 10px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border: solid 1px #999;
+}
+
+#noteFormWrap textarea {
+    resize: none;
+    width: 90%;
+    float: left;
+    height: 100px;
+    margin-left: 5%;
+    margin-top: 15px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border: solid 1px #999;
+
+}
+
+#noteFormWrap .button_wrap {
+    width: 90%;
+    float: left;
+    margin-left: 25%;
+    padding-bottom: 15px;
 }
 
 #ui_panel .config_panel .note_wrap .title .button {
