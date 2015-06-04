@@ -134,10 +134,10 @@ function UserData(callback) {
             var parameter = [arg, '=', args[arg]];
             dataStream.push(parameter.join(''));
         };
-        dataStream = '?' + dataStream.join('&');
+        dataStream = dataStream.join('&');
         // Send AJAX request and catch server response
-        xmlhttp.open("POST", serverFile + dataStream, true);
-        xmlhttp.send();
+        xmlhttp.open("POST", serverFile, true);
+        xmlhttp.send(dataStream);
         xmlhttp.onreadystatechange = function () {
             // If server responds with "OK"
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200 && self.callback !== undefined) {

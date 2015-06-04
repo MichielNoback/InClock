@@ -82,7 +82,7 @@ def main():
     Do:  Determine action based on POST variables
     """
     # Setup the CGI
-    parameters = cgi.FieldStorage()
+    parameters = cgi.FieldStorage(environ={'REQUEST_METHOD':'POST'})
     protocol = parameters.getvalue('prc')
     session_data = UserData()
     active = True  # Default
