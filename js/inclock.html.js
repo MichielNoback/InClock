@@ -190,6 +190,7 @@ function constructDashboard(language, templateToLoad) {
         '   <div class="bar">',
         '       <div class="logo"><span>InClock </span><sup>Development</sup></div>',
         '       <div id="btnSGOT" class="button"><div>', data['button1'], '</div></div>',
+        '       <div class="button">', data['button7'], '</div>',
         '   </div>',
         '</div>',
         '<div id="ui_wrap">',

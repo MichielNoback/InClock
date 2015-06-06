@@ -355,9 +355,11 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
         constructNoteWindow(self.localData, true); // isNoteMode = true
         $('#noteConfig').slideDown();
 
-        var cancel = function () {
+        var cancel = function (event) {
             document.getElementById('btnCNNT2').removeEventListener('click', cancel);
             document.getElementById('btnSVNT2').removeEventListener('click', save);
+            $('#noteConfig .header div').get(0).removeEventListener('click', cancel);
+            document.getElementById('btnADNT').addEventListener('click', self.addNote);
             self.hideNoteHistory();
         };
 
@@ -379,12 +381,14 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
             self.localData.notes[noteId] = noteObj;
 
             // Reset environment
+            document.getElementById('btnADNT').addEventListener('click', self.addNote);
             self.loadNoteCount();
             self.updatePoint();
             cancel();
         };
 
          // Bind event listeners
+        document.getElementById('btnADNT').removeEventListener('click', self.addNote);
         document.getElementById('btnCNNT2').addEventListener('click', cancel);
         document.getElementById('btnSVNT2').addEventListener('click', save);
         $('#noteConfig .header div').get(0).addEventListener('click', cancel);
@@ -589,4 +593,8 @@ function Point(dataLink, localData, canvasHandle) {
         document.getElementById(self.localData.pointId).removeEventListener('click', self.canvasHandle.resetPointStates);
         document.getElementById(self.localData.pointId).removeEventListener('click', self.startConfigurator);    
     };
+};
+
+function SettingsConfigurator(dataLink, svgLink) {
+    // Future class
 };

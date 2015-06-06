@@ -33,6 +33,7 @@ class UserData:
     def get_from_test(self, filename):
         with open(filename, 'r') as user_file:
             self.data = json.loads(user_file.read())
+        self.update_file_timestamps()
     
     def get_from_db(self, username, session_key):
         pass

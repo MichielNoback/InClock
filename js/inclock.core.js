@@ -91,6 +91,8 @@ function AppConstructor() {
         // Remove event listeners
         document.getElementById('btnSGOT').removeEventListener('click', self.exit);
         document.getElementById('btnSWTP').removeEventListener('click', self.switchTemplate);
+        // Destroy view
+        document.body.innerHTML = '';
     };
 }
 

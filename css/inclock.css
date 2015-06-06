@@ -228,7 +228,7 @@ body {
     text-align: center;
 }
 
-#ui_panel .button:hover {
+.button:hover {
     color: #0DA8BF;
 }
 
