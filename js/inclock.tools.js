@@ -61,15 +61,17 @@ function SVGCanvas(dataLink, templateId) {
         *   Desc        >> Add a new point to the canvas 
         *********************************************************/
         var dropSite = document.getElementById('pointWindow');
+        // Change button function
+        document.getElementById('btnADNP').removeEventListener('click', self.addNewPoint);
+        document.getElementById('btnADNP').className = 'button warning_button';
+        document.getElementById('btnADNP').innerHTML = getLanguageData(self.dataLink.user.language)['button8'];
         // Activate visuals
         dropSite.style.background = 'rgba(245, 245, 245, 0.4)';
         dropSite.style.cursor = 'crosshair';
         // Bind event listener
         dropSite.onclick = function (event) {
             // Reset window
-            dropSite.onclick = null;
-            dropSite.style.background = 'none';
-            dropSite.style.cursor = 'default';
+            document.getElementById('btnADNP').click();
             // Make new point
             var newId = self.generateNewId();
             var newPoint = constructJSONPoint(newId, event.layerX, event.layerY);
@@ -77,6 +79,16 @@ function SVGCanvas(dataLink, templateId) {
             newPoint = new Point(self.dataLink, self.dataLink[self.templateId][newId], self);
             self.activePoints[newId] = newPoint;
             newPoint.init();
+        };
+        document.getElementById('btnADNP').onclick = function () {
+            // Reset dropsite
+            dropSite.onclick = null;
+            dropSite.style.background = 'none';
+            dropSite.style.cursor = 'default';
+            // Reset event listeners
+            document.getElementById('btnADNP').addEventListener('click', self.addNewPoint);
+            document.getElementById('btnADNP').className = 'button';
+            document.getElementById('btnADNP').innerHTML = getLanguageData(self.dataLink.user.language)['button3'];        
         };
     };
     
@@ -377,7 +389,7 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
             var noteObj = {};
             noteObj.localTimeStamp = title.value;
             noteObj.note = msg.value;
-            noteObj.ranking = self.noteCount + 1;
+            noteObj.ranking = self.totalNotes + 1;
             self.localData.notes[noteId] = noteObj;
 
             // Reset environment

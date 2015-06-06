@@ -103,7 +103,7 @@ function UserData(callback) {
     *   Input   >> callback function
     **************************************************************/
 	this.data = null;
-    this.TESTFILE = '../resource/user2.json'
+    this.TESTFILE = '../resource/user2.inclock'
     this.callback = callback;
     var self = this;
 	

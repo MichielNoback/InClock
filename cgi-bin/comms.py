@@ -12,10 +12,11 @@ import cgitb
 import json
 import hashlib
 import base64
-import Crypto
+from Crypto.Cipher import AES
+from Crypto import Random
 import datetime
 
-cgitb.enable()
+cgitb.enable()  # For development only
 
 
 class UserData:
@@ -23,6 +24,18 @@ class UserData:
     
     def __init__(self):
         self.data = None
+
+    def aes_encrypt(self, key):
+        self.data = str.encode(str(self.data))
+        iv = Random.new().read(AES.block_size)
+        cipher = AES.new(key, AES.MODE_CFB, iv)  # 256-bit
+        self.data = base64.b64encode(iv + cipher.encrypt(self.data))
+
+    def aes_decrypt(self, key):
+        self.data = base64.b64decode(self.data)
+        iv = self.data[:AES.block_size]
+        cipher = AES.new(key, AES.MODE_CFB, iv)  # 256-bit
+        self.data = cipher.decrypt(self.data)[AES.block_size:]
     
     def get_from_dropbox(self, filename):
         pass
@@ -31,8 +44,15 @@ class UserData:
         pass
     
     def get_from_test(self, filename):
+        test_AES_key = b'V\xcf"K$-\xbbO\x10\xc6\x98\x0e\xf0q\x99\x8c\xeb/\xa6-\x1e\t`n%D\xb1\xa2\xc2(\xf2\xc6'
+        test_SHA256_ref = "c94075d7dcc9e06ca6eedc89dc143231268493efd21ab91c3cd81304c07d70a4"
         with open(filename, 'r') as user_file:
-            self.data = json.loads(user_file.read())
+            self.data = user_file.read()
+        self.aes_decrypt(test_AES_key)
+
+        self.data = bytes.decode(self.data).replace("'", '"')
+        self.data = json.loads(self.data)
+
         self.update_file_timestamps()
     
     def get_from_db(self, username, session_key):
@@ -44,10 +64,12 @@ class UserData:
         In:  filename -> [str] path to server file
              data -> [str] JSON formatted string
         """
+        test_AES_key = b'V\xcf"K$-\xbbO\x10\xc6\x98\x0e\xf0q\x99\x8c\xeb/\xa6-\x1e\t`n%D\xb1\xa2\xc2(\xf2\xc6'
         self.data = json.loads(data)
         self.update_file_timestamps()
-        with open(filename, 'w') as user_file:
-            json.dump(self.data, user_file, indent=2)
+        self.aes_encrypt(test_AES_key)
+        with open(filename, 'wb') as user_file:
+            user_file.write(self.data)
 
     def update_file_timestamps(self):
         data = self.data
