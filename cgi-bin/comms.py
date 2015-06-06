@@ -46,7 +46,7 @@ class UserData:
     def get_from_test(self, filename):
         test_AES_key = b'V\xcf"K$-\xbbO\x10\xc6\x98\x0e\xf0q\x99\x8c\xeb/\xa6-\x1e\t`n%D\xb1\xa2\xc2(\xf2\xc6'
         test_SHA256_ref = "c94075d7dcc9e06ca6eedc89dc143231268493efd21ab91c3cd81304c07d70a4"
-        with open(filename, 'r') as user_file:
+        with open(filename, 'rb') as user_file:
             self.data = user_file.read()
         self.aes_decrypt(test_AES_key)
 
