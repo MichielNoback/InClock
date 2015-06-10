@@ -9,14 +9,14 @@ body {
     margin-left: -5%;
     margin-top: -5%;
     background: url(../img/honeycomb.png) repeat;
+    float: left;
 }
 
 #entryform {
-    width: 30%;
-    height: auto;
-    float: left;
-    margin-top: 30%;
-    margin-left: 40%;
+    width: 400px;
+    height: 270px;
+    margin:0 auto;
+    margin-top: 200px;
     padding-bottom: 20px;
     background: #FFF;
     border-radius: 5px;
@@ -30,9 +30,6 @@ body {
     height: 40px;
     float: left;
     background: linear-gradient(#FCFCFC, #EEE);
-    -webkit-box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.75);
-	-moz-box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.75);
-	box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.75);
 }
 
 #entryform .title div {
@@ -85,6 +82,14 @@ body {
 
 #entryform .buttonwrap {
     margin-left: 9%;
+}
+
+#btnFLUP {
+    font-size: 16px;
+    float: right !important;
+    margin: -40px 20px 0px 0px !important;
+    color: #F5F5F5 !important;
+    background: linear-gradient(#008FFF, #006BBF) !important;
 }
 
 #entryform .button {
