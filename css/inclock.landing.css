@@ -1,0 +1,305 @@
+body {
+    background: url(../img/honeycomb.png) repeat;
+    overflow-x: hidden;
+}
+
+#IC {
+    width: 110%;
+    margin-left: -5%;
+    float: left;
+    min-width: 1000px;
+}
+
+#IC .button {
+    float: left;
+    padding: 10px 15px 10px 15px;
+    background: linear-gradient(#FCFCFC, #EEE);
+    border: solid 1px #999;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #333;
+    text-decoration: none;
+    font-family: "Oxygen", sans-serif
+}
+
+#IC .green_button {
+    background: linear-gradient(#81FF00, #61BF00);
+    color: #FFF;
+}
+
+#IC .green_button:hover {
+    color: #333 !important;
+}
+
+#IC .button:hover {
+    color: #0DA8BF;
+}
+
+#IC .header {
+    width: 1000px;
+    margin-top: -10px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+#IC .header .top_bar {
+    width: 100%;
+    height: 70px;
+    float: left;
+    position: relative;
+}
+
+#IC .header .top_bar .menu {
+    width: 60%;
+    height: 100%;
+    float: left;
+}
+
+#IC .header .top_bar .menu .spacer {
+    width: 440px;
+    height: 60px;
+    float: left;
+    background-color: #F5F5F5;
+    -webkit-box-shadow: 1px -25px 123px 32px rgba(0,0,0,0.38);
+    -moz-box-shadow: 1px -25px 123px 32px rgba(0,0,0,0.38);
+    box-shadow: 1px -25px 123px 32px rgba(0,0,0,0.38);
+}
+
+#IC .header .top_bar .menu .spacer div {
+    font-family: 'Oxygen', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #666;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#IC .header .top_bar .menu .spacer div span {
+    color: #0DA8BF;
+    font-weight: 200;
+}
+
+#IC .header .top_bar .menu .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: relative;
+}
+
+#IC .header .top_bar .menu > div:nth-of-type(1) {
+    float: left;
+    border-width: 0 80px 60px 0;
+    border-color: transparent #F5F5F5 transparent transparent;
+}
+
+#IC .header .top_bar .menu > div:nth-of-type(3) {
+    border-width: 60px 80px 0 0;
+    float: right;
+    border-color: #F5F5F5 transparent transparent transparent;
+}
+
+#IC .header .top_bar .langbar {
+    width: 40%;
+    height: 60px;
+    float: left;
+}
+
+#IC .header .top_bar .langbar .flag {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    margin-left: 20px;
+    margin-top: 20px;
+    float: left;
+    cursor: pointer;
+    -webkit-box-shadow: 0px -1px 28px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px -1px 28px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px -1px 28px 0px rgba(0,0,0,0.75);
+}
+
+#IC .header .media {
+    width: 100%;
+    height: 300px;
+    float: left;
+    margin-top: -70px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#IC .body {
+    width: 100%;
+    float: left;
+    margin-bottom: 50px;
+    background: rgba(255, 255, 255, 0.8);
+   -webkit-box-shadow: 0px 0px 66px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 66px -8px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 66px -8px rgba(0,0,0,0.75);
+}
+
+#IC .body .content {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 0 20px 0;
+    overflow: hidden;
+    background: #FFF;
+    border-left: solid 1px #999;
+    border-right: solid 1px #999;
+    -webkit-box-shadow: 0px -1px 28px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px -1px 28px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px -1px 28px 0px rgba(0,0,0,0.75);
+}
+
+#IC .body .content .textblock {
+    width: 50%;
+    float: left;
+    margin-left: 10%;
+}
+
+#IC .body .content .textblock .title {
+    width: 100%;
+    padding-bottom: 20px;
+    font-family: 'Poiret One', sans-serif;
+    font-size: 50px;
+    color: #0DA8BF;
+    border-bottom: dashed 1px #999;
+}
+
+#IC .body .content .textblock .text {
+    width: 100%;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 18px;
+    text-align: justify;
+}
+
+#IC .body .content .textblock .signup_block {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+    padding: 20px 0px 20px 0px;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 20px;
+}
+
+#IC .body .content .textblock .signup_block div:nth-of-type(1) {
+    float: left;
+    font-weight: 700;
+}
+
+#IC .body .content .textblock .signup_block .button {
+    margin-left: 30px;
+    margin-top: -10px;
+}
+
+#IC .body .content .loginbar {
+    width: 30%;
+    float: right;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 50px;
+    border: dashed 1px #999;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+}
+
+#IC .body .content .loginbar .option {
+    width: 90%;
+    float: left;
+    margin-left: 5%;
+    padding: 0px 0px 10px 0px;
+}
+
+#IC .body .content .loginbar .option p {
+    width: 100%;
+    float: left;
+    font-size: 20px;
+    font-family: "Oxygen", sans-serif;
+    text-align: center;
+}
+
+#IC .body .content .loginbar .option input {
+    width: 90%;
+    height: 40px;
+    float: left;
+    margin-left: 5%;
+    padding: 5px 5% 2px 5%;
+    border-radius: 10px;
+    border: solid 1px #999;
+    color: #888;
+    font-size: 18px;
+    background: rgba(245, 245, 245, 0.4);
+    margin-bottom: 10px;
+    font-family: "Oxygen", sans-serif;
+}
+
+#IC .body .content .loginbar .option .button {
+    float: right;
+    margin-right: 5%;
+}
+
+#IC .body .content .loginbar .option .or_border {
+    width: 100%;
+    height: 14px;
+    float: left;
+    margin-top: 10px;
+}
+
+#IC .body .content .loginbar .option .or_border div:nth-of-type(odd) {
+    width: 40%;
+    height: 7px;
+    float: left;
+    border-bottom: solid 1px #666;
+}
+
+#IC .body .content .loginbar .option .or_border div:nth-of-type(2) {
+    width: 20%;
+    height: 14px;
+    float: left;
+    text-align: center;
+    font-family: "Poiret One", sans-serif;
+}
+
+#IC .tail {
+    width: 100%;
+    height: 40px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+#IC .tail .content {
+    width: 494px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#IC .tail a {
+    float: left;
+    margin-left: 20px;
+}
+
+#IC .tail p {
+    float: left;
+    font-size: 18px;
+    font-family: "Oxygen", sans-serif;
+    margin-left: 20px;
+    margin-top: 3px;
+    color: #999;
+}
