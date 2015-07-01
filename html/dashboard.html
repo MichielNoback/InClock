@@ -1,0 +1,139 @@
+<!--
+    Copyright (C) 2015  J. Vuopionpera
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+    <head>
+        <link href='http://fonts.googleapis.com/css?family=Poiret+One|Oxygen:300' rel='stylesheet' type='text/css'>
+        <link type="text/css" rel="stylesheet" href="../css/inclock.landing.css" />
+        <link style="text/css" rel="stylesheet" href="../css/inclock.css" />
+        <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="../js/inclock.resource.js"></script>
+        <script type="text/javascript" src="../js/inclock.html.js"></script>
+        <script type="text/javascript" src="../js/inclock.tools.js"></script>
+        <script type="text/javascript" src="../js/inclock.core.js"></script>
+        <script type="text/javascript">
+            var userData = JSON.parse({pythonJSONhook});
+            var userConfig = JSON.parse({pythonConfigHook});
+        </script>
+        <script type="text/javascript">dashBoardInit(userData);</script>
+        <title>InClock UI</title>
+    </head>
+    <body>
+        <div id="IC">
+            <div class="header">
+                <div class="top_bar">
+                    <div class="menu">
+                        <div class="triangle"></div>
+                        <div class="spacer" onclick="window.location = '../index.html';">
+                            <div>InClock <span>Beta</span></div>
+                        </div>
+                        <div class="triangle"></div>
+                    </div>
+                    <div class="langbar">
+                        <div class="button">Settings</div>
+                        <div class="button" id="btnSVPF">Save</div>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <div id="ui_wrap">
+                   <div id="ui_panel">
+                       <div class="window">
+                           <div class="bottom">
+                               <img id="templateIMG" src="../img/front.png" />
+                           </div>
+                           <div id="pointWindow" class="top">
+                               <svg id="svgFrame" width="600" height="800"></svg>
+                           </div>
+                           <div id="noteConfig" class="config_panel"></div>
+                       </div>
+                       <div class="control">
+                           <div class="tile">
+                               <div class="title">
+                                   <div>Controls</div>
+                                   <div></div>
+                               </div>
+                               <div class="button_wrap">
+                                   <div class="button" id="btnSWTP">Turn around</div>
+                                   <div class="button" id="btnADNP">Add Point</div>
+                               </div>
+                           </div>
+                           <div id="editPanel" class="tile">
+                               <div class="title">
+                                   <div>Injection site properties</div>
+                                   <div></div>
+                               </div>
+                               <div class="button_wrap">
+                                   <div id="btnVWHS" class="button">Notes <span class="info" id="txtHSCT"></span></div>
+                                   <div id="btnADNT" class="button add_button"> Add note</div>
+                               </div>
+                               <div class="pain_wrap">
+                                   <div class="subtitle">Change the reactivity</div>
+                                   <div>
+                                       <div id="btnNGRT" class="button">-</div>
+                                       <div id="txtRT" class="value_field">10</div>
+                                       <div id="btnADRT" class="button">+</div>
+                                   </div>
+                               </div>
+                               <div class="button_wrap">
+                                  <div id="btnNWIJ" class="button">New injection</div>
+                                   <div id="btnDLPT" class="button warning_button">Delete point</div>
+                               </div>
+                               <div id="notePanel" class="note_wrap">
+                                   <div class="time_wrap">
+                                       <div class="subtitle">Injection Date &amp; Time</div>
+                                       <div class="value_wrap">
+                                           <input id="vlTDAY" type="text" />
+                                           <span>/</span>
+                                           <input id="vlTMON" type="text" />
+                                           <span>/</span>
+                                           <input id="vlTYEA" type="text" />
+                                           <span></span><span></span>
+                                           <input id="vlTHOU" type="text" />
+                                           <span class="hour">:</span>
+                                           <input id="vlTMIN" type="text" />
+                                       </div>
+                                   </div>
+                                   <div class="time_wrap">
+                                       <div class="subtitle">Optional note</div>
+                                       <textarea id="vlNMSG" maxlength="140"></textarea>
+                                       <div id="btnSVNT" class="button add_button">Save</div>
+                                       <div id="btnCLNT" class="button warning_button">Cancel</div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="tile">
+                               <div class="title">
+                                    <div>Potential injection sites</div>
+                                    <div></div>
+                                </div>
+                                <div class="suggestion"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="tail">
+            <div class="content">
+                <p>InClock &copy; 2015 [Beta v0.1]</p>
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+                <a rel="license" href="../LICENSE.txt"><img alt="GPL-3.0 License" src="../img/gnu3.png" /></a>
+                <a href="https://github.com/MichielNoback/InClock"><img alt="GitHub repo" src="../img/github.png" /></a>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

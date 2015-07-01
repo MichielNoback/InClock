@@ -378,7 +378,7 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
         *   Function    >> PointConfigurator.addNote
         *   Desc        >> Add a new note to history
         *********************************************************/
-        self.hideNoteHistory();
+        if (document.getElementById('noteConfig').innerHTML !== '') {return false;};
         constructNoteWindow(self.localData, true); // isNoteMode = true
         $('#noteConfig').slideDown();
 
@@ -391,18 +391,18 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
         };
 
         var save = function () {
-            var title = document.getElementById('vlNTLE');
+            var d = new Date();
+            var title = [d.getDate(), '/', d.getMonth()+1, '/', d.getYear() + 1900, ' ', d.getHours(), ':', d.getMinutes()].join('');
             var msg = document.getElementById('vlNTXT');
 
-            title.style.border = (title.value === '') ? 'solid 2px #FF3624' : 'solid 1px #999';
             msg.style.border = (msg.value === '') ? 'solid 2px #FF3624' : 'solid 1px #999';
-            if (title.value === ''|| msg.value === '') {return false;};
+            if (msg.value === '') {return false;};
 
             // Create new entry
             self.loadNoteCount();
             var noteId = Math.random().toString(36).substr(2, 5);
             var noteObj = {};
-            noteObj.localTimeStamp = title.value;
+            noteObj.localTimeStamp = title;
             noteObj.note = msg.value;
             noteObj.ranking = self.totalNotes + 1;
             self.localData.notes[noteId] = noteObj;
@@ -472,11 +472,10 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
             var injMinu = parseInt(document.getElementById('vlTMIN').value);
             var injMesg = document.getElementById('vlNMSG').value;
             // Add injection to localData
-            var dateObj = new Date(injYear, injMont, injDays, injHour, injMinu);
+            var dateObj = new Date(injYear, injMont - 1, injDays, injHour, injMinu);
             var timeStamp = dateObj.getTime()
             self.localData.unixTimeStamp = timeStamp;
-            self.localData.localTimeStamp = '0';
-            self.localData.daysSinceLastInjection = 0;
+            self.localData.localTimeStamp = [injHour, injMinu].join(':');
             if (injMesg !== '') {
                 var noteId = Math.random().toString(36).substr(2, 5);
                 var noteObj = {};
@@ -484,7 +483,9 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
                 noteObj.note = injMesg;
                 noteObj.ranking = self.totalNotes + 1;
                 self.localData.notes[noteId] = noteObj;
+                self.localData.localTimeStamp = [injDays, injMont, injYear].join('/');
             };
+            self.localData.daysSinceLastInjection = convertTimestampToHuman(timeStamp).days;
             self.cancelNote();
             self.loadNoteCount();
             self.updatePoint();
@@ -537,6 +538,7 @@ function Point(dataLink, localData, canvasHandle) {
         *                  event listeners
         *********************************************************/ 
         // PLace point on SVG
+        self.localData.daysSinceLastInjection = convertTimestampToHuman(self.localData.unixTimeStamp).days;
         constructPoint(self.localData.pointId, self.localData.x, self.localData.y, 
                        self.determineColor(), self.determineSymbol());
         // Bind event listeners

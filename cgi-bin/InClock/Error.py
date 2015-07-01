@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 """
- Name:      inclockError.py (part of InClock)
- Date:      6/2015
+ Name:      Error.py (InClock package)
+ Date:      7/2015
  Desc:      Handle errors and write them to a log
  Author:    J. Vuopionpera
  
@@ -22,15 +22,19 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+__version__ = "0.1a"
+__author__ = "J. Vuopionpera"
+
 import datetime
 
-PATH = "error.log"
+PATH = "error.log"  # Path to error log
 
 
 def log(error):
     """
-    Desc:   Write error message to a log
-    Input:  error -> [Error object]
+    Write error to log file
+    :param error: [string] error message
+    :return: None
     """
     try:
         with open(PATH, 'a') as f:
@@ -38,3 +42,14 @@ def log(error):
             f.write(message)
     except IOError:
         pass
+
+
+def load_error_page(msg):
+    """
+    Generate the error HTML page
+    :param msg: [string] friendly error message
+    :return: None
+    """
+    with open('../html/error.html') as html:
+        print("Content-Type: text/html\n\n")
+        print(html.read().format(pythonErrorHook=msg))

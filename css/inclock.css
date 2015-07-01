@@ -14,93 +14,25 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-body {
-	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-    overflow-x: hidden;
-    min-width: 1000px;
-    background: #F5F5F5;
-}
 
-#toolbar {
-    width: 110%;
-    height: 50px;
-    margin-left: -5%;
-    margin-top: -10px;
-    position: relative;
-    border-bottom: solid 1px #666;
-    -webkit-box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.75);
-	-moz-box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.75);
-	box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.75);
-}
-
-#toolbar .bar {
-    width: 1000px;
-    height: 100%;
-    margin: 0 auto;
-}
-
-#toolbar .bar .logo {
-    float: left;
-    width: 180px;
-    padding: 10px 20px 10px 20px;
-    text-align: center;
-    border-left: solid 1px #999;
-    border-right: solid 1px #999;
-    background: linear-gradient(#FCFCFC, #EEE);
-}
-
-#toolbar .bar .logo span {
-    font-weight: bold;
-    font-size: 24px;
-}
-
-#toolbar .bar .logo sup {
-    color: #0DA8BF;
-}
-
-#toolbar .bar .button {
-    margin-top: 6px;
-    float: right;
-}
-
-#footer {
-    width: 110%;
-    margin-left: -5%;
-    position: relative;
-}
-
-#footer .divider {
-    width: 100%;
-    height: 10px;
-    -webkit-box-shadow: 0px -4px 10px 0px rgba(50, 50, 50, 0.75);
-	-moz-box-shadow: 0px -4px 10px 0px rgba(50, 50, 50, 0.75);
-	box-shadow: 0px -4px 10px 0px rgba(50, 50, 50, 0.75);
-}
-
-#footer .info {
-    width: 100%;
-    text-align: center;
-    font-size: 18px;
-    margin-top: 30px;
-    color: #999;
-}
-
-#footer .info span {
-    color: #0DA8BF;
-    font-weight: bold;
+#IC .body {
+    background: none !important;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
 }
 
 #ui_wrap {
     width: 110%;
     margin-left: -5%;
-    background: url(../img/honeycomb.png) repeat;
 }
 
 #ui_panel {
     width: 1000px;
-    height: 800px;
+    min-height: 800px;
     margin: 0 auto;
     overflow: hidden;
+    font-family: "Oxygen", sans-serif;
 }
 
 #ui_panel .window {
@@ -308,7 +240,7 @@ body {
 #ui_panel .control .note_wrap .value_wrap span {
     float: left;
     height: 40px;
-    font-size: 40px;
+    font-size: 30px;
     margin-left: 5px;
     color: #999;
 }

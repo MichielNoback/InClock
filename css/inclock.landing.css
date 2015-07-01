@@ -87,6 +87,7 @@ body {
     -webkit-box-shadow: 1px -25px 123px 32px rgba(0,0,0,0.38);
     -moz-box-shadow: 1px -25px 123px 32px rgba(0,0,0,0.38);
     box-shadow: 1px -25px 123px 32px rgba(0,0,0,0.38);
+    cursor: pointer;
 }
 
 #IC .header .top_bar .menu .spacer div {
@@ -219,9 +220,29 @@ body {
     font-weight: 700;
 }
 
-#IC .body .content .textblock .signup_block .button {
+#IC .body .content .textblock .signup_block > .button {
     margin-left: 30px;
     margin-top: -10px;
+}
+
+#IC .body .content .textblock .signup_block .validation_wrap {
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+    padding: 20px 0 15px 0;
+    border: dashed 1px #999;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+}
+
+#IC .body .content .textblock .signup_block .validation_wrap input {
+    width: 200px;
+}
+
+#IC .body .content .textblock .signup_block .validation_wrap .button {
+    margin-top: -5px;
+    margin-left: 20px;
 }
 
 #IC .body .content .loginbar {
@@ -251,7 +272,7 @@ body {
     text-align: center;
 }
 
-#IC .body .content .loginbar .option input {
+#IC .body .content /*.loginbar .option*/ input {
     width: 90%;
     height: 40px;
     float: left;
@@ -301,7 +322,7 @@ body {
 }
 
 #IC .tail .content {
-    width: 494px;
+    width: 505px;
     margin-left: auto;
     margin-right: auto;
 }

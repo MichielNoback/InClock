@@ -105,8 +105,8 @@ function constructJSONPoint(pointId, x, y) {
          "y": y,
          "reactivity": 5,
          "daysSinceLastInjection": "n",
-         "unixTimeStamp": dateObject.getTime(),
-         "localTimeStamp": "0d:0h:0m",
+         "unixTimeStamp": 0,
+         "localTimeStamp": "n",
          "clusterAffiliation": "userDefined",
          "notes": {}
         };
@@ -124,12 +124,13 @@ function constructToolTip(language, color, localData, standardId) {
     **************************************************************/
     // Create the tooltip from template
     var data = getLanguageData(language);
-
-    var determineText = function (time) {
-        if (time === '0') {return data['tooltext2']};
-        if (time === 'n') {return data['tooltext1']};
-        return time;
-    } 
+    
+    var determineText = function (humanTime, unixTime) {
+        if (humanTime === 'n') {return data['tooltext1']};
+        var times = convertTimestampToHuman(unixTime);
+        return times;
+    };
+    var time = determineText(localData.localTimeStamp, localData.unixTimeStamp);
 
     var toolTipTemplate = [
         '   <div class="box">',
@@ -138,7 +139,7 @@ function constructToolTip(language, color, localData, standardId) {
         '           <div>', localData.reactivity, '</div>',
         '       </div>',
         '       <div class="tminus" title="', data['tooltext5'], '">',
-        '           <div>', determineText(localData.localTimeStamp), '</div>',
+        '           <div>', (time.hasOwnProperty('time')) ? time.time : time , '</div>',
         '       </div>',
         '   </div>',
         '   <div class="triangle" style="border-top:20px solid', 
@@ -177,7 +178,7 @@ function constructNoteWindow(localData, isNoteMode) {
     
     // Form
     if (isNoteMode === true) {
-        var noteForm = ['<div id="noteFormWrap">', '<input type="text" id="vlNTLE" />', 
+        var noteForm = ['<div id="noteFormWrap">', 
                         '<textarea id="vlNTXT" maxlength="300"></textarea>', '<div class="button_wrap">', 
                         '<div id="btnSVNT2" class="button add_button">Save</div>', 
                         '<div id="btnCNNT2" class="button">Cancel</div>', 
@@ -189,105 +190,3 @@ function constructNoteWindow(localData, isNoteMode) {
     document.getElementById('noteConfig').innerHTML += template.join('');
     
 };
-
-function constructDashboard(language, templateToLoad) {
-    /**************************************************************
-    *   Function   >> constructDashBoard
-    *   Desc       >> construct main page HTML
-    *   Input      >> language :: 2 letter code e.g. nl, en
-    *                 templateToLoad :: path to template image
-    **************************************************************/
-    // Write HTML for user dashboard
-    var data = getLanguageData(language);
-    var dt = new Date();
-    var template = [
-        '<div id="toolbar">',
-        '   <div class="bar">',
-        '       <div class="logo"><span>InClock </span><sup>Development</sup></div>',
-        '       <div id="btnSGOT" class="button"><div>', data['button1'], '</div></div>',
-        '       <div class="button">', data['button7'], '</div>',
-        '   </div>',
-        '</div>',
-        '<div id="ui_wrap">',
-        '   <div id="ui_panel">',
-        '       <div class="window">',
-        '           <div class="bottom">',
-        '               <img id="templateIMG" src="', getTemplateLocation(templateToLoad), '" />',
-        '           </div>',
-        '           <div id="pointWindow" class="top">',
-        '               <svg id="svgFrame" width="600" height="800"></svg>',
-        '           </div>',
-        '           <div id="noteConfig" class="config_panel"></div>',
-        '       </div>',
-        '       <div class="control">',
-        '           <div class="tile">',
-        '               <div class="title">',
-        '                   <div>', data['title1'], '</div>',
-        '                   <div></div>',
-        '               </div>',
-        '               <div class="button_wrap">',
-        '                   <div class="button" id="btnSWTP">', data['button2'], '</div>',
-        '                   <div class="button" id="btnADNP">', data['button3'], '</div>',
-        '               </div>',
-        '           </div>',
-        '           <div id="editPanel" class="tile">',
-        '               <div class="title">',
-        '                   <div>', data['title2'], '</div>',
-        '                   <div></div>',
-        '               </div>',
-        '               <div class="button_wrap">',
-        '                   <div id="btnVWHS" class="button">Notes <span class="info" id="txtHSCT"></span></div>',
-        '                   <div id="btnADNT" class="button add_button"> Add note</div>',
-        '               </div>',
-        '               <div class="pain_wrap">',
-        '                   <div class="subtitle">', data['title4'], '</div>',
-        '                   <div>',
-        '                       <div id="btnNGRT" class="button">-</div>',
-        '                       <div id="txtRT" class="value_field">10</div>',
-        '                       <div id="btnADRT" class="button">+</div>',
-        '                   </div>',
-        '               </div>',
-        '               <div class="button_wrap">',
-        '                  <div id="btnNWIJ" class="button">', data['button5'], '</div>',
-        '                   <div id="btnDLPT" class="button warning_button">', data['button6'], '</div>',
-        '               </div>',
-        '               <div id="notePanel" class="note_wrap">',
-        '                   <div class="time_wrap">',
-        '                       <div class="subtitle">', data['title5'], '</div>',
-        '                       <div class="value_wrap">',
-        '                           <input id="vlTDAY" type="text" />',
-        '                           <span>/</span>',
-        '                           <input id="vlTMON" type="text" />',
-        '                           <span>/</span>',
-        '                           <input id="vlTYEA" type="text" />',
-        '                           <span></span><span></span>',
-        '                           <input id="vlTHOU" type="text" />',
-        '                           <span class="hour">:</span>',
-        '                           <input id="vlTMIN" type="text" />',
-        '                       </div>',
-        '                   </div>',
-        '                   <div class="time_wrap">',
-        '                       <div class="subtitle">Optional note</div>',
-        '                       <textarea id="vlNMSG" maxlength="140"></textarea>',
-        '                       <div id="btnSVNT" class="button add_button">Save</div>',
-        '                       <div id="btnCLNT" class="button warning_button">Cancel</div>',
-        '                   </div>',
-        '               </div>',
-        '           </div>',
-        '           <div class="tile">',
-        '               <div class="title">',
-        '                    <div>', data['title3'],  '</div>',
-        '                    <div></div>',
-        '                </div>',
-        '                <div class="suggestion"></div>',
-        '            </div>',
-        '        </div>',
-        '    </div>',
-        '</div>',
-        '<div id="footer">',
-        '    <div class="divider"></div>',
-        '    <div class="info">Inclock ( <span>in Development</span> ) &copy; ', dt.getFullYear(), '</div>',
-        '</div>'
-    ].join("");
-    document.body.innerHTML = template;
-}

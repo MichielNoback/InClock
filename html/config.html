@@ -1,0 +1,191 @@
+<!--
+    Copyright (C) 2015  J. Vuopionpera
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Interactive Injection Tracker">
+    <title>Inclock | Configurator</title>
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One|Oxygen:300' rel='stylesheet' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="../css/inclock.landing.css" />
+    <link type="text/css" rel="stylesheet" href="../css/inclock.config.css" />
+    <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../js/inclock.resource.js"></script>
+    <script type="text/javascript" src="../js/inclock.core.js"></script>
+    <script type="text/javascript" src="../js/inclock.config.js"></script>
+    <script type="text/javascript">ProfileConfigInit();</script>
+</head>
+    
+<body>
+    <div id="IC">
+        <div class="header">
+            <div class="top_bar">
+                <div class="menu">
+                    <div class="triangle"></div>
+                    <div class="spacer" onclick="window.location = '../html/landing.html';">
+                        <div>InClock <span>Beta</span></div>
+                    </div>
+                    <div class="triangle"></div>
+                </div>
+                <div class="langbar">
+                    <div class="flag" style="background: url(../img/flags/nl.png) no-repeat center"></div>
+                    <div class="flag" style="background: url(../img/flags/uk.gif) no-repeat center"></div>
+                    <div class="flag" style="background: url(../img/flags/de.gif) no-repeat center"></div>
+                </div>
+            </div>
+            <div class="media">
+                <img alt="Screenshot" src="../img/prntscr1.png" width="1000" height="300"/>
+            </div>
+        </div>
+        <div class="body">
+            <div class="content">
+                <div class="options_wrap" id="fldOption1">
+                    <div class="title">Choose account type</div>
+                    <div class="option">
+                        <div class="button" id="btnTypeOption1">Choose</div>
+                        <p>1. Anonymous account with custom username and online-storage.</p>
+                    </div>
+                    <div class="option">
+                        <div class="button" id="btnTypeOption2">Choose</div>
+                        <p>2. Normal account with custom username, recovery email, and online-storage.</p>
+                    </div>
+                    <div class="option">
+                        <div class="button" id="btnTypeOption3">Choose</div>
+                        <p>3. No account, access through file upload. <span>With</span> AES-256 encryption.</p>
+                    </div>
+                    <div class="option">
+                        <div class="button" id="btnTypeOption4">Choose</div>
+                        <p>4. No account, access through file upload. <span>Without</span> encryption.</p>
+                    </div>
+                </div>
+                <div class="options_wrap" id="fldOption2">
+                    <div class="title">Account settings</div>
+                    <div class="option option2">
+                        <p>Choose username</p>
+                        <input type="text" name="newusn" />
+                    </div>
+                    <div class="option option2">
+                        <p>Choose password</p>
+                        <input type="password" name="newpwd" />
+                    </div>
+                    <div class="option option2">
+                        <p>Recovery e-mail address</p>
+                        <input type="text" name="newmail" />
+                    </div>
+                    <div class="option option4">
+                        <div class="button" id="btnContinue1">Continue</div>
+                    </div>
+                </div>
+                <div class="options_wrap" id="fldOption2a">
+                    <div class="title">Account Preferences</div>
+                    <div class="option"></div>
+                    <div class="option"></div>
+                    <div class="option option3">
+                        <p>Pick a colorscheme to use</p>
+                        <form>
+                            <div class="scheme">
+                                <input type="radio" name="colorScheme" value="greenToRed" checked="checked" />
+                                <script type="text/javascript">buildColorScheme('greenToRed');</script>
+                            </div>
+                            <div class="scheme">
+                                <input type="radio" name="colorScheme" value="blueToRed" />
+                                <script type="text/javascript">buildColorScheme('blueToRed');</script>
+                            </div>
+                            <div class="scheme">
+                                <input type="radio" name="colorScheme" value="blueToPink" />
+                                <script type="text/javascript">buildColorScheme('blueToPink');</script>
+                            </div>
+                            <div class="scheme">
+                                <input type="radio" name="colorScheme" value="greyscale" />
+                                <script type="text/javascript">buildColorScheme('greyscale');</script>
+                            </div>
+                            <div class="scheme">
+                                <input type="radio" name="colorScheme" value="rainbow" />
+                                <script type="text/javascript">buildColorScheme('rainbow');</script>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="option option3">
+                        <p>Adjust time zone offset below to fit desired time zone. (GMT standard is 0)</p>
+                        <div class="configurator">
+                            <div class="button" id="btnDecrease">-</div>
+                            <span>10:00</span>
+                            <div class="button" id="btnIncrease">+</div>
+                        </div>
+                    </div>
+                    <div class="option option3">
+                        <p>Select prefered language</p>
+                        <form>
+                            <div class="sub">
+                                <input type="radio" name="lang" value="en" checked="checked"/>
+                                <p>English</p>
+                            </div>
+                            <div class="sub">
+                                <input type="radio" name="lang" value="nl" />
+                                <p>Nederlands</p>
+                            </div>
+                            <div class="sub">
+                                <input type="radio" name="lang" value="de" />
+                                <p>Deutsch</p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="option option4">
+                        <div class="button" id="btnContinue2">Continue</div>
+                    </div>
+                </div>
+                <div class="options_wrap" id="fldOption3">
+                    <div class="title">Profile options</div>
+                    <div class="option">
+                        <div class="img_option">
+                            <div class="button" id="btnTemplate1">Choose</div>
+                            <img src="../img/arms_front.png" />
+                            <img src="../img/arms_back.png" />
+                        </div>
+                        <div class="img_option">
+                            <div class="button" id="btnTemplate2">Choose</div>
+                            <img src="../img/front.png" />
+                            <img src="../img/back.png" />
+                        </div>
+                    </div>
+                </div>
+                <div class="options_wrap" id="fldOption4">
+                    <div class="title">Template Builder</div>
+                    <div class="option">  
+                    </div>
+                </div>
+                <div class="options_wrap" id="fldOption5">
+                    <div class="title">Create account</div>
+                    <div class="option">
+                        <!-- Only when using access codes -->
+                        <div id="activationCode" style="display: none;">{}</div>
+                        <!-- / -->
+                        <div class="button" id="btnComplete">Done!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tail">
+            <div class="content">
+                <p>InClock &copy; 2015 [Beta v0.1a]</p>
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+                <a rel="license" href="../LICENSE.txt"><img alt="GPL-3.0 License" src="../img/gnu3.png" /></a>
+                <a href="https://github.com/MichielNoback/InClock"><img alt="GitHub repo" src="../img/github.png" /></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+{
+    "home": {
+
+        "title1": "What is InClock",
+        "text1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit facilisis enim mollis tempor. Etiam vitae ullamcorper orci, at venenatis libero. Quisque in lectus sit amet libero molestie pharetra. Phasellus pellentesque velit nec lorem maximus, id iaculis lectus dictum. Vivamus nec metus et nibh ultricies blandit. Nullam nec enim magna. Mauris sit amet mollis eros. Vivamus quis nisi venenatis, porta augue eget, posuere ipsum. In vitae leo at sapien eleifend congue sed vitae arcu. Suspendisse bibendum dignissim quam rhoncus volutpat. Nulla laoreet enim et vestibulum viverra. Sed dapibus porttitor augue nec aliquam. Donec ultrices viverra nulla. Sed sit amet bibendum nulla, sed feugiat purus. Aenean porta, est non laoreet tempor, justo elit luctus lectus, tincidunt condimentum metus metus auctor erat. Duis interdum lobortis tempor. Donec quis maximus nisi, ac euismod nibh. In dictum enim sit amet orci luctus condimentum.",
+        "title2": "How can I use InClock",
+        "text2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit facilisis enim mollis tempor. Etiam vitae ullamcorper orci, at venenatis libero. Quisque in lectus sit amet libero molestie pharetra. Phasellus pellentesque velit nec lorem maximus, id iaculis lectus dictum. Vivamus nec metus et nibh ultricies blandit. Nullam nec enim magna. Mauris sit amet mollis eros. Vivamus quis nisi venenatis, porta augue eget, posuere ipsum.",
+        "title3": "Terms and Conditions",
+        "text3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit facilisis enim mollis tempor. Etiam vitae ullamcorper orci, at venenatis libero. Quisque in lectus sit amet libero molestie pharetra. Phasellus pellentesque velit nec lorem maximus, id iaculis lectus dictum. Vivamus nec metus et nibh ultricies blandit. Nullam nec enim magna. Mauris sit amet mollis eros. Vivamus quis nisi venenatis, porta augue eget, posuere ipsum.",
+
+        "button1": "Sign Up!",
+        "button2": "Redeem",
+        "button3": "Cancel",
+        "button4": "Go!",
+        "button5": "Upload!",
+
+        "subtitle1": "Login",
+        "subtitle2": "Upload Encrypted File",
+        "subtitle3": "Upload plain File",
+        
+        "input1": "Username",
+        "input2": "Example: AQJKLP",
+
+        "other1": "Or",
+        "other2": "Try InClock now! (Alpha-codes only)",
+
+        "error1": "Invalid Code",
+
+        "hover1": "Nederlands",
+        "hover2": "English",
+        "hover3": "Deutsch"
+    },
+    "config": {
+
+        "title1": "Choose account type",
+        "title2": "Account Preferences",
+        "title3": "Profile options",
+        "title4": "Template builder",
+        "title5": "Create account",
+
+        "subtitle1": "1. Anonymous account with custom username and online-storage.",
+        "subtitle2": "2. Normal account with custom username, recovery email, and online-storage.",
+        "subtitle3": "3. No account, access through file upload. With AES-256 encryption.",
+        "subtitle4": "4. No account, access through file upload. Without encryption.",
+        "subtitle5": "Pick a colorscheme to use",
+        "subtitle6": "Adjust time zone offset below to fit desired time zone. (GMT standard is 0)",
+        "subtitle7": "Select prefered language",
+
+        "button1": "Choose",
+        "button2": "Continue",
+        "button3": "Done!",
+
+        "input1": "Choose username",
+        "input2": "Choose password",
+        "input3": "Recovery e-mail address",
+        "input4": "English",
+        "input5": "Nederlands",
+        "input6": "Deutsch"
+    },
+    "dashboard": {
+    },
+    "error": {
+    }
+}

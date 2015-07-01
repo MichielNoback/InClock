@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 """
- Name:      comms.py (part of InClock)
- Date:      5/2015
- Desc:      Communications handlers for dealing with JavaScript (comms.js)
+ Name:      Profile.py (InClock package)
+ Date:      6/2015
+ Desc:      Communications handlers for dealing with JavaScript
  Author:    J. Vuopionpera
  
     Copyright (C) 2015  J. Vuopionpera
@@ -22,12 +22,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+__version__ = "0.1a"
+__author__ = "J. Vuopionpera"
+
 import cgi
 import cgitb
 import json
-import hashlib
 import base64
-import inclockDB
 from Crypto.Cipher import AES
 from Crypto import Random
 import datetime
@@ -38,8 +39,8 @@ cgitb.enable()  # For development only
 class UserData:
     """ All data retrieval and storage methods """
     
-    def __init__(self):
-        self.data = None
+    def __init__(self, data):
+        self.data = data
 
     def aes_encrypt(self, key):
         """
@@ -81,7 +82,7 @@ class UserData:
 
         self.update_file_timestamps()
     
-    def get_from_db(self, username, session_key):
+    def get_from_db(self, username):
         pass
 
     def save_to_test(self, filename, data):
@@ -129,28 +130,3 @@ class UserData:
         header = "Content-Type: application/json\n\n"
         content = json.dumps(self.data) if active else ' '
         print(header, content)
-    
-
-def main():
-    """
-    Desc:   Temporary POST data handler
-    """
-    # Setup the CGI
-    parameters = cgi.FieldStorage(environ={'REQUEST_METHOD': 'POST'})
-    protocol = parameters.getvalue('prc')
-    session_data = UserData()
-    active = True  # Default
-    if protocol == 'test':
-        test_file = parameters.getvalue('fn')
-        if 'data' in parameters is not None:
-            # Save to file
-            session_data.save_to_test(test_file, parameters.getvalue('data'))
-            active = False
-        else:
-            # Read from file
-            session_data.get_from_test(test_file)
-    session_data.parse(active)  # Return response
-        
-
-if __name__ == "__main__":
-    main()

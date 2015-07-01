@@ -35,7 +35,7 @@ function getLanguageData(country) {
                "title3": "Potenti&euml;le Injectie opties",
                "title4": "Verander de reactiviteit",
                "title5": "Injectie Datum &amp; Tijd",
-               "button1": "Uitloggen",
+               "button1": "Opslaan",
                "button2": "Omdraaien",
                "button3": "Punt toevoegen",
                "button4": "Save",
@@ -54,7 +54,7 @@ function getLanguageData(country) {
                "title3": "Potential injection sites",
                "title4": "Change the reactivity",
                "title5": "Injection Date &amp; Time",
-               "button1": "Sign Out",
+               "button1": "Save",
                "button2": "Turn around",
                "button3": "Add point",
                "button4": "Save",
@@ -71,6 +71,18 @@ function getLanguageData(country) {
     return language_dict[country];
 };
 
+function convertTimestampToHuman(unixTime) {
+    var currentTime = new Date();
+    var timeDelta = (currentTime.getTime() - parseInt(unixTime)) / 1000;
+    var days = Math.floor(timeDelta / 86400);  // 24 * 60 * 60
+    timeDelta -= days * 86400;
+    var hours = Math.floor(timeDelta / 3600);  // 60 * 60
+    timeDelta -= hours * 3600;
+    var minutes = Math.floor(timeDelta / 60);
+    var newTimestamp = [days, 'd:', hours, 'h:', minutes, 'm'].join('');
+    return {'time': newTimestamp, 'days': days};
+};
+
 function getColorScheme(scheme) {
     /*********************************************************
     *   Function    >> getColorScheme
@@ -81,7 +93,8 @@ function getColorScheme(scheme) {
     *********************************************************/
     var color_schemes = {
         // Original InClock Color Scheme : Blue -> Green -> Yellow -> Orange -> Red
-        "rainbow": [],
+        "rainbow": ["#0BE8FF", "#00A7FF", "#008ED9", "#9BFF24", "#BEF417",
+                    "#FFE000", "#FFAF00", "#FF4E7E", "#FF1D58", "#FF3624"],
         // Standard Color Scheme : Green -> Yellow -> Orange -> Red
         "greenToRed": ["#9BFF24", "#BEF417", "#E1E90B", "#F5E304", "#FFE000",
                        "#FFAF00", "#FF8300", "#FF7300", "#FF4B17", "#FF3624"],
@@ -128,4 +141,35 @@ function getTemplateLocation(templateName) {
         'ArmsBack': '../img/arms_back.png'
     };
     return templateLocations[templateName];
+};
+
+function getStandardTemplate() {
+    /*********************************************************
+    *   Function    >> getStandardTemplate
+    *   Output      >> standard JSON object
+    *   Desc        >> Return basic JSON profile object
+    *********************************************************/
+    var profile = {
+        "user": {
+            "dataCorruptionHash": null,
+            "language": null,
+            "timeZoneOffset": null,
+            "templatesUsed": null,
+            "colorScheme": null
+        }
+    };
+    return profile;
+};
+
+function getLanguageFileLocation(lang) {
+    var files = {
+        'nl': '../../resource/lang/nl.json',
+        'en': '../../resource/lang/en.json',
+        'de': '../../resource/lang/de.json'
+    };
+    if (files.hasOwnProperty(lang)) {
+        return files[lang];    
+    } else {
+        return files['en'];    
+    };
 };
