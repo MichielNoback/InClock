@@ -22,7 +22,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-__version__ = "0.1a"
+__version__ = (0.1, 'alpha')
 __author__ = "J. Vuopionpera"
 
 import os
@@ -45,7 +45,7 @@ class Page:
         Load the homepage
         :return: None
         """
-        index_location = 'http://localhost/InClock/'
+        index_location = 'http://bioinf.nl/~jyvuopionpera/InClock/'
         print("Location: {}\n\n".format(index_location))
 
     @staticmethod

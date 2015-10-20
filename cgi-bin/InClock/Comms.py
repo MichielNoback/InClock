@@ -22,7 +22,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-__version__ = "0.1a"
+__version__ = (0.1, 'alpha')
 __author__ = "J. Vuopionpera"
 
 import os
@@ -67,12 +67,12 @@ def secure_upload(data, password):
     :return: JSON formatted string
     """
     password = hashlib.sha256(str.encode(password)).digest()  # Calculate SHA-256
-    data = bytes.decode(data.file.read()).strip()
-    data = bytes.decode(Database.aes_decrypt(password, data)).replace("'", '"')
     try:
+        data = bytes.decode(data.file.read()).strip()
+        data = bytes.decode(Database.aes_decrypt(password, data)).replace("'", '"')
         data = json.loads(data)
     except Exception:
-        Error.load_error_page('Your file has been corrupted or is invalid.')
+        Error.load_error_page('Your file has been corrupted, is invalid, or a wrong password was used.')
         sys.exit()
     else:
         return json.dumps(data)

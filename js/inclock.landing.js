@@ -21,10 +21,17 @@
 ******************************************************************/
 
 function HomePageInit() {
-    document.addEventListener("DOMContentLoaded", function () {
-        // If page ready
+    // Check for language specification in url
+    var url = window.location.href;
+    lang = url.split('?lang=')[1];
+    // Load language data
+    var fileLoaded = function (response) {
+        window.languageDict = response;
         $('.validation_wrap').hide();
-    });
+        console.log(window.languageDict);
+    }
+    var loadLanguage = new Comms(fileLoaded);
+    loadLanguage.loadLanguageFile(lang);
 };
 
 function standardLogin() {

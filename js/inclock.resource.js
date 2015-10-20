@@ -163,9 +163,9 @@ function getStandardTemplate() {
 
 function getLanguageFileLocation(lang) {
     var files = {
-        'nl': '../../resource/lang/nl.json',
-        'en': '../../resource/lang/en.json',
-        'de': '../../resource/lang/de.json'
+        'nl': 'resource/lang/nl.json',
+        'en': 'resource/lang/en.json',
+        'de': 'resource/lang/de.json'
     };
     if (files.hasOwnProperty(lang)) {
         return files[lang];    

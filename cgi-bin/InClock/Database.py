@@ -22,14 +22,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-__version__ = "0.1a"
+__version__ = (0.1, 'alpha')
 __author__ = "J. Vuopionpera"
 
 import os
 import json
 import base64
 import random
-import pymysql
+import mysql.connector as pymysql
 import hashlib
 from InClock import Error
 from Crypto.Cipher import AES
@@ -66,10 +66,8 @@ class DatabaseHandler:
     """ Provide a simple inheritable MySQL-client """
 
     def __init__(self):
-        self.database_host = "localhost"
-        self.database_name = "inclock"
-        self.database_user = "root"
-        self.user_password = ""
+        filename = '.inclock.cnf'
+        self.conf_file = ''.join([os.path.expanduser('~'), '/', filename])
         self.table_names = {'users': 'inclock_users', 'keys': 'inclock_ukeys', 'data': 'inclock_udata',
                             'codes': 'inclock_codes', 'session': 'inclock_sessions'}
         self.cursor, self.connection = None, None
@@ -80,14 +78,27 @@ class DatabaseHandler:
         Output: self
         """
         try:
-            database = pymysql.connect(host=self.database_host, user=self.database_user,
-                                       passwd=self.user_password, db=self.database_name)
+            database = pymysql.connect(option_files=self.conf_file)
             cursor = database.cursor()
         except Exception as e:
             Error.log(e)
         else:
             self.cursor, self.connection = cursor, database
             return self
+
+    def test(self):
+        """
+        Test the MySQL connection
+        :return: Boolean
+        """
+        sql = "SELECT version()"
+        try:
+            self.cursor.execute(sql)
+        except Exception as e:
+            Error.log(e)
+            return False
+        else:
+            return True
 
     def query(self, sql, args):
         """
@@ -198,10 +209,11 @@ class DatabasePut(DatabaseHandler):
         Desc:   Flip status for activation code to 1
         Input:  code -> [string] :: code e.g. ABCDEF
         """
-        sql = "UPDATE `{}` SET `status`=1 WHERE `code`=%s".format(self.table_names['codes'])
-        args = (code,)
-        if self.query(sql, args):
-            self.connection.commit()
+        #sql = "UPDATE `{}` SET `status`=1 WHERE `code`=%s".format(self.table_names['codes'])
+        #args = (code,)
+        #if self.query(sql, args):
+            #self.connection.commit()
+        return True
 
     def register_new_session(self, user_ref):
         """
@@ -244,7 +256,7 @@ class DatabaseGet(DatabaseHandler):
         args = (code,)
         if self.query(sql, args):
             is_user = self.cursor.fetchone()[0]
-            return True if is_user == 1 else False
+            return True if is_user == 0 else False
 
     def check_if_user_reference_exists(self, reference):
         """

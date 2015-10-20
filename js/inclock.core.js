@@ -161,7 +161,7 @@ function Comms(callback) {
 	this.data = null;
     this.callback = callback;
     this.STANDARD_IFRAME_NAME = "inclockTarget";
-    this.HOMEPAGE = "http://localhost/InClock";
+    this.HOMEPAGE = "http://bioinf.nl/~jyvuopionpera/InClock";
     var self = this;
 	
     this.createXMLHttpObject = function () {
@@ -246,9 +246,13 @@ function Comms(callback) {
         document.body.appendChild(iframe);
     };
     
-    this.loadLanguageFile = function () {
-        var browserLanguage = navigator.language || navigator.userLanguage;
-        var langFile = getLanguageFileLocation(browserLanguage.split('-')[0]);
+    this.loadLanguageFile = function (lang) {
+        if (lang === undefined || lang.length === 0) {
+            var browserLanguage = navigator.language || navigator.userLanguage;
+            var langFile = getLanguageFileLocation(browserLanguage.split('-')[0]);
+        } else {
+            var langFile = getLanguageFileLocation(lang);
+        };
         var xmlhttp = self.createXMLHttpObject();
         xmlhttp.open("GET", langFile, true);
         xmlhttp.send();
@@ -335,7 +339,7 @@ function Comms(callback) {
         } else {
             var dataStream = {'prc': 'saveUser', 'data': JSON.stringify(profile), 
                               'sid': config.sid, 'skey': config.skey};
-            console.log(dataStream);
+            //console.log(dataStream);
             self.openChannel(dataStream, null, true);
         };
     };
