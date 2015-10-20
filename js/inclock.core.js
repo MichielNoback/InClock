@@ -31,6 +31,24 @@ function dashBoardInit(userData) {
     });
 };
 
+function replaceVars() {
+    /*********************************************************
+    *   Function    >> replaceVars
+    *   Desc        >> Replace HTML placeholders with text
+    *********************************************************/
+    var pattern = /@([a-z]+.[a-z]+[0-9])/ig;
+    var matches = document.body.innerHTML.match(pattern);
+    for (var mat in matches) {
+        match = matches[mat].slice(1, matches[mat].length);
+        var domains = match.split('.');
+        var string = window.languageDict[domains[0]][domains[1]];
+        if (string !== undefined) {
+            var reppat = new RegExp(matches[mat], 'ig')
+            document.body.innerHTML = document.body.innerHTML.replace(reppat, string);
+        }
+    };
+}
+
 function paintItRed(element, isjQuery) {
     if (isjQuery === true) {
         element.css('border-color', '#FF3624');

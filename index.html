@@ -53,71 +53,63 @@
             <div class="content">
                 <div class="loginbar">
                     <div class="option">
-                        <p>Login</p>
+                        <p>@home.subtitle1</p>
                         <form id="formType1" enctype="application/x-www-form-urlencoded" method="post">
-                            <input type="text" name="username" value="Username" />
+                            <input type="text" name="username" value="@home.input1" />
                             <input type="password" name="userpwd" value="abcdefg" />
                         </form>
-                        <div class="button" onclick="standardLogin()">Go!</div>
+                        <div class="button" onclick="standardLogin()">@home.button4</div>
                         <div class="or_border">
                             <div></div>
-                            <div>Or</div>
+                            <div>@home.other1</div>
                             <div></div>
                         </div>
                     </div>
                     <div class="option">
-                        <p>Upload Encrypted File</p>
+                        <p>@home.subtitle2</p>
                         <form id="formType2" enctype="multipart/form-data" method="post" action="cgi-bin/inclock.py">
                             <input type="hidden" name="prc" value="secureUpload" />
                             <input type="file" name="data" />
                             <input type="password" name="pwd" value="abcdefg" />
                         </form>
-                        <div class="button" onclick="secureUpload()">Upload!</div>
+                        <div class="button" onclick="secureUpload()">@home.button5</div>
                         <div class="or_border">
                             <div></div>
-                            <div>Or</div>
+                            <div>@home.other1</div>
                             <div></div>
                         </div>
                     </div>
                     <div class="option">
-                        <p>Upload Plain File</p>
+                        <p>@home.subtitle3</p>
                         <form id="formType3" enctype="multipart/form-data" method="post" action="cgi-bin/inclock.py">
                             <input type="hidden" name="prc" value="plainUpload" />
                             <input type="file" name="data" />
                         </form>
-                        <div class="button" onclick="plainUpload()">Upload!</div>
+                        <div class="button" onclick="plainUpload()">@home.button5</div>
                     </div>
                 </div>
                 <div class="textblock">
-                    <div class="title">What is InClock</div>
+                    <div class="title">@home.title1</div>
                     <div class="signup_block">
-                        <div>Try InClock now! (Alpha-codes only)</div>
-                        <div class="button green_button" onclick="showCodeWindow()">Sign Up!</div>
+                        <div>@home.other2</div>
+                        <div class="button green_button" onclick="showCodeWindow()">@home.button1</div>
                         <!-- Only when using access codes -->
                         <div class="validation_wrap">
-                            <input type="text" id="fldUserCode" value="Example: AQJKLP" />
-                            <div class="button" id="btnRedeemCode" onclick="validateUserCode()">Redeem</div>
-                            <div class="button" id="btnCancelCode" onclick="cancelCode()">Cancel</div>
+                            <input type="text" id="fldUserCode" value="@home.input2" />
+                            <div class="button" id="btnRedeemCode" onclick="validateUserCode()">@home.button2</div>
+                            <div class="button" id="btnCancelCode" onclick="cancelCode()">@home.button3</div>
                         </div>
                         <!-- / -->
                     </div>
-                    <div class="text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit facilisis enim mollis tempor. Etiam vitae ullamcorper orci, at venenatis libero. Quisque in lectus sit amet libero molestie pharetra. Phasellus pellentesque velit nec lorem maximus, id iaculis lectus dictum. Vivamus nec metus et nibh ultricies blandit. Nullam nec enim magna. Mauris sit amet mollis eros. Vivamus quis nisi venenatis, porta augue eget, posuere ipsum.
-
-    In vitae leo at sapien eleifend congue sed vitae arcu. Suspendisse bibendum dignissim quam rhoncus volutpat. Nulla laoreet enim et vestibulum viverra. Sed dapibus porttitor augue nec aliquam. Donec ultrices viverra nulla. Sed sit amet bibendum nulla, sed feugiat purus. Aenean porta, est non laoreet tempor, justo elit luctus lectus, tincidunt condimentum metus metus auctor erat. Duis interdum lobortis tempor. Donec quis maximus nisi, ac euismod nibh. In dictum enim sit amet orci luctus condimentum.
-                    </div>
+                    <div class="text">@home.text1</div>
                 </div>
                 <div class="textblock">
-                    <div class="title">How can I use InClock</div>
-                    <div class="text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit facilisis enim mollis tempor. Etiam vitae ullamcorper orci, at venenatis libero. Quisque in lectus sit amet libero molestie pharetra. Phasellus pellentesque velit nec lorem maximus, id iaculis lectus dictum. Vivamus nec metus et nibh ultricies blandit. Nullam nec enim magna. Mauris sit amet mollis eros. Vivamus quis nisi venenatis, porta augue eget, posuere ipsum.
-                    </div>
+                    <div class="title">@home.title2</div>
+                    <div class="text">@home.text2</div>
                 </div>
                 <div class="textblock">
-                    <div class="title">Terms and Conditions</div>
-                    <div class="text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit facilisis enim mollis tempor. Etiam vitae ullamcorper orci, at venenatis libero. Quisque in lectus sit amet libero molestie pharetra. Phasellus pellentesque velit nec lorem maximus, id iaculis lectus dictum. Vivamus nec metus et nibh ultricies blandit. Nullam nec enim magna. Mauris sit amet mollis eros. Vivamus quis nisi venenatis, porta augue eget, posuere ipsum.
-                    </div>
+                    <div class="title">@home.title3</div>
+                    <div class="text">@home.text3</div>
                 </div>
             </div>
         </div>

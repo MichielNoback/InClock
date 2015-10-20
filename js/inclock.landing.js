@@ -28,7 +28,8 @@ function HomePageInit() {
     var fileLoaded = function (response) {
         window.languageDict = response;
         $('.validation_wrap').hide();
-        console.log(window.languageDict);
+        //console.log(window.languageDict);
+        replaceVars();
     }
     var loadLanguage = new Comms(fileLoaded);
     loadLanguage.loadLanguageFile(lang);
