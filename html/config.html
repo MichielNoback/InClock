@@ -53,48 +53,48 @@
         <div class="body">
             <div class="content">
                 <div class="options_wrap" id="fldOption1">
-                    <div class="title">Choose account type</div>
+                    <div class="title">@config.title1</div>
                     <div class="option">
-                        <div class="button" id="btnTypeOption1">Choose</div>
-                        <p>1. Anonymous account with custom username and online-storage.</p>
+                        <div class="button" id="btnTypeOption1">@config.button1</div>
+                        <p class="account_choice_text">@config.subtitle1</p>
                     </div>
                     <div class="option">
-                        <div class="button" id="btnTypeOption2">Choose</div>
-                        <p>2. Normal account with custom username, recovery email, and online-storage.</p>
+                        <div class="button" id="btnTypeOption2">@config.button1</div>
+                        <p class="account_choice_text">@config.subtitle2</p>
                     </div>
                     <div class="option">
-                        <div class="button" id="btnTypeOption3">Choose</div>
-                        <p>3. No account, access through file upload. <span>With</span> AES-256 encryption.</p>
+                        <div class="button" id="btnTypeOption3">@config.button1</div>
+                        <p class="account_choice_text">@config.subtitle3</p>
                     </div>
                     <div class="option">
-                        <div class="button" id="btnTypeOption4">Choose</div>
-                        <p>4. No account, access through file upload. <span>Without</span> encryption.</p>
+                        <div class="button" id="btnTypeOption4">@config.button1</div>
+                        <p class="account_choice_text">@config.subtitle4</p>
                     </div>
                 </div>
                 <div class="options_wrap" id="fldOption2">
-                    <div class="title">Account settings</div>
+                    <div class="title">@config.title2</div>
                     <div class="option option2">
-                        <p>Choose username</p>
+                        <p>@config.input1</p>
                         <input type="text" name="newusn" />
                     </div>
                     <div class="option option2">
-                        <p>Choose password</p>
+                        <p>@config.input2</p>
                         <input type="password" name="newpwd" />
                     </div>
                     <div class="option option2">
-                        <p>Recovery e-mail address</p>
+                        <p>@config.input3</p>
                         <input type="text" name="newmail" />
                     </div>
                     <div class="option option4">
-                        <div class="button" id="btnContinue1">Continue</div>
+                        <div class="button" id="btnContinue1">@config.button2</div>
                     </div>
                 </div>
                 <div class="options_wrap" id="fldOption2a">
-                    <div class="title">Account Preferences</div>
+                    <div class="title">@config.title3</div>
                     <div class="option"></div>
                     <div class="option"></div>
                     <div class="option option3">
-                        <p>Pick a colorscheme to use</p>
+                        <p>@config.subtitle5</p>
                         <form>
                             <div class="scheme">
                                 <input type="radio" name="colorScheme" value="greenToRed" checked="checked" />
@@ -119,7 +119,7 @@
                         </form>
                     </div>
                     <div class="option option3">
-                        <p>Adjust time zone offset below to fit desired time zone. (GMT standard is 0)</p>
+                        <p>@config.subtitle6</p>
                         <div class="configurator">
                             <div class="button" id="btnDecrease">-</div>
                             <span>10:00</span>
@@ -127,53 +127,53 @@
                         </div>
                     </div>
                     <div class="option option3">
-                        <p>Select prefered language</p>
+                        <p>@config.subtitle7</p>
                         <form>
                             <div class="sub">
                                 <input type="radio" name="lang" value="en" checked="checked"/>
-                                <p>English</p>
+                                <p>@config.input4</p>
                             </div>
                             <div class="sub">
                                 <input type="radio" name="lang" value="nl" />
-                                <p>Nederlands</p>
+                                <p>@config.input5</p>
                             </div>
                             <!--<div class="sub">
                                 <input type="radio" name="lang" value="de" />
-                                <p>Deutsch</p>
+                                <p>@config.input6</p>
                             </div>-->
                         </form>
                     </div>
                     <div class="option option4">
-                        <div class="button" id="btnContinue2">Continue</div>
+                        <div class="button" id="btnContinue2">@config.button2</div>
                     </div>
                 </div>
                 <div class="options_wrap" id="fldOption3">
-                    <div class="title">Profile options</div>
+                    <div class="title">@config.title4</div>
                     <div class="option">
                         <div class="img_option">
-                            <div class="button" id="btnTemplate2">Choose</div>
+                            <div class="button" id="btnTemplate2">@config.button1</div>
                             <img src="../img/arms_front.png" />
                             <img src="../img/arms_back.png" />
                         </div>
                         <div class="img_option">
-                            <div class="button" id="btnTemplate1">Choose</div>
+                            <div class="button" id="btnTemplate1">@config.button1</div>
                             <img src="../img/front.png" />
                             <img src="../img/back.png" />
                         </div>
                     </div>
                 </div>
                 <div class="options_wrap" id="fldOption4">
-                    <div class="title">Template Builder</div>
+                    <div class="title">@config.title5</div>
                     <div class="option">  
                     </div>
                 </div>
                 <div class="options_wrap" id="fldOption5">
-                    <div class="title">Create account</div>
+                    <div class="title">@config.title6</div>
                     <div class="option">
                         <!-- Only when using access codes -->
                         <div id="activationCode" style="display: none;">{}</div>
                         <!-- / -->
-                        <div class="button" id="btnComplete">Done!</div>
+                        <div class="button" id="btnComplete">@config.button3</div>
                     </div>
                 </div>
             </div>

@@ -21,18 +21,9 @@
 ******************************************************************/
 
 function HomePageInit() {
-    // Check for language specification in url
-    var url = window.location.href;
-    lang = url.split('?lang=')[1];
-    // Load language data
-    var fileLoaded = function (response) {
-        window.languageDict = response;
-        $('.validation_wrap').hide();
-        //console.log(window.languageDict);
-        replaceVars();
-    }
-    var loadLanguage = new Comms(fileLoaded);
-    loadLanguage.loadLanguageFile(lang);
+    document.addEventListener("DOMContentLoaded", function () {
+        determineLanguageAndLoadFile();
+    });
 };
 
 function standardLogin() {

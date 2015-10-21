@@ -29,7 +29,7 @@ function getLanguageData(country) {
     *   Output      >> Object containing language data
     *   Desc        >> Store all language specific data
     *********************************************************/
-    var language_dict = {
+    var language_dict = {  // ** !Needs migration to JSON file!
         "nl": {"title1": "Controls",
                "title2": "Injectie punt eigenschappen",
                "title3": "Potenti&euml;le Injectie opties",
@@ -127,6 +127,19 @@ function getTemplatePrefix(templateName) {
     return prefixes[templateName];
 };  
 
+function rootPlusPath(path) {
+    /*********************************************************
+    *   Function    >> rootPlusPath
+    *   Input       >> path :: relative path to file
+    *   Output      >> Full path to file
+    *   Desc        >> Convert relative path to full path
+    *********************************************************/
+    var root = window.location.origin;
+    var appFolder = 'InClock';  // Custom sub-directory
+    path = root + '/' + appFolder + '/' + path;
+    return path;
+};
+
 function getTemplateLocation(templateName) {
     /*********************************************************
     *   Function    >> getTemplateLocation
@@ -163,9 +176,9 @@ function getStandardTemplate() {
 
 function getLanguageFileLocation(lang) {
     var files = {
-        'nl': 'resource/lang/nl.json',
-        'en': 'resource/lang/en.json',
-        'de': 'resource/lang/de.json'
+        'nl': rootPlusPath('resource/lang/nl.json'),
+        'en': rootPlusPath('resource/lang/en.json'),
+        'de': rootPlusPath('resource/lang/de.json')
     };
     if (files.hasOwnProperty(lang)) {
         return files[lang];    

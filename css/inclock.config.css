@@ -33,6 +33,11 @@
     margin-top: 8px;
 }
 
+#IC .body .options_wrap .option .account_choice_text {
+    width: 80%;
+    text-align: justify;
+}
+
 #IC .body .options_wrap .option p span {
     text-decoration: underline;
 }

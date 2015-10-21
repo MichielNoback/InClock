@@ -21,13 +21,22 @@
 ******************************************************************/
 
 function ProfileConfigInit() {
+    /*********************************************************
+    *   Function    >> ProfileConfigInit
+    *   Desc        >> Construct the profile config page
+    *********************************************************/
     document.addEventListener("DOMContentLoaded", function () {
+        determineLanguageAndLoadFile();
         var profile = new ProfileConfigurator();
         profile.init();
     });
 };
 
 function buildColorScheme(scheme) {
+    /*********************************************************
+    *   Function    >> buildColorScheme
+    *   Desc        >> Create color gradient
+    *********************************************************/
     var scheme = getColorScheme(scheme);
     for (var color in scheme) {
         document.write('<span class="color_block" style="background:' + scheme[color] + ';"></span>');    

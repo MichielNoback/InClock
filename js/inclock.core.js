@@ -24,11 +24,34 @@
 
 
 function dashBoardInit(userData) {
+    /*********************************************************
+    *   Function    >> dashBoardInit
+    *   Desc        >> Construct the dashboard page
+    *********************************************************/
     document.addEventListener("DOMContentLoaded", function () {
         // If page ready
         var app = new AppConstructor();
         app.init(userData);  // Start InClock
     });
+};
+
+function determineLanguageAndLoadFile(){
+    /*********************************************************
+    *   Function    >> determineLanguageAndLoadFile
+    *   Desc        >> Load correct language file
+    *********************************************************/
+    // Check for language specification in url
+    var url = window.location.href;
+    lang = url.split('?lang=')[1];
+    // Load language data
+    var fileLoaded = function (response) {
+        window.languageDict = response;
+        $('.validation_wrap').hide();
+        //console.log(window.languageDict);
+        document.body.onload = replaceVars();
+    }
+    var loadLanguage = new Comms(fileLoaded);
+    loadLanguage.loadLanguageFile(lang);
 };
 
 function replaceVars() {
@@ -50,10 +73,12 @@ function replaceVars() {
 };
 
 function emptyField(event) {
+    // Empty a value field
     event.target.value = '';
 };
 
 function resetField(event) {
+    // Set default value as value
     var value = event.target.alt;
     // Only reset field when no value is given
     if (event.target.value.length === 0){
