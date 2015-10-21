@@ -45,7 +45,7 @@ class Page:
         Load the homepage
         :return: None
         """
-        index_location = 'http://bioinf.nl/~jyvuopionpera/InClock/'
+        index_location = 'http://localhost/InClock/'
         print("Location: {}\n\n".format(index_location))
 
     @staticmethod

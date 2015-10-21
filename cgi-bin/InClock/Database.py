@@ -44,7 +44,7 @@ def aes_encrypt(key, data):
     """
     data = str.encode(json.dumps(data))
     iv = Random.new().read(AES.block_size)
-    cipher = AES.new(key, AES.MODE_CFB, iv)  # 256-bit
+    cipher = AES.new(bytes(key), AES.MODE_CFB, iv)  # 256-bit
     data = base64.b64encode(iv + cipher.encrypt(data))
     return data
 
@@ -57,8 +57,8 @@ def aes_decrypt(key, data):
     """
     data = base64.b64decode(data)
     iv = data[:AES.block_size]
-    cipher = AES.new(key, AES.MODE_CFB, iv)  # 256-bit
-    data = cipher.decrypt(data)[AES.block_size:]
+    cipher = AES.new(bytes(key), AES.MODE_CFB, iv)  # 256-bit
+    data = cipher.decrypt(bytes(data))[AES.block_size:]
     return data
 
 
