@@ -82,6 +82,7 @@ class DatabaseHandler:
             cursor = database.cursor()
         except Exception as e:
             Error.log(e)
+            return e  # Development only!
         else:
             self.cursor, self.connection = cursor, database
             return self
@@ -256,7 +257,7 @@ class DatabaseGet(DatabaseHandler):
         args = (code,)
         if self.query(sql, args):
             is_user = self.cursor.fetchone()[0]
-            return True if is_user == 0 else False
+            return True if is_user == 1 else False
 
     def check_if_user_reference_exists(self, reference):
         """
