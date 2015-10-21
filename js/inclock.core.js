@@ -47,7 +47,30 @@ function replaceVars() {
             document.body.innerHTML = document.body.innerHTML.replace(reppat, string);
         }
     };
-}
+};
+
+function emptyField(event) {
+    event.target.value = '';
+};
+
+function resetField(event) {
+    var value = event.target.alt;
+    // Only reset field when no value is given
+    if (event.target.value.length === 0){
+        event.target.value = value;
+    };
+};
+
+function submitField(event) {
+    // Submit on ENTER key = 13
+    if (event.keyCode === 13){
+        // Get parent node
+        var parent = event.srcElement.parentNode;
+        // Get corresponding button node
+        var button = parent.nextElementSibling;
+        button.click();
+    };
+};
 
 function paintItRed(element, isjQuery) {
     if (isjQuery === true) {

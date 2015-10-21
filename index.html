@@ -54,9 +54,9 @@
                 <div class="loginbar">
                     <div class="option">
                         <p>@home.subtitle1</p>
-                        <form id="formType1" enctype="application/x-www-form-urlencoded" method="post">
-                            <input type="text" name="username" value="@home.input1" />
-                            <input type="password" name="userpwd" value="abcdefg" />
+                        <form id="formType1" enctype="application/x-www-form-urlencoded" method="post" onkeydown="submitField(event)">
+                            <input type="text" name="username" value="@home.input1" alt="@home.input1" onfocus="emptyField(event)" onblur="resetField(event)" />
+                            <input type="password" name="userpwd" value="abcdefg" alt="abcdefg" onfocus="emptyField(event)" onblur="resetField(event)" />
                         </form>
                         <div class="button" onclick="standardLogin()">@home.button4</div>
                         <div class="or_border">
@@ -67,10 +67,10 @@
                     </div>
                     <div class="option">
                         <p>@home.subtitle2</p>
-                        <form id="formType2" enctype="multipart/form-data" method="post" action="cgi-bin/inclock.py">
+                        <form id="formType2" enctype="multipart/form-data" method="post" action="cgi-bin/inclock.py" onkeydown="submitField(event)">
                             <input type="hidden" name="prc" value="secureUpload" />
                             <input type="file" name="data" />
-                            <input type="password" name="pwd" value="abcdefg" />
+                            <input type="password" name="pwd" value="abcdefg" alt="abcdefg" onfocus="emptyField(event)" onblur="resetField(event)" />
                         </form>
                         <div class="button" onclick="secureUpload()">@home.button5</div>
                         <div class="or_border">
@@ -81,7 +81,7 @@
                     </div>
                     <div class="option">
                         <p>@home.subtitle3</p>
-                        <form id="formType3" enctype="multipart/form-data" method="post" action="cgi-bin/inclock.py">
+                        <form id="formType3" enctype="multipart/form-data" method="post" action="cgi-bin/inclock.py" onkeydown="submitField(event)">
                             <input type="hidden" name="prc" value="plainUpload" />
                             <input type="file" name="data" />
                         </form>
@@ -95,7 +95,7 @@
                         <div class="button green_button" onclick="showCodeWindow()">@home.button1</div>
                         <!-- Only when using access codes -->
                         <div class="validation_wrap">
-                            <input type="text" id="fldUserCode" value="@home.input2" />
+                            <input type="text" id="fldUserCode" value="@home.input2" alt="@home.input2" onfocus="emptyField(event)" onblur="resetField(event)" />
                             <div class="button" id="btnRedeemCode" onclick="validateUserCode()">@home.button2</div>
                             <div class="button" id="btnCancelCode" onclick="cancelCode()">@home.button3</div>
                         </div>
