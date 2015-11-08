@@ -35,7 +35,7 @@ function dashBoardInit(userData) {
     });
 };
 
-function determineLanguageAndLoadFile(){
+function determineLanguageAndLoadFile(callback){
     /*********************************************************
     *   Function    >> determineLanguageAndLoadFile
     *   Desc        >> Load correct language file
@@ -47,14 +47,13 @@ function determineLanguageAndLoadFile(){
     var fileLoaded = function (response) {
         window.languageDict = response;
         $('.validation_wrap').hide();
-        //console.log(window.languageDict);
-        document.body.onload = replaceVars();
+        document.body.onload = replaceVars(callback);
     }
     var loadLanguage = new Comms(fileLoaded);
     loadLanguage.loadLanguageFile(lang);
 };
 
-function replaceVars() {
+function replaceVars(callback) {
     /*********************************************************
     *   Function    >> replaceVars
     *   Desc        >> Replace HTML placeholders with text
@@ -70,6 +69,7 @@ function replaceVars() {
             document.body.innerHTML = document.body.innerHTML.replace(reppat, string);
         }
     };
+    if (callback != null) {callback();};
 };
 
 function emptyField(event) {
@@ -86,14 +86,17 @@ function resetField(event) {
     };
 };
 
-function submitField(event) {
+function submitField(event, alt) {
     // Submit on ENTER key = 13
-    if (event.keyCode === 13){
+    if (event.keyCode === 13 && alt === undefined){
         // Get parent node
         var parent = event.srcElement.parentNode;
         // Get corresponding button node
         var button = parent.nextElementSibling;
         button.click();
+    } else if (event.keyCode === 13 && alt === 'config') {
+        // Better not alter HTML
+        event.srcElement.parentNode.parentNode.lastElementChild.firstElementChild.click()
     };
 };
 
@@ -134,7 +137,7 @@ function AppConstructor() {
     this.canvasHandle;
     var self = this;
     
-    this.init = function (data) {
+    this.init = function (data, mode) {
         /*********************************************************
         *   Function    >> AppConstructor.init
         *   Desc        >> Grab data from HTML
@@ -144,33 +147,35 @@ function AppConstructor() {
         self.language = data.user.language;
         self.colorData = data.user.colorScheme;
         self.currentTemplate = 1;
-        self.loadTemplate();
-        self.eventMonitor();
-        self.switchTemplate();
+        self.loadTemplate(mode);
+        self.eventMonitor(mode);
+        self.switchTemplate(mode);
     };
     
-    this.loadTemplate = function () {
+    this.loadTemplate = function (mode) {
         /*********************************************************
         *   Function    >> AppConstructor.loadTemplate
         *   Desc        >> Build DashBoard
         *********************************************************/
         // Load HTML
-        document.getElementById('editPanel').style.display = 'none';
-        self.loadSVG();
+        if (mode === undefined) {
+            document.getElementById('editPanel').style.display = 'none';
+        };
+        self.loadSVG(mode);
     };
     
-    this.loadSVG = function () {
+    this.loadSVG = function (mode) {
         /*********************************************************
         *   Function    >> AppConstructor.loadSVG
         *   Desc        >> Initiate SVGCanvas for template 
         *********************************************************/
         // Load Canvas
-        var svg = new SVGCanvas(self.dataLink, self.userTemplates[self.currentTemplate]);
+        var svg = new SVGCanvas(self.dataLink, self.userTemplates[self.currentTemplate], mode);
         self.canvasHandle = svg;
         svg.paintCanvas();    
     };
     
-    this.switchTemplate = function () {
+    this.switchTemplate = function (mode) {
         /*********************************************************
         *   Function    >> AppConstructor.switchTemplate
         *   Desc        >> Load next user template
@@ -180,28 +185,30 @@ function AppConstructor() {
         document.getElementById("templateIMG").src = getTemplateLocation(self.userTemplates[self.currentTemplate]);
         // Destroy old and initiate new template
         self.canvasHandle.destroyCanvas();
-        self.loadSVG();
+        self.loadSVG(mode);
     };
     
-    this.eventMonitor = function () {
+    this.eventMonitor = function (mode) {
         /*********************************************************
         *   Function    >> AppConstructor.eventMonitor
         *   Desc        >> top-level event listeners
         *********************************************************/
-        document.getElementById('btnSVPF').addEventListener('click', self.save);
-        document.getElementById('btnSWTP').addEventListener('click', self.switchTemplate);
-        
-        window.onbeforeunload = function (e) {
-            if (e.explicitOriginalTarget.parentElement.id === 'btnSVPF' && e.explicitOriginalTarget.id === 'btnSVPF') { 
-                if (userConfig.type === 1) {
-                    var comm = new Comms(null);
-                    comm.noSaveData(userConfig.sid);
+        if (mode === undefined) {
+            document.getElementById('btnSVPF').addEventListener('click', self.save);
+
+            window.onbeforeunload = function (e) {
+                if (e.explicitOriginalTarget.parentElement.id === 'btnSVPF' && e.explicitOriginalTarget.id === 'btnSVPF') {
+                    if (userConfig.type === 1) {
+                        var comm = new Comms(null);
+                        comm.noSaveData(userConfig.sid);
+                    };
                 };
             };
+        } else if (mode === 'config') {
+
         };
-        
+        document.getElementById('btnSWTP').addEventListener('click', self.switchTemplate);
     };
-    
     this.removeCluster = function (clusterId) {};
     
     this.save = function () {

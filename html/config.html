@@ -22,10 +22,12 @@
     <link href='http://fonts.googleapis.com/css?family=Poiret+One|Oxygen:300' rel='stylesheet' type='text/css'>
     <link type="text/css" rel="stylesheet" href="../css/inclock.landing.css" />
     <link type="text/css" rel="stylesheet" href="../css/inclock.config.css" />
+    <link type="text/css" rel="stylesheet" href="../css/inclock.css" />
     <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="../js/inclock.resource.js"></script>
     <script type="text/javascript" src="../js/inclock.core.js"></script>
     <script type="text/javascript" src="../js/inclock.config.js"></script>
+    <script type="text/javascript" src="../js/inclock.tools.js"></script>
     <script type="text/javascript">ProfileConfigInit();</script>
 </head>
     
@@ -52,6 +54,7 @@
         </div>
         <div class="body">
             <div class="content">
+                <!-- Choose Account Type -->
                 <div class="options_wrap" id="fldOption1">
                     <div class="title">@config.title1</div>
                     <div class="option">
@@ -71,24 +74,26 @@
                         <p class="account_choice_text">@config.subtitle4</p>
                     </div>
                 </div>
-                <div class="options_wrap" id="fldOption2">
+                <!-- Account Settings -->
+                <div class="options_wrap" id="fldOption2" onkeydown="submitField(event, 'config')">
                     <div class="title">@config.title2</div>
                     <div class="option option2">
                         <p>@config.input1</p>
-                        <input type="text" name="newusn" />
+                        <input type="text" name="newusn" onfocus="emptyField(event)" onblur="resetField(event)" />
                     </div>
                     <div class="option option2">
                         <p>@config.input2</p>
-                        <input type="password" name="newpwd" />
+                        <input type="password" name="newpwd" onfocus="emptyField(event)" onblur="resetField(event)" />
                     </div>
                     <div class="option option2">
                         <p>@config.input3</p>
-                        <input type="text" name="newmail" />
+                        <input type="text" name="newmail" onfocus="emptyField(event)" onblur="resetField(event)" />
                     </div>
                     <div class="option option4">
                         <div class="button" id="btnContinue1">@config.button2</div>
                     </div>
                 </div>
+                <!-- Account Preferences -->
                 <div class="options_wrap" id="fldOption2a">
                     <div class="title">@config.title3</div>
                     <div class="option"></div>
@@ -147,6 +152,7 @@
                         <div class="button" id="btnContinue2">@config.button2</div>
                     </div>
                 </div>
+                <!-- Profile Options -->
                 <div class="options_wrap" id="fldOption3">
                     <div class="title">@config.title4</div>
                     <div class="option">
@@ -162,11 +168,38 @@
                         </div>
                     </div>
                 </div>
+                <!-- Template Builder -->
                 <div class="options_wrap" id="fldOption4">
                     <div class="title">@config.title5</div>
-                    <div class="option">  
+                    <div class="option">
+                        <div id="ui_panel">
+                            <div class="window config_window">
+                                <div class="bottom">
+                                    <img id="templateIMG" />
+                                </div>
+                                <div id="pointWindow" class="top">
+                                    <svg id="svgFrame" width="600" height="800"></svg>
+                                </div>
+                            </div>
+                            <div class="builder_option_wrap">
+                                <div class="header">
+                                    <div id="btnSWTP" class="button">@config.button4</div>
+                                </div>
+                                <div id="" class="point_set">
+                                    <div class="set">
+                                        <div class="button">Add</div>
+                                        <p>Upper-arm pattern</p>
+                                    </div>
+                                    <div class="set">
+                                        <div class="button">Add</div>
+                                        <p>Upper-leg pattern</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <!-- Create Account -->
                 <div class="options_wrap" id="fldOption5">
                     <div class="title">@config.title6</div>
                     <div class="option">

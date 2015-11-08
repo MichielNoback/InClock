@@ -22,7 +22,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ******************************************************************/
 
-function SVGCanvas(dataLink, templateId) {
+function SVGCanvas(dataLink, templateId, mode) {
     /**************************************************************
     *   Class   >> SVGCanvas
     *   Desc    >> All SVG related methods
@@ -32,6 +32,7 @@ function SVGCanvas(dataLink, templateId) {
     this.dataLink = dataLink;
     this.templateId = templateId;
     this.activePoints = {};
+    this.mode = mode;
     var self = this;
     
     this.paintCanvas = function () {
@@ -44,7 +45,9 @@ function SVGCanvas(dataLink, templateId) {
             self.activePoints[point] = newPoint;
             newPoint.init();
         };
-        document.getElementById('btnADNP').addEventListener('click', self.addNewPoint); // Add Point
+        if (self.mode === undefined) {
+            document.getElementById('btnADNP').addEventListener('click', self.addNewPoint); // Add Point
+        };
     };
     
     this.resetPointStates = function () {

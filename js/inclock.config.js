@@ -26,9 +26,13 @@ function ProfileConfigInit() {
     *   Desc        >> Construct the profile config page
     *********************************************************/
     document.addEventListener("DOMContentLoaded", function () {
-        determineLanguageAndLoadFile();
-        var profile = new ProfileConfigurator();
-        profile.init();
+
+        var start = function() {
+            var profile = new ProfileConfigurator();
+            profile.init();
+        };
+
+        determineLanguageAndLoadFile(start);
     });
 };
 
@@ -88,7 +92,7 @@ function ProfileConfigurator() {
         };
         
         for (var bid in choiceButtons) {
-            document.getElementById(choiceButtons[bid]).onclick = makeChoice;    
+            document.getElementById(choiceButtons[bid]).onclick = makeChoice;
         };
     };
     
@@ -275,7 +279,10 @@ function ProfileConfigurator() {
         profile[self.userData.template[1]] = {};
         
         self.profile = profile;
-        self.completeProfile(profile);
+
+        var app = new AppConstructor();
+        app.init(self.profile, 'config');
+        //self.completeProfile(profile);
     };
     
     this.completeProfile = function (profile) {

@@ -151,3 +151,21 @@
     float: right !important;
     margin-bottom: 30px;
 }
+
+#IC .body .options_wrap .config_window {
+    background: url(../img/honeycomb.png) repeat;
+}
+
+#ui_panel {
+    width: 900px !important;
+}
+
+#ui_panel .builder_option_wrap {
+    float: left;
+    width: 280px;
+}
+
+#ui_panel .builder_option_wrap .header {
+    float: left;
+    padding-bottom: 20px;
+}
