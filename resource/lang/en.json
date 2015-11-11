@@ -68,5 +68,15 @@
         "input6": "Deutsch"
     },
     "dashboard": {
+
+        "cluster0": "Custom",
+        "cluster1": "Biceps",
+        "cluster2": "Legs",
+        "cluster3": "Stomach",
+        "cluster4": "Buttocks",
+        "cluster5": "Legs",
+        "cluster6": "Biceps",
+        "cluster7": "Forearm",
+        "cluster8": "Triceps"
     }
 }

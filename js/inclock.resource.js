@@ -174,6 +174,13 @@ function getStandardTemplate() {
     return profile;
 };
 
+function getClusterName(clusterId) {
+    var name = window.languageDict['dashboard'][clusterId];
+    if (name !== null && name !== undefined) {
+        return name;
+    };
+};
+
 function getLanguageFileLocation(lang) {
     var files = {
         'nl': rootPlusPath('resource/lang/nl.json'),

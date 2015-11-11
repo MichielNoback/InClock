@@ -110,9 +110,9 @@ function SVGCanvas(dataLink, templateId, mode) {
         };
     };
     
-    this.addSimplePoint = function (x, y) {
+    this.addSimplePoint = function (x, y, clusterId) {
         var newId = self.generateNewId();
-        var newPoint = constructJSONPoint(newId, x, y);
+        var newPoint = constructJSONPoint(newId, x, y, clusterId);
         self.dataLink[self.templateId][newId] = newPoint;
         newPoint = new Point(self.dataLink, self.dataLink[self.templateId][newId], self);
         self.activePoints[newId] = newPoint;

@@ -40,7 +40,7 @@ function snitchPos(event) {
     console.log(event.layerX + ', ' + event.layerY);
 };
 
-function addPattern(event, patternId, tempId) {
+function addPattern(event, patternId, tempId, clusterId) {
     var currentTemplate = document.getElementById('templateIMG').src.split('/');
     var requiredTemplate = getTemplateLocation(window.templates[tempId - 1]).split('/');
     if (currentTemplate[currentTemplate.length - 1] !== requiredTemplate[requiredTemplate.length - 1]) {
@@ -52,7 +52,7 @@ function addPattern(event, patternId, tempId) {
     if (coordinates !== false) {
         for (index in coordinates) {
             var c = coordinates[index];
-            var nid = window.appHandle.canvasHandle.addSimplePoint(c[0], c[1]);
+            var nid = window.appHandle.canvasHandle.addSimplePoint(c[0], c[1], clusterId);
             groupIds.push(nid);
         };
     };

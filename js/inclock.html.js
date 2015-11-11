@@ -89,7 +89,7 @@ function constructPoint(id, x, y, color, symbol, isUpdate) {
     };
 };
 
-function constructJSONPoint(pointId, x, y) {
+function constructJSONPoint(pointId, x, y, clusterId) {
     /**************************************************************
     *   Function   >> constructJSONPoint
     *   Desc       >> construct JSON point representation
@@ -98,6 +98,10 @@ function constructJSONPoint(pointId, x, y) {
     *                 y :: float
     *   Output     >> JSON formatted point template
     **************************************************************/
+    if (clusterId === undefined || clusterId === null) {
+        clusterId = 0;
+    };
+
     var dateObject = new Date();
     var pointTemplate = 
         {"pointId": pointId,
@@ -107,7 +111,7 @@ function constructJSONPoint(pointId, x, y) {
          "daysSinceLastInjection": "n",
          "unixTimeStamp": 0,
          "localTimeStamp": "n",
-         "clusterAffiliation": "userDefined",
+         "clusterAffiliation": clusterId,
          "notes": {}
         };
     return pointTemplate;
