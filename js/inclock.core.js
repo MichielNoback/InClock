@@ -32,6 +32,7 @@ function dashBoardInit(userData) {
         // If page ready
         var app = new AppConstructor();
         app.init(userData);  // Start InClock
+        app.getTopTenPoints();
         // Bind unload handler
         $(window).unload(function() {
             var comm = new Comms();
@@ -228,7 +229,26 @@ function AppConstructor() {
             document.getElementById('btnSWTP').addEventListener('click', function () {self.switchTemplate(self.mode)});
         };
     };
-    this.removeCluster = function (clusterId) {};
+
+    this.getTopTenPoints = function () {
+        var references = [];
+        for (index in self.dataLink) {
+            if (index !== 'user') {
+                for (pid in self.dataLink[index]) {
+                    var point = self.dataLink[index][pid];
+                    if (point.reactivity < 9) {
+                        references.push([pid, point.unixTimeStamp]);
+                    };
+                };
+            };
+        };
+
+        var customSorter = function (a, b) {
+            return parseInt(a[1]) - parseInt(b[1]);
+        };
+        references.sort(customSorter);
+        references = references.slice(0, 10);
+    };
     
     this.save = function () {
         /*********************************************************
