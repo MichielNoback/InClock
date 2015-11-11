@@ -59,7 +59,7 @@ class Page:
         if status in (True, None):
             with open('../html/config.html', 'r') as html:
                 print("Content-Type: text/html\n\n")
-                print(html.read()) if activation_code is None else print(html.read().format(activation_code))
+                print(html.read() if activation_code is None else html.read().format(activation_code))
         else:
             Page.load_home()
 
