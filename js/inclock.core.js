@@ -64,8 +64,18 @@ function replaceVars(callback) {
     *   Function    >> replaceVars
     *   Desc        >> Replace HTML placeholders with text
     *********************************************************/
-    var pattern = /@([a-z]+.[a-z]+[0-9])/ig;
+    var pattern = /@([a-z]+.[a-z]+[0-9]+)/ig;
     var matches = document.body.innerHTML.match(pattern);
+
+    var customSorter = function (a, b) {
+        var pattern = /[0-9]+/g;
+        a = parseInt(a.match(pattern));
+        b = parseInt(b.match(pattern));
+        return a - b;
+    };
+    matches.sort(customSorter);
+    matches.reverse();
+
     for (var mat in matches) {
         match = matches[mat].slice(1, matches[mat].length);
         var domains = match.split('.');

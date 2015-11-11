@@ -38,6 +38,8 @@
         "title4": "Profile Options",
         "title5": "Template Builder",
         "title6": "Create Account",
+        "title7": "Front",
+        "title8": "Back",
 
         "subtitle1": "1. Anonymous account with custom username and online-storage.",
         "subtitle2": "2. Normal account with custom username, recovery email, and online-storage.",
@@ -46,6 +48,12 @@
         "subtitle5": "Pick a colorscheme to use",
         "subtitle6": "Adjust time zone offset below to fit desired time zone. (GMT standard is 0)",
         "subtitle7": "Select prefered language",
+        "subtitle8": "Upper-arms",
+        "subtitle9": "Upper-legs",
+        "subtitle10": "Outer-stomach",
+        "subtitle11": "Inner-stomach",
+        "subtitle12": "Buttocks",
+        "subtitle13": "Lower-arms",
 
         "button1": "Choose",
         "button2": "Continue",
@@ -60,7 +68,5 @@
         "input6": "Deutsch"
     },
     "dashboard": {
-    },
-    "error": {
     }
 }
