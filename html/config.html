@@ -25,6 +25,7 @@
     <link type="text/css" rel="stylesheet" href="../css/inclock.css" />
     <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="../js/inclock.resource.js"></script>
+    <script type="text/javascript" src="../js/inclock.html.js"></script>
     <script type="text/javascript" src="../js/inclock.core.js"></script>
     <script type="text/javascript" src="../js/inclock.config.js"></script>
     <script type="text/javascript" src="../js/inclock.tools.js"></script>
@@ -177,7 +178,7 @@
                                 <div class="bottom">
                                     <img id="templateIMG" />
                                 </div>
-                                <div id="pointWindow" class="top">
+                                <div id="pointWindow" class="top" onclick="snitchPos(event)">
                                     <svg id="svgFrame" width="600" height="800"></svg>
                                 </div>
                             </div>
@@ -185,14 +186,54 @@
                                 <div class="header">
                                     <div id="btnSWTP" class="button">@config.button4</div>
                                 </div>
-                                <div id="" class="point_set">
+                                <!-- Template 1 -->
+                                <div id="body_front_set" class="point_set">
+                                    <div class="side">Front</div>
                                     <div class="set">
-                                        <div class="button">Add</div>
-                                        <p>Upper-arm pattern</p>
+                                        <div class="button green_button" onclick="addPattern(event, 'bodyFront_arms', 1)">+</div>
+                                        <p>Upper-arm</p>
                                     </div>
                                     <div class="set">
-                                        <div class="button">Add</div>
-                                        <p>Upper-leg pattern</p>
+                                        <div class="button green_button" onclick="addPattern(event, 'bodyFront_legs', 1)">+</div>
+                                        <p>Upper-leg</p>
+                                    </div>
+                                    <div class="set">
+                                        <div class="button green_button" onclick="addPattern(event, 'bodyFront_outer', 1)">+</div>
+                                        <p>Outer-stomach</p>
+                                    </div>
+                                    <div class="set">
+                                        <div class="button green_button" onclick="addPattern(event, 'bodyFront_inner', 1)">+</div>
+                                        <p>Inner-stomach</p>
+                                    </div>
+                                </div>
+                                <div id="body_back_set" class="point_set">
+                                    <div class="side">Back</div>
+                                    <div class="set">
+                                        <div class="button green_button" onclick="addPattern(event, 'bodyBack_butt', 2)">+</div>
+                                        <p>Buttocks</p>
+                                    </div>
+                                    <div class="set">
+                                        <div class="button green_button" onclick="addPattern(event, 'bodyBack_legs', 2)">+</div>
+                                        <p>Upper-legs</p>
+                                    </div>
+                                </div>
+                                <!-- Template 2 -->
+                                <div id="arms_front_set" class="point_set">
+                                    <div class="side">Front</div>
+                                    <div class="set">
+                                        <div class="button green_button" onclick="addPattern(event, 'armsFront_upper', 1)">+</div>
+                                        <p>Upper-arms</p>
+                                    </div>
+                                    <div class="set">
+                                        <div class="button green_button" onclick="addPattern(event, 'armsFront_lower', 1)">+</div>
+                                        <p>Lower-arms</p>
+                                    </div>
+                                </div>
+                                <div id="arms_back_set" class="point_set">
+                                    <div class="side">Back</div>
+                                    <div class="set">
+                                        <div class="button green_button" onclick="addPattern(event, 'armsBack_upper', 2)">+</div>
+                                        <p>Upper-arms</p>
                                     </div>
                                 </div>
                             </div>

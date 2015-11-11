@@ -168,4 +168,32 @@
 #ui_panel .builder_option_wrap .header {
     float: left;
     padding-bottom: 20px;
+    margin-left: 40px;
+}
+
+#ui_panel .builder_option_wrap .point_set {
+    float: left;
+    margin-top: 20px;
+    margin-left: 40px;
+    padding-top: 30px;
+    border-top: dashed 1px #666;
+}
+#ui_panel .builder_option_wrap .point_set .side {
+    float: left;
+    width: 100%;
+    margin-left: 40px;
+    padding-bottom: 30px;
+    font-size: 30px;
+    font-family: "Poiret One", sans-serif;
+}
+
+#ui_panel .builder_option_wrap .point_set .set {
+    float:left;
+    padding 10px 0px 10px 0px;
+}
+
+#ui_panel .builder_option_wrap .point_set .set p {
+    float: left;
+    margin-left: 20px;
+    padding-top: 10px;
 }

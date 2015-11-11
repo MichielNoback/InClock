@@ -36,6 +36,38 @@ function ProfileConfigInit() {
     });
 };
 
+function snitchPos(event) {
+    console.log(event.layerX + ', ' + event.layerY);
+};
+
+function addPattern(event, patternId, tempId) {
+    var currentTemplate = document.getElementById('templateIMG').src.split('/');
+    var requiredTemplate = getTemplateLocation(window.templates[tempId - 1]).split('/');
+    if (currentTemplate[currentTemplate.length - 1] !== requiredTemplate[requiredTemplate.length - 1]) {
+        document.getElementById('btnSWTP').click();
+    };
+    // Place pattern
+    var groupIds = [];
+    var coordinates = getPatternCoordinates(patternId);
+    if (coordinates !== false) {
+        for (index in coordinates) {
+            var c = coordinates[index];
+            var nid = window.appHandle.canvasHandle.addSimplePoint(c[0], c[1]);
+            groupIds.push(nid);
+        };
+    };
+    event.target.className = 'button';
+    event.target.innerHTML = '-';
+    event.target.onclick = function(event) {deletePattern(event, groupIds, patternId, tempId)};
+};
+
+function deletePattern(event, groupIds, patternId, tempId) {
+    window.appHandle.canvasHandle.deleteSimplePoint(groupIds);
+    event.target.onclick = function(event) {addPattern(event, patternId, tempId)};
+    event.target.className = 'button green_button';
+    event.target.innerHTML = '+';
+};
+
 function buildColorScheme(scheme) {
     /*********************************************************
     *   Function    >> buildColorScheme
@@ -280,9 +312,20 @@ function ProfileConfigurator() {
         
         self.profile = profile;
 
+        // Hide irrelevant options
+        if (profile.user.templatesUsed[0] === 'BodyFront') {
+            document.getElementById('arms_front_set').style.display = 'none';
+            document.getElementById('arms_back_set').style.display = 'none';
+        } else {
+            document.getElementById('body_front_set').style.display = 'none';
+            document.getElementById('body_back_set').style.display = 'none';
+        };
+
         var app = new AppConstructor();
         app.init(self.profile, 'config');
-        //self.completeProfile(profile);
+        window.appHandle = app;
+        window.templates = profile.user.templatesUsed;
+        self.completeProfile(profile);
     };
     
     this.completeProfile = function (profile) {
@@ -291,7 +334,8 @@ function ProfileConfigurator() {
         var serverStatus = function (status) {
             switch (status.status) {
                 case 'OK':
-                    break;
+                    var comm = new Comms();
+                    window.location = comm.HOMEPAGE;
                 case 'BAD NAME':
                     if (self.userData.type === 2) {
                         self.accountSettingsNormal(true);

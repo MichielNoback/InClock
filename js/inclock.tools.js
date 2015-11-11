@@ -43,9 +43,9 @@ function SVGCanvas(dataLink, templateId, mode) {
         for (var point in self.dataLink[self.templateId]) {
             var newPoint = new Point(self.dataLink, self.dataLink[self.templateId][point], self);
             self.activePoints[point] = newPoint;
-            newPoint.init();
+            newPoint.init(self.mode);
         };
-        if (self.mode === undefined) {
+        if (self.mode === undefined || self.mode === null) {
             document.getElementById('btnADNP').addEventListener('click', self.addNewPoint); // Add Point
         };
     };
@@ -110,6 +110,25 @@ function SVGCanvas(dataLink, templateId, mode) {
         };
     };
     
+    this.addSimplePoint = function (x, y) {
+        var newId = self.generateNewId();
+        var newPoint = constructJSONPoint(newId, x, y);
+        self.dataLink[self.templateId][newId] = newPoint;
+        newPoint = new Point(self.dataLink, self.dataLink[self.templateId][newId], self);
+        self.activePoints[newId] = newPoint;
+        newPoint.init('config');
+        return newId;
+    };
+
+    this.deleteSimplePoint = function (pointIds) {
+        for (index in pointIds) {
+            delete self.dataLink[self.templateId][pointIds[index]];
+            delete self.activePoints[pointIds[index]];
+        };
+        self.destroyCanvas();
+        self.paintCanvas();
+    };
+
     this.generateNewId = function () {
         /*********************************************************
         *   Function    >> SVGCanvas.generateNewId
@@ -534,19 +553,23 @@ function Point(dataLink, localData, canvasHandle) {
     this.toolHandle = null;
     var self = this;
     
-    this.init = function () {
+    this.init = function (event, mode) {
         /*********************************************************
         *   Function    >> Point.init
         *   Desc        >> Place point on SVG and bind event 
         *                  event listeners
         *********************************************************/ 
-        // PLace point on SVG
+        // Place point on SVG
         self.localData.daysSinceLastInjection = convertTimestampToHuman(self.localData.unixTimeStamp).days;
         constructPoint(self.localData.pointId, self.localData.x, self.localData.y, 
                        self.determineColor(), self.determineSymbol());
-        // Bind event listeners
-        document.getElementById(self.localData.pointId).addEventListener('click', self.canvasHandle.resetPointStates);
-        document.getElementById(self.localData.pointId).addEventListener('click', self.startConfigurator);
+        if (mode === undefined || mode === null) {
+            // Bind event listeners
+            document.getElementById(self.localData.pointId).addEventListener('click', self.canvasHandle.resetPointStates);
+            document.getElementById(self.localData.pointId).addEventListener('click', self.startConfigurator);
+        } else {
+            console.log(mode);
+        };
     };
     
     this.determineColor = function () {

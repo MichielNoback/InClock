@@ -32,6 +32,12 @@ function dashBoardInit(userData) {
         // If page ready
         var app = new AppConstructor();
         app.init(userData);  // Start InClock
+        // Bind unload handler
+        $(window).unload(function() {
+            var comm = new Comms();
+            comm.noSaveData(userConfig['sid']);
+            console.log("さようなら");
+        });
     });
 };
 
@@ -135,6 +141,7 @@ function AppConstructor() {
     this.userTemplates;
     this.currentTemplate;
     this.canvasHandle;
+    this.mode;
     var self = this;
     
     this.init = function (data, mode) {
@@ -142,6 +149,7 @@ function AppConstructor() {
         *   Function    >> AppConstructor.init
         *   Desc        >> Grab data from HTML
         *********************************************************/
+        self.mode = mode;
         self.dataLink = data;
         self.userTemplates = data.user.templatesUsed;
         self.language = data.user.language;
@@ -158,7 +166,7 @@ function AppConstructor() {
         *   Desc        >> Build DashBoard
         *********************************************************/
         // Load HTML
-        if (mode === undefined) {
+        if (mode === undefined || mode === null) {
             document.getElementById('editPanel').style.display = 'none';
         };
         self.loadSVG(mode);
@@ -180,6 +188,7 @@ function AppConstructor() {
         *   Function    >> AppConstructor.switchTemplate
         *   Desc        >> Load next user template
         *********************************************************/
+        if (mode === undefined && self.mode !== undefined){mode = self.mode;};
         // Load new Image
         (self.currentTemplate === (self.userTemplates.length - 1)) ? self.currentTemplate-- : self.currentTemplate++;
         document.getElementById("templateIMG").src = getTemplateLocation(self.userTemplates[self.currentTemplate]);
@@ -193,7 +202,7 @@ function AppConstructor() {
         *   Function    >> AppConstructor.eventMonitor
         *   Desc        >> top-level event listeners
         *********************************************************/
-        if (mode === undefined) {
+        if (mode === undefined || mode === null) {
             document.getElementById('btnSVPF').addEventListener('click', self.save);
 
             window.onbeforeunload = function (e) {
@@ -204,10 +213,10 @@ function AppConstructor() {
                     };
                 };
             };
+            document.getElementById('btnSWTP').addEventListener('click', self.switchTemplate);
         } else if (mode === 'config') {
-
+            document.getElementById('btnSWTP').addEventListener('click', function () {self.switchTemplate(self.mode)});
         };
-        document.getElementById('btnSWTP').addEventListener('click', self.switchTemplate);
     };
     this.removeCluster = function (clusterId) {};
     
@@ -234,7 +243,7 @@ function Comms(callback) {
 	this.data = null;
     this.callback = callback;
     this.STANDARD_IFRAME_NAME = "inclockTarget";
-    this.HOMEPAGE = "http://bioinf.nl/~jyvuopionpera/InClock";
+    this.HOMEPAGE = "http://localhost/InClock";
     var self = this;
 	
     this.createXMLHttpObject = function () {
@@ -252,7 +261,7 @@ function Comms(callback) {
         return xmlhttp;
     };
     
-    this.openChannel = function (dataStream, internalCaller, isRedirect, hasTarget) {
+    this.openChannel = function (dataStream, internalCaller, isRedirect, hasTarget, sync) {
         var serverFile = (/cgi-bin/.test(window.location.pathname) === true) ? '../cgi-bin/inclock.py' : 'cgi-bin/inclock.py';
         if (isRedirect === true) {
             var tempForm = document.createElement('form');
@@ -297,7 +306,11 @@ function Comms(callback) {
             };
             properDataStream = properDataStream.join('&');
             // Open AJAX channel
-            xmlhttp.open("POST", serverFile, true);
+            if (sync === true) {
+                xmlhttp.open("POST", serverFile, false);
+            } else {
+                xmlhttp.open("POST", serverFile, true);
+            };
             xmlhttp.send(properDataStream);
             // Monitor channel
             xmlhttp.onreadystatechange = function () {
@@ -419,6 +432,6 @@ function Comms(callback) {
     
     this.noSaveData = function (sid) {
         var dataStream = {'prc': 'noSaveUser', 'sid': sid};
-        self.openChannel(dataStream);
+        self.openChannel(dataStream, null, false, false, true);
     };
 };

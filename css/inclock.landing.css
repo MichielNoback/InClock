@@ -46,7 +46,7 @@ body {
 }
 
 #IC .green_button {
-    background: linear-gradient(#81FF00, #61BF00);
+    background: linear-gradient(#81FF00, #61BF00) !important;
     color: #FFF;
 }
 
