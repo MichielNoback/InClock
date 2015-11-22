@@ -175,6 +175,7 @@ function getStandardTemplate() {
 };
 
 function getClusterName(clusterId) {
+    clusterId = 'cluster' + clusterId;
     var name = window.languageDict['dashboard'][clusterId];
     if (name !== null && name !== undefined) {
         return name;

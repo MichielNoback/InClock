@@ -29,7 +29,7 @@
             var userConfig = JSON.parse({pythonConfigHook});
         </script>
         <script type="text/javascript">dashBoardInit(userData);</script>
-        <title>InClock UI</title>
+        <title>InClock | Dashboard</title>
     </head>
     <body>
         <div id="IC">
@@ -38,13 +38,14 @@
                     <div class="menu">
                         <div class="triangle"></div>
                         <div class="spacer" onclick="window.location = '../index.html';">
-                            <div>InClock <span>Beta</span></div>
+                            <div>@site.softwareTitle1 <span>@site.softwareVersionShort1</span></div>
                         </div>
                         <div class="triangle"></div>
                     </div>
                     <div class="langbar">
-                        <div class="button">Settings</div>
-                        <div class="button" id="btnSVPF">Save</div>
+                        <div class="button">@dashboard.title1</div>
+                        <div class="button" id="btnSVPF">@dashboard.button1</div>
+                        <div class="button" id="btnLGOT">@dashboard.button10</div>
                     </div>
                 </div>
             </div>
@@ -63,25 +64,25 @@
                        <div class="control">
                            <div class="tile">
                                <div class="title">
-                                   <div>Controls</div>
+                                   <div>@dashboard.title2</div>
                                    <div></div>
                                </div>
                                <div class="button_wrap">
-                                   <div class="button" id="btnSWTP">Turn around</div>
-                                   <div class="button" id="btnADNP">Add Point</div>
+                                   <div class="button" id="btnSWTP">@dashboard.button2</div>
+                                   <div class="button" id="btnADNP">@dashboard.button3</div>
                                </div>
                            </div>
                            <div id="editPanel" class="tile">
                                <div class="title">
-                                   <div>Injection site properties</div>
+                                   <div>@dashboard.title3</div>
                                    <div></div>
                                </div>
                                <div class="button_wrap">
-                                   <div id="btnVWHS" class="button">Notes <span class="info" id="txtHSCT"></span></div>
-                                   <div id="btnADNT" class="button add_button"> Add note</div>
+                                   <div id="btnVWHS" class="button">@dashboard.button4 <span class="info" id="txtHSCT"></span></div>
+                                   <div id="btnADNT" class="button add_button"> @dashboard.button5</div>
                                </div>
                                <div class="pain_wrap">
-                                   <div class="subtitle">Change the reactivity</div>
+                                   <div class="subtitle">@dashboard.subtitle1</div>
                                    <div>
                                        <div id="btnNGRT" class="button">-</div>
                                        <div id="txtRT" class="value_field">10</div>
@@ -89,12 +90,12 @@
                                    </div>
                                </div>
                                <div class="button_wrap">
-                                  <div id="btnNWIJ" class="button">New injection</div>
-                                   <div id="btnDLPT" class="button warning_button">Delete point</div>
+                                  <div id="btnNWIJ" class="button">@dashboard.button6</div>
+                                   <div id="btnDLPT" class="button warning_button">@dashboard.button7</div>
                                </div>
                                <div id="notePanel" class="note_wrap">
                                    <div class="time_wrap">
-                                       <div class="subtitle">Injection Date &amp; Time</div>
+                                       <div class="subtitle">@dashboard.subtitle2</div>
                                        <div class="value_wrap">
                                            <input id="vlTDAY" type="text" />
                                            <span>/</span>
@@ -108,19 +109,18 @@
                                        </div>
                                    </div>
                                    <div class="time_wrap">
-                                       <div class="subtitle">Optional note</div>
+                                       <div class="subtitle">@dashboard.subtitle3</div>
                                        <textarea id="vlNMSG" maxlength="140"></textarea>
-                                       <div id="btnSVNT" class="button add_button">Save</div>
-                                       <div id="btnCLNT" class="button warning_button">Cancel</div>
+                                       <div id="btnSVNT" class="button add_button">@dashboard.button8</div>
+                                       <div id="btnCLNT" class="button warning_button">@dashboard.button9</div>
                                    </div>
                                </div>
                            </div>
-                           <div class="tile">
-                               <div class="title">
-                                    <div>Potential injection sites</div>
+                           <div class="tile" id="suggestionsPanel">
+                                <div class="title">
+                                    <div>@dashboard.title4</div>
                                     <div></div>
                                 </div>
-                                <div class="suggestion"></div>
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
             </div>
             <div class="tail">
             <div class="content">
-                <p>InClock &copy; 2015 [Beta v0.1]</p>
+                <p>@site.softwareTitle1 @site.softwareVersionLong1</p>
                 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
                 <a rel="license" href="../LICENSE.txt"><img alt="GPL-3.0 License" src="../img/gnu3.png" /></a>
                 <a href="https://github.com/MichielNoback/InClock"><img alt="GitHub repo" src="../img/github.png" /></a>

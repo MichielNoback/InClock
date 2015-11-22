@@ -77,6 +77,38 @@
         "cluster5": "Legs",
         "cluster6": "Biceps",
         "cluster7": "Forearm",
-        "cluster8": "Triceps"
+        "cluster8": "Triceps",
+
+        "title1": "Settings",
+        "title2": "Controls",
+        "title3": "Injection site properties",
+        "title4": "Suggested injection sites",
+
+        "subtitle1": "Change the reactivity",
+        "subtitle2": "Injection Date &amp; Time",
+        "subtitle3": "Optional note",
+
+        "button1": "Save",
+        "button2": "Turn around",
+        "button3": "+ Site",
+        "button4": "Notes",
+        "button5": "+ Note",
+        "button6": "+ Injection",
+        "button7": "Delete site",
+        "button8": "Save",
+        "button9": "Cancel",
+        "button10": "Logout",
+        "button11": "Select"
+    },
+
+    "site": {
+
+        "softwareTitle1": "InClock",
+        "softwareVersionShort1": "Beta",
+        "softwareVersionLong1": "&copy; 2015 [Beta v0.2a]",
+
+        "titleHomepage1": "InClock - the easy injection tracker!",
+        "titleConfigpage1": "InClock | Create your profile!",
+        "titleDashboard1": "InClock | Dashboard"
     }
 }

@@ -29,16 +29,21 @@ function dashBoardInit(userData) {
     *   Desc        >> Construct the dashboard page
     *********************************************************/
     document.addEventListener("DOMContentLoaded", function () {
-        // If page ready
-        var app = new AppConstructor();
-        app.init(userData);  // Start InClock
-        app.getTopTenPoints();
-        // Bind unload handler
-        $(window).unload(function() {
-            var comm = new Comms();
-            comm.noSaveData(userConfig['sid']);
-            console.log("さようなら");
-        });
+
+        var start = function() {
+            // If page ready
+            var app = new AppConstructor();
+            app.init(userData);  // Start InClock
+            app.getTopTenPoints();
+            // Bind unload handler
+            $(window).unload(function() {
+                var comm = new Comms();
+                comm.noSaveData(userConfig['sid']);
+                console.log("さようなら");
+            });
+        };
+
+        determineLanguageAndLoadFile(start);
     });
 };
 
@@ -67,6 +72,8 @@ function replaceVars(callback) {
     *********************************************************/
     var pattern = /@([a-z]+.[a-z]+[0-9]+)/ig;
     var matches = document.body.innerHTML.match(pattern);
+    // + match for header
+    var headerMatches = document.head.innerHTML.match(pattern);
 
     var customSorter = function (a, b) {
         var pattern = /[0-9]+/g;
@@ -86,6 +93,17 @@ function replaceVars(callback) {
             document.body.innerHTML = document.body.innerHTML.replace(reppat, string);
         }
     };
+
+    for (var mat in headerMatches) {
+        match = headerMatches[mat].slice(1, headerMatches[mat].length);
+        var domains = match.split('.');
+        var string = window.languageDict[domains[0]][domains[1]];
+        if (string !== undefined) {
+            var reppat = new RegExp(matches[mat], 'ig')
+            document.body.innerHTML = document.body.innerHTML.replace(reppat, string);
+        }
+    };
+
     if (callback != null) {callback();};
 };
 
@@ -139,6 +157,23 @@ function paintItGreen(element, isjQuery) {
         element.style.borderColor = '#61BF00';
         element.style.background = 'rgba(97, 191, 0, 0.4)';
     };
+};
+
+function shuffle(someList) {
+    // Fisher-Yates shuffle
+    var counter = someList.length;
+    var index;
+    var temp;
+
+    while (counter > 0) {
+        index = Math.floor(Math.random() * counter); // Random index
+        counter--;
+        temp = someList[counter];
+        someList[counter] = someList[index];
+        someList[index] = temp;
+    };
+
+    return someList;
 };
 
 function AppConstructor() {
@@ -231,13 +266,15 @@ function AppConstructor() {
     };
 
     this.getTopTenPoints = function () {
+        // Get top ten qualified points in random order
         var references = [];
         for (index in self.dataLink) {
             if (index !== 'user') {
                 for (pid in self.dataLink[index]) {
                     var point = self.dataLink[index][pid];
                     if (point.reactivity < 9) {
-                        references.push([pid, point.unixTimeStamp]);
+                        var timeSince = (point.unixTimeStamp === 0) ? "Never" : convertTimestampToHuman(point.unixTimeStamp).time;
+                        references.push([pid, timeSince, getClusterName(point.clusterAffiliation)]);
                     };
                 };
             };
@@ -248,6 +285,9 @@ function AppConstructor() {
         };
         references.sort(customSorter);
         references = references.slice(0, 10);
+        references = shuffle(references);
+        addSuggestedSitesToHTML(references, self.canvasHandle);
+
     };
     
     this.save = function () {

@@ -457,3 +457,26 @@
 	text-align: center;
 	font-size: 22px;
 }
+
+#suggestionsPanel{
+    padding-bottom: 20px !important;
+}
+
+#ui_panel .control .tile .suggestion{
+    width: 80%;
+    float: left;
+    margin-left: 10%;
+    height: 30px;
+}
+
+#ui_panel .control .tile .suggestion p{
+    float: left;
+    width: 33%;
+    text-align: center;
+}
+
+#ui_panel .control .tile .suggestion .button {
+    font-size: 12px !important;
+    float: right !important;
+    padding: 5px 5px 5px 5px !important;
+}

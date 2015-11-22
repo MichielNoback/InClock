@@ -194,3 +194,20 @@ function constructNoteWindow(localData, isNoteMode) {
     document.getElementById('noteConfig').innerHTML += template.join('');
     
 };
+
+function addSuggestedSitesToHTML(sites, canvasHandle) {
+    var temp = [];
+    for (site in sites) {
+        var template = ['<div class="suggestion">',
+                        '<p>', sites[site][2], '</p>',
+                        '<p>', sites[site][1], '</p>',
+                        '<div class="button" id="', 'remote', sites[site][0], '">Select</div>',
+                        '</div>'];
+        document.getElementById('suggestionsPanel').innerHTML += template.join('');
+        if (canvasHandle.activePoints.hasOwnProperty(sites[site][0])) {
+            document.getElementById('remote' + sites[site][0]).addEventListener('click', canvasHandle.activePoints[sites[site][0]].remoteActivation);
+        } else {
+            // Implement new sub-routine
+        };
+    };
+};

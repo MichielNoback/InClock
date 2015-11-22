@@ -572,6 +572,12 @@ function Point(dataLink, localData, canvasHandle) {
         };
     };
     
+    this.remoteActivation = function () {
+        console.log('active');
+        self.canvasHandle.resetPointStates();
+        self.startConfigurator();
+    };
+
     this.determineColor = function () {
          /*********************************************************
         *   Function    >> Point.determineColor
