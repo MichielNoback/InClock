@@ -22,9 +22,15 @@
     -moz-box-shadow: none;
 }
 
+#IC .header .top_bar .menu .spacer {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
 #ui_wrap {
-    width: 110%;
-    margin-left: -5%;
+    width: 100%;
+    margin-left: 0%;
 }
 
 #ui_panel {
@@ -39,7 +45,6 @@
     width: 600px;
     height: 800px;
     float: left;
-    border: solid 1px #666;
 }
 
 #ui_panel .window .bottom {
@@ -65,6 +70,8 @@
     width: 380px;
     height: auto;
     float: left;
+    margin-top: 15px;
+    margin-bottom: 20px;
     -webkit-box-shadow: 0px 0px 22px 4px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow: 0px 0px 22px 4px rgba(50, 50, 50, 0.75);
 	box-shadow: 0px 0px 22px 4px rgba(50, 50, 50, 0.75);
