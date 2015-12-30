@@ -140,7 +140,7 @@ def main():
         'savePlainFile': lambda: Comms.repackage_file(parameters.getvalue('data'), cookieId=parameters.getvalue('cookieId')),
         # Save user session data to database
         'saveUser': lambda: Comms.access_session(parameters.getvalue('sid'), parameters.getvalue('skey'),
-                                                 is_save=True, data=parameters.getvalue('data'), callback=Page),
+                                                 is_save=True, data=parameters.getvalue('data'), callback=None),
         # Delete user session from database when no data is saved
         'noSaveUser': lambda: Comms.kill_session_no_save(parameters.getvalue('sid'))
     }

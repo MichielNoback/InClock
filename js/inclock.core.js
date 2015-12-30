@@ -4,7 +4,7 @@
 *   Date:    6-2015
 *   Desc:    Core function for InClock data handling and application
 *            constructor. + Inclock initiator
-*            Contains: AppConstructor, UserData
+*            Contains: AppConstructor, Comms
 
     Copyright (C) 2015  J. Vuopionpera
 
@@ -33,14 +33,17 @@ function dashBoardInit(userData) {
         var start = function() {
             // If page ready
             var app = new AppConstructor();
-            app.init(userData);  // Start InClock
+            app.init(userData, undefined);  // Start InClock
             app.getTopTenPoints();
-            // Bind unload handler
-            $(window).unload(function() {
+            // Bind unload handlers
+            window.onbeforeunload = function() {
+                return "Are you sure you've saved all your changes?";
+            };
+            window.onunload = function() {
                 var comm = new Comms();
                 comm.noSaveData(userConfig['sid']);
                 console.log("さようなら");
-            });
+            };
         };
 
         determineLanguageAndLoadFile(start);
@@ -201,65 +204,60 @@ function AppConstructor() {
         self.language = data.user.language;
         self.colorData = data.user.colorScheme;
         self.currentTemplate = 1;
-        self.loadTemplate(mode);
-        self.eventMonitor(mode);
-        self.switchTemplate(mode);
+        self.loadTemplate(self.mode);
+        self.eventMonitor(self.mode);
+        self.switchTemplate(self.mode);
     };
     
-    this.loadTemplate = function (mode) {
+    this.loadTemplate = function () {
         /*********************************************************
         *   Function    >> AppConstructor.loadTemplate
         *   Desc        >> Build DashBoard
         *********************************************************/
         // Load HTML
-        if (mode === undefined || mode === null) {
+        if (self.mode === undefined || self.mode === null) {
             document.getElementById('editPanel').style.display = 'none';
         };
-        self.loadSVG(mode);
+        self.loadSVG(self.mode);
     };
     
-    this.loadSVG = function (mode) {
+    this.loadSVG = function () {
         /*********************************************************
         *   Function    >> AppConstructor.loadSVG
         *   Desc        >> Initiate SVGCanvas for template 
         *********************************************************/
         // Load Canvas
-        var svg = new SVGCanvas(self.dataLink, self.userTemplates[self.currentTemplate], mode);
+        var svg = new SVGCanvas(self.dataLink, self.userTemplates[self.currentTemplate], self.mode);
         self.canvasHandle = svg;
-        svg.paintCanvas();    
+        svg.paintCanvas();
     };
     
-    this.switchTemplate = function (mode) {
+    this.switchTemplate = function () {
         /*********************************************************
         *   Function    >> AppConstructor.switchTemplate
         *   Desc        >> Load next user template
         *********************************************************/
-        if (mode === undefined && self.mode !== undefined){mode = self.mode;};
+        //if (mode === undefined && self.mode !== undefined){mode = self.mode;};
         // Load new Image
         (self.currentTemplate === (self.userTemplates.length - 1)) ? self.currentTemplate-- : self.currentTemplate++;
         document.getElementById("templateIMG").src = getTemplateLocation(self.userTemplates[self.currentTemplate]);
         // Destroy old and initiate new template
         self.canvasHandle.destroyCanvas();
-        self.loadSVG(mode);
+        self.loadSVG(self.mode);
     };
     
-    this.eventMonitor = function (mode) {
+    this.eventMonitor = function () {
         /*********************************************************
         *   Function    >> AppConstructor.eventMonitor
         *   Desc        >> top-level event listeners
         *********************************************************/
-        if (mode === undefined || mode === null) {
+        if (self.mode === undefined || self.mode === null) {
             document.getElementById('btnSVPF').addEventListener('click', self.save);
-
-            window.onbeforeunload = function (e) {
-                if (e.explicitOriginalTarget.parentElement.id === 'btnSVPF' && e.explicitOriginalTarget.id === 'btnSVPF') {
-                    if (userConfig.type === 1) {
-                        var comm = new Comms(null);
-                        comm.noSaveData(userConfig.sid);
-                    };
-                };
-            };
             document.getElementById('btnSWTP').addEventListener('click', self.switchTemplate);
+            document.getElementById('btnLGOT').addEventListener('click', function () {
+                var comm = new Comms(null);
+                window.location = comm.HOMEPAGE;
+            });
         } else if (mode === 'config') {
             document.getElementById('btnSWTP').addEventListener('click', function () {self.switchTemplate(self.mode)});
         };
@@ -295,9 +293,6 @@ function AppConstructor() {
         *   Function    >> AppConstructor.exit
         *   Desc        >> Exit class and unbind event listeners 
         *********************************************************/
-        // Remove event listeners
-        document.getElementById('btnSVPF').removeEventListener('click', self.save);
-        document.getElementById('btnSWTP').removeEventListener('click', self.switchTemplate);
         // Send data to server
         var comm = new Comms(null);
         comm.saveData(self.dataLink, userConfig);
@@ -313,6 +308,7 @@ function Comms(callback) {
 	this.data = null;
     this.callback = callback;
     this.STANDARD_IFRAME_NAME = "inclockTarget";
+    this.STANDARD_FORM_NAME = "inclockSaveForm";
     this.HOMEPAGE = "http://localhost/InClock";
     var self = this;
 	
@@ -347,21 +343,12 @@ function Comms(callback) {
             };
             document.body.appendChild(tempForm);
             if (hasTarget === true) {
+                console.log(tempForm);
                 self.createHiddenIFrame();
                 tempForm.target = self.STANDARD_IFRAME_NAME;
+                tempForm.id = self.STANDARD_FORM_NAME;
                 tempForm.submit();
-                
-                var checkStatus = function () {
-                    var cookie = document.getElementsByName(self.STANDARD_IFRAME_NAME)[0].contentWindow.document.cookie;
-                    if (cookie.length > 0) {
-                        cookie = JSON.parse(cookie);
-                        if (cookie.fileId === dataStream.cookieId) {
-                            window.location = self.HOMEPAGE;    
-                        };
-                    };
-                };
-                
-                setInterval(checkStatus, 10);
+                self.removeHiddenIFrameAndForm();
             } else {
                 tempForm.submit();
             };
@@ -399,9 +386,15 @@ function Comms(callback) {
         iframe.innerHTML = "Dummy text";
         iframe.style.display = 'none';
         iframe.name = self.STANDARD_IFRAME_NAME;
+        iframe.id = self.STANDARD_IFRAME_NAME;
         document.body.appendChild(iframe);
     };
     
+    this.removeHiddenIFrameAndForm = function () {
+        document.getElementById(self.STANDARD_IFRAME_NAME).parentNode.removeChild(document.getElementById(self.STANDARD_IFRAME_NAME));
+        document.getElementById(self.STANDARD_FORM_NAME).parentNode.removeChild(document.getElementById(self.STANDARD_FORM_NAME));
+    };
+
     this.loadLanguageFile = function (lang) {
         if (lang === undefined || lang.length === 0) {
             var browserLanguage = navigator.language || navigator.userLanguage;
@@ -482,6 +475,7 @@ function Comms(callback) {
     };
     
     this.saveData = function (profile, config) {
+        //window.onbeforeunload = null; // Reset the onbeforeunload
         if (config.type === 3 || config.type === 4) {
             var cookieId = generateCookieId();
             var dataStream = {'data': JSON.stringify(profile), 'cookieId': cookieId};
@@ -495,8 +489,10 @@ function Comms(callback) {
         } else {
             var dataStream = {'prc': 'saveUser', 'data': JSON.stringify(profile), 
                               'sid': config.sid, 'skey': config.skey};
-            //console.log(dataStream);
-            self.openChannel(dataStream, null, true);
+            var callback = function (msg) {
+                console.log(msg);
+            };
+            self.openChannel(dataStream, callback, false);
         };
     };
     

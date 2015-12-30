@@ -134,13 +134,15 @@ def access_session(session_id, session_key, is_save=False, **kwargs):
         data = json.loads(data)
         return json.dumps(data), session_id, session_key
     elif user_ref and is_save:
-        with Database.DatabaseDrop() as db:
-            db.delete_session(session_id)
+        #with Database.DatabaseDrop() as db:
+        #    db.delete_session(session_id)
         with Database.DatabaseGet() as db:
             enc_key = db.retrieve_user_key(user_ref)
         with Database.DatabasePut() as db:
             db.update_user_data(Database.aes_encrypt(enc_key, kwargs['data']), user_ref)
-        kwargs['callback'].load_home()
+        #kwargs['callback'].load_home()
+        print("Content-Type: application/json\n\n")
+        print(json.dumps({'status': 'OK'}))
     else:
         Error.load_error_page('Your session expired or is invalid. {} {} {}'.format(user_ref, session_id, session_key))
         sys.exit()

@@ -45,8 +45,9 @@ function SVGCanvas(dataLink, templateId, mode) {
             self.activePoints[point] = newPoint;
             newPoint.init(self.mode);
         };
+        console.log(self.mode);
         if (self.mode === undefined || self.mode === null) {
-            document.getElementById('btnADNP').addEventListener('click', self.addNewPoint); // Add Point
+            document.getElementById('btnADNP').onclick = self.addNewPoint; // Add Point
         };
     };
     
@@ -80,9 +81,9 @@ function SVGCanvas(dataLink, templateId, mode) {
         *********************************************************/
         var dropSite = document.getElementById('pointWindow');
         // Change button function
-        document.getElementById('btnADNP').removeEventListener('click', self.addNewPoint);
+        document.getElementById('btnADNP').onclick = null;
         document.getElementById('btnADNP').className = 'button warning_button';
-        document.getElementById('btnADNP').innerHTML = getLanguageData(self.dataLink.user.language)['button8'];
+        document.getElementById('btnADNP').innerHTML = languageDict['dashboard']['button9'];
         // Activate visuals
         dropSite.style.background = 'rgba(245, 245, 245, 0.4)';
         dropSite.style.cursor = 'crosshair';
@@ -94,6 +95,7 @@ function SVGCanvas(dataLink, templateId, mode) {
             var newId = self.generateNewId();
             var newPoint = constructJSONPoint(newId, event.layerX, event.layerY);
             self.dataLink[self.templateId][newId] = newPoint;
+            console.log(self.templateId);
             newPoint = new Point(self.dataLink, self.dataLink[self.templateId][newId], self);
             self.activePoints[newId] = newPoint;
             newPoint.init();
@@ -104,9 +106,9 @@ function SVGCanvas(dataLink, templateId, mode) {
             dropSite.style.background = 'none';
             dropSite.style.cursor = 'default';
             // Reset event listeners
-            document.getElementById('btnADNP').addEventListener('click', self.addNewPoint);
+            document.getElementById('btnADNP').onclick = self.addNewPoint;
             document.getElementById('btnADNP').className = 'button';
-            document.getElementById('btnADNP').innerHTML = getLanguageData(self.dataLink.user.language)['button3'];        
+            document.getElementById('btnADNP').innerHTML = languageDict['dashboard']['button3'];
         };
     };
     
