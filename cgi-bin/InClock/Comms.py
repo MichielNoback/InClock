@@ -33,6 +33,7 @@ import hashlib
 import datetime
 from InClock import Database
 from InClock import Error
+from urllib import parse
 
 ACCESS_RESTRICTION = False
 
@@ -102,6 +103,7 @@ def repackage_file(data, **kwargs):
     :param kwargs: [**] optional parameters
     :return: None
     """
+    data = parse.unquote(data)
     if kwargs.get('pwd', False):
         password = hashlib.sha256(base64.b64decode(str.encode(kwargs['pwd']))).digest()
         data = bytes.decode(Database.aes_encrypt(password, data))
@@ -139,7 +141,7 @@ def access_session(session_id, session_key, is_save=False, **kwargs):
         with Database.DatabaseGet() as db:
             enc_key = db.retrieve_user_key(user_ref)
         with Database.DatabasePut() as db:
-            db.update_user_data(Database.aes_encrypt(enc_key, kwargs['data']), user_ref)
+            db.update_user_data(Database.aes_encrypt(enc_key, parse.unquote(kwargs['data'])), user_ref)
         #kwargs['callback'].load_home()
         print("Content-Type: application/json\n\n")
         print(json.dumps({'status': 'OK'}))

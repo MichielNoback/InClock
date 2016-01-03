@@ -98,7 +98,8 @@
         "button8": "Save",
         "button9": "Cancel",
         "button10": "Logout",
-        "button11": "Select"
+        "button11": "Select",
+        "button12": "Legend"
     },
 
     "site": {

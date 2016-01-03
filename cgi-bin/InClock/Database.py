@@ -223,7 +223,7 @@ class DatabasePut(DatabaseHandler):
         Output: session_id -> [string] :: session identifier
                 session_key -> [string] :: session key SHA-256
         """
-        session_id = bytes.decode(base64.b64encode(os.urandom(10)))
+        session_id = hashlib.sha256(os.urandom(10)).hexdigest().upper()
         session_key = hashlib.sha256(os.urandom(32)).hexdigest().upper()
         sql = "INSERT INTO `{}` (`uref`, `sid`, `skey`) VALUES (%s, %s, %s)".format(self.table_names['session'])
         args = (user_ref, session_id, session_key,)

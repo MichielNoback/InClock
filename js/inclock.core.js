@@ -244,6 +244,7 @@ function AppConstructor() {
         // Destroy old and initiate new template
         self.canvasHandle.destroyCanvas();
         self.loadSVG(self.mode);
+        self.getTopTenPoints();
     };
     
     this.eventMonitor = function () {
@@ -267,7 +268,7 @@ function AppConstructor() {
         // Get top ten qualified points in random order
         var references = [];
         for (index in self.dataLink) {
-            if (index !== 'user') {
+            if (index === self.userTemplates[self.currentTemplate]) {
                 for (pid in self.dataLink[index]) {
                     var point = self.dataLink[index][pid];
                     if (point.reactivity < 9) {
@@ -285,7 +286,6 @@ function AppConstructor() {
         references = references.slice(0, 10);
         references = shuffle(references);
         addSuggestedSitesToHTML(references, self.canvasHandle);
-
     };
     
     this.save = function () {
@@ -478,7 +478,7 @@ function Comms(callback) {
         //window.onbeforeunload = null; // Reset the onbeforeunload
         if (config.type === 3 || config.type === 4) {
             var cookieId = generateCookieId();
-            var dataStream = {'data': JSON.stringify(profile), 'cookieId': cookieId};
+            var dataStream = {'data': encodeURI(JSON.stringify(profile)), 'cookieId': cookieId};
             if (config.type === 3) {
                 dataStream['prc'] = 'saveSecureFile';
                 dataStream['pwd'] = config.key;
@@ -487,7 +487,7 @@ function Comms(callback) {
             };
             self.openChannel(dataStream, null, true, true);       
         } else {
-            var dataStream = {'prc': 'saveUser', 'data': JSON.stringify(profile), 
+            var dataStream = {'prc': 'saveUser', 'data': encodeURI(JSON.stringify(profile)),
                               'sid': config.sid, 'skey': config.skey};
             var callback = function (msg) {
                 console.log(msg);

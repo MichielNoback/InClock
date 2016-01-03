@@ -45,7 +45,6 @@ function SVGCanvas(dataLink, templateId, mode) {
             self.activePoints[point] = newPoint;
             newPoint.init(self.mode);
         };
-        console.log(self.mode);
         if (self.mode === undefined || self.mode === null) {
             document.getElementById('btnADNP').onclick = self.addNewPoint; // Add Point
         };
@@ -471,11 +470,14 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
         *   Function    >> PointConfigurator.deletePoint
         *   Desc        >> Remove point from canvas and global
         *                  memory
-        *********************************************************/ 
-        self.canvasHandle.destroyCanvas();
-        delete self.dataLink[self.canvasHandle.templateId][self.localData.pointId];
-        delete self.canvasHandle.activePoints[self.localData.pointId];
-        self.canvasHandle.paintCanvas();
+        *********************************************************/
+        var conf = confirm("Are you sure you want to permanently remove this site?");
+        if (conf === true){
+            self.canvasHandle.destroyCanvas();
+            delete self.dataLink[self.canvasHandle.templateId][self.localData.pointId];
+            delete self.canvasHandle.activePoints[self.localData.pointId];
+            self.canvasHandle.paintCanvas();
+        };
     };
     
     this.addInjection = function () {
