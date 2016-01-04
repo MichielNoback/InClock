@@ -207,7 +207,9 @@ function AppConstructor() {
         self.loadTemplate(self.mode);
         self.eventMonitor(self.mode);
         self.switchTemplate(self.mode);
-        self.showStartUpHint();
+        if (self.mode !== 'config') {
+            self.showStartUpHint();
+        };
     };
 
     this.showStartUpHint = function () {
@@ -251,7 +253,9 @@ function AppConstructor() {
         // Destroy old and initiate new template
         self.canvasHandle.destroyCanvas();
         self.loadSVG(self.mode);
-        self.getTopTenPoints();
+        if (self.mode !== 'config') {
+            self.getTopTenPoints();
+        };
     };
     
     this.eventMonitor = function () {
@@ -266,7 +270,7 @@ function AppConstructor() {
                 var comm = new Comms(null);
                 window.location = comm.HOMEPAGE;
             });
-        } else if (mode === 'config') {
+        } else if (self.mode === 'config') {
             document.getElementById('btnSWTP').addEventListener('click', function () {self.switchTemplate(self.mode)});
         };
     };
