@@ -127,10 +127,9 @@ function constructToolTip(language, color, localData, standardId) {
     *                 standardId :: id for tooltip DIV
     **************************************************************/
     // Create the tooltip from template
-    var data = getLanguageData(language);
     
     var determineText = function (humanTime, unixTime) {
-        if (humanTime === 'n') {return data['tooltext1']};
+        if (humanTime === 'n') {return languageDict['dashboard']['other1']};
         var times = convertTimestampToHuman(unixTime);
         return times;
     };
@@ -138,11 +137,11 @@ function constructToolTip(language, color, localData, standardId) {
 
     var toolTipTemplate = [
         '   <div class="box">',
-        '       <div class="pain" title="', data['tooltext4'], '"', 
+        '       <div class="pain" title="', languageDict['dashboard']['tooltip2'], '"',
         '           style="background:', color ,';">',
         '           <div>', localData.reactivity, '</div>',
         '       </div>',
-        '       <div class="tminus" title="', data['tooltext5'], '">',
+        '       <div class="tminus" title="', languageDict['dashboard']['tooltip1'], '">',
         '           <div>', (time.hasOwnProperty('time')) ? time.time : time , '</div>',
         '       </div>',
         '   </div>',
@@ -174,7 +173,9 @@ function constructNoteWindow(localData, isNoteMode) {
     // Note entry
     if (isNoteMode !== true) {
         for (var noteIndex = 0; noteIndex < notes.length; noteIndex++) {
-            var title = ['<div class="title">', notes[noteIndex][0].localTimeStamp, '<div class="button warning_button">Delete</div></div>'].join('');
+            var tmp = notes[noteIndex][0].note;
+            var title = ['<div class="title">', notes[noteIndex][0].localTimeStamp, ' :: ', (tmp.length > 20) ? tmp.slice(0, 20) + '[..]' : tmp,
+                         '<div class="button warning_button">', languageDict['dashboard']['button13'], '</div></div>'].join('');
             var msg = ['<div class="note">', notes[noteIndex][0].note, '</div>'].join('');
             template.push.apply(template, ['<div class="note_wrap" name="', notes[noteIndex][1], '">', title, msg, '</div>']);
         };
@@ -184,8 +185,8 @@ function constructNoteWindow(localData, isNoteMode) {
     if (isNoteMode === true) {
         var noteForm = ['<div id="noteFormWrap">', 
                         '<textarea id="vlNTXT" maxlength="300"></textarea>', '<div class="button_wrap">', 
-                        '<div id="btnSVNT2" class="button add_button">Save</div>', 
-                        '<div id="btnCNNT2" class="button">Cancel</div>', 
+                        '<div id="btnSVNT2" class="button add_button">', languageDict['dashboard']['button1'], '</div>',
+                        '<div id="btnCNNT2" class="button">', languageDict['dashboard']['button9'], '</div>',
                         '</div>', '</div>'].join('');
         template.push(noteForm);
     };

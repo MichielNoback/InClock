@@ -37,7 +37,7 @@ function dashBoardInit(userData) {
             app.getTopTenPoints();
             // Bind unload handlers
             window.onbeforeunload = function() {
-                return "Are you sure you've saved all your changes?";
+                return languageDict['dashboard']['warning1'];
             };
             window.onunload = function() {
                 var comm = new Comms();
@@ -207,6 +207,13 @@ function AppConstructor() {
         self.loadTemplate(self.mode);
         self.eventMonitor(self.mode);
         self.switchTemplate(self.mode);
+        self.showStartUpHint();
+    };
+
+    this.showStartUpHint = function () {
+        document.getElementById("global-messages").innerHTML = languageDict['dashboard']['general1'];
+        $("#global-messages").show();
+        $("#global-messages").fadeOut(4000);
     };
     
     this.loadTemplate = function () {
@@ -272,15 +279,15 @@ function AppConstructor() {
                 for (pid in self.dataLink[index]) {
                     var point = self.dataLink[index][pid];
                     if (point.reactivity < 9) {
-                        var timeSince = (point.unixTimeStamp === 0) ? "Never" : convertTimestampToHuman(point.unixTimeStamp).time;
-                        references.push([pid, timeSince, getClusterName(point.clusterAffiliation)]);
+                        var timeSince = (point.unixTimeStamp === 0) ? languageDict['dashboard']['other1'] : convertTimestampToHuman(point.unixTimeStamp).time;
+                        references.push([pid, timeSince, getClusterName(point.clusterAffiliation), point.unixTimeStamp]);
                     };
                 };
             };
         };
 
         var customSorter = function (a, b) {
-            return parseInt(a[1]) - parseInt(b[1]);
+            return parseInt(a[3]) - parseInt(b[3]);
         };
         references.sort(customSorter);
         references = references.slice(0, 10);
@@ -490,7 +497,15 @@ function Comms(callback) {
             var dataStream = {'prc': 'saveUser', 'data': encodeURI(JSON.stringify(profile)),
                               'sid': config.sid, 'skey': config.skey};
             var callback = function (msg) {
-                console.log(msg);
+                if (msg.status === "OK") {
+                    document.getElementById("global-messages").innerHTML = languageDict['dashboard']['general2'];
+                    $("#global-messages").show();
+                    $("#global-messages").fadeOut(1000);
+                } else {
+                    document.getElementById("global-messages").innerHTML = "Error!";
+                    $("#global-messages").show();
+                    $("#global-messages").fadeOut(4000);
+                }
             };
             self.openChannel(dataStream, callback, false);
         };

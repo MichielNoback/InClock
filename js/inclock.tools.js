@@ -471,7 +471,7 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
         *   Desc        >> Remove point from canvas and global
         *                  memory
         *********************************************************/
-        var conf = confirm("Are you sure you want to permanently remove this site?");
+        var conf = confirm(languageDict['dashboard']['warning2']);
         if (conf === true){
             self.canvasHandle.destroyCanvas();
             delete self.dataLink[self.canvasHandle.templateId][self.localData.pointId];

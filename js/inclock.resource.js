@@ -22,55 +22,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ******************************************************************/
 
-function getLanguageData(country) {
-    /*********************************************************
-    *   Function    >> getLanguageData
-    *   Input       >> country :: 2 letter string e.g. nl, en
-    *   Output      >> Object containing language data
-    *   Desc        >> Store all language specific data
-    *********************************************************/
-    var language_dict = {  // ** !Needs migration to JSON file!
-        "nl": {"title1": "Controls",
-               "title2": "Injectie punt eigenschappen",
-               "title3": "Potenti&euml;le Injectie opties",
-               "title4": "Verander de reactiviteit",
-               "title5": "Injectie Datum &amp; Tijd",
-               "button1": "Opslaan",
-               "button2": "Omdraaien",
-               "button3": "Punt toevoegen",
-               "button4": "Save",
-               "button5": "Nieuwe injectie",
-               "button6": "Delete punt",
-               "button7": "Instellingen",
-               "button8": "Cancel",
-               "tooltext1": "Nooit",
-               "tooltext2": "Vandaag",
-               "tooltext3": "Gisteren",
-               "tooltext4": "Reactiviteit",
-               "tooltext5": "Tijd sinds laatste injectie"},
-
-        "en": {"title1": "Controls",
-               "title2": "Injection site properties",
-               "title3": "Potential injection sites",
-               "title4": "Change the reactivity",
-               "title5": "Injection Date &amp; Time",
-               "button1": "Save",
-               "button2": "Turn around",
-               "button3": "Add point",
-               "button4": "Save",
-               "button5": "New injection",
-               "button6": "Delete point",
-               "button7": "Settings",
-               "button8": "Cancel",
-               "tooltext1": "Never",
-               "tooltext2": "Today",
-               "tooltext3": "Yesterday",
-               "tooltext4": "Reactivity",
-               "tooltext5": "Time since last injection"}
-    };
-    return language_dict[country];
-};
-
 function convertTimestampToHuman(unixTime) {
     var currentTime = new Date();
     var timeDelta = (currentTime.getTime() - parseInt(unixTime)) / 1000;

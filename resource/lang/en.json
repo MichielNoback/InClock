@@ -99,7 +99,24 @@
         "button9": "Cancel",
         "button10": "Logout",
         "button11": "Select",
-        "button12": "Legend"
+        "button12": "Legend",
+        "button13": "Delete",
+
+        "warning1": "Are you sure you've saved all your changes?",
+        "warning2": "Are you sure you want to permanently remove this site?",
+
+        "general1": "Click a site to select or inspect.",
+        "general2": "Save succesfull!",
+
+        "tooltip1": "Time since last injection",
+        "tooltip2": "Reactivity",
+        "tooltip3": "Create a new injection site",
+        "tooltip4": "Show note history for this site",
+        "tooltip5": "Add a new note to this site",
+        "tooltip6": "Register a new injection for this site",
+        "tooltip7": "Remove this site and its data",
+
+        "other1": "Never"
     },
 
     "site": {
