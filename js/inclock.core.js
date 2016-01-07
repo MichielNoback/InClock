@@ -35,6 +35,7 @@ function dashBoardInit(userData) {
             var app = new AppConstructor();
             app.init(userData, undefined);  // Start InClock
             app.getTopTenPoints();
+            makeLegendHTML(document.getElementById('dashboard-legend-wrap'), userData['user']['colorScheme'])
             // Bind unload handlers
             window.onbeforeunload = function() {
                 return languageDict['dashboard']['warning1'];
@@ -44,7 +45,12 @@ function dashBoardInit(userData) {
                 comm.noSaveData(userConfig['sid']);
                 console.log("さようなら");
             };
-        };
+            // Calculate button spacing
+            justifyElements(document.getElementById('dashboard-langbar'), '15px');
+            justifyElements(document.getElementById('dashboard-controls'));
+            justifyElements(document.getElementById('dashboard-notes-controls'));
+            justifyElements(document.getElementById('dashboard-inject-controls'));
+            };
 
         determineLanguageAndLoadFile(start);
     });
@@ -276,7 +282,7 @@ function AppConstructor() {
     };
 
     this.getTopTenPoints = function () {
-        // Get top ten qualified points in random order
+        // Get top five qualified points in random order
         var references = [];
         for (index in self.dataLink) {
             if (index === self.userTemplates[self.currentTemplate]) {
@@ -294,7 +300,7 @@ function AppConstructor() {
             return parseInt(a[3]) - parseInt(b[3]);
         };
         references.sort(customSorter);
-        references = references.slice(0, 10);
+        references = references.slice(0, 5);
         references = shuffle(references);
         addSuggestedSitesToHTML(references, self.canvasHandle);
     };

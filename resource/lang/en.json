@@ -116,14 +116,15 @@
         "tooltip6": "Register a new injection for this site",
         "tooltip7": "Remove this site and its data",
 
-        "other1": "Never"
+        "other1": "Never",
+        "other2": "days"
     },
 
     "site": {
 
         "softwareTitle1": "InClock",
         "softwareVersionShort1": "Beta",
-        "softwareVersionLong1": "&copy; 2015 [Beta v0.2a]",
+        "softwareVersionLong1": "&copy; 2015 [Beta v0.3a]",
 
         "titleHomepage1": "InClock - the easy injection tracker!",
         "titleConfigpage1": "InClock | Create your profile!",

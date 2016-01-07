@@ -238,6 +238,7 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
         self.loadReactivityValue();
         self.loadNoteCount();
         self.slideDown();
+        justifyElements(document.getElementById('dashboard-notes-controls'));
         // Bind event listeners
         document.getElementById('btnDLPT').addEventListener('click', self.deletePoint) // Delete point
         document.getElementById('btnADNT').addEventListener('click', self.addNote); // Add note

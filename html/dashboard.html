@@ -42,8 +42,7 @@
                         </div>
                         <div class="triangle"></div>
                     </div>
-                    <div class="langbar">
-                        <div class="button">@dashboard.button12</div>
+                    <div class="langbar" id="dashboard-langbar">
                         <div class="button">@dashboard.title1</div>
                         <div class="button" id="btnSVPF">@dashboard.button1</div>
                         <div class="button" id="btnLGOT">@dashboard.button10</div>
@@ -60,6 +59,8 @@
                            <div id="pointWindow" class="top">
                                <svg id="svgFrame" width="600" height="800"></svg>
                            </div>
+                           <div id="dashboard-legend-wrap"></div>
+                           <div id="legend-explain" class="config_panel"></div>
                            <div id="noteConfig" class="config_panel"></div>
                            <div id="global-messages" class="config_panel"></div>
                        </div>
@@ -69,7 +70,7 @@
                                    <div>@dashboard.title2</div>
                                    <div></div>
                                </div>
-                               <div class="button_wrap">
+                               <div class="button_wrap" id="dashboard-controls">
                                    <div class="button" id="btnSWTP">@dashboard.button2</div>
                                    <div class="button" id="btnADNP" title="@dashboard.tooltip3">@dashboard.button3</div>
                                </div>
@@ -79,7 +80,7 @@
                                    <div>@dashboard.title3</div>
                                    <div></div>
                                </div>
-                               <div class="button_wrap">
+                               <div class="button_wrap" id="dashboard-notes-controls">
                                    <div id="btnVWHS" class="button" title="@dashboard.tooltip4">
                                        @dashboard.button4 <span class="info" id="txtHSCT"></span>
                                    </div>
@@ -93,7 +94,7 @@
                                        <div id="btnADRT" class="button">+</div>
                                    </div>
                                </div>
-                               <div class="button_wrap">
+                               <div class="button_wrap" id="dashboard-inject-controls">
                                   <div id="btnNWIJ" class="button" title="@dashboard.tooltip6">@dashboard.button6</div>
                                    <div id="btnDLPT" class="button warning_button" title="@dashboard.tooltip7">@dashboard.button7</div>
                                </div>

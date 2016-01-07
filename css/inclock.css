@@ -66,6 +66,19 @@
     margin-top: -800px;
 }
 
+#dashboard-legend-wrap {
+    width: 30px;
+    float: left;
+    margin-top: -785px;
+}
+
+#dashboard-legend-wrap .legend-block {
+    width: 10px;
+    height: 30px;
+    margin-top: 2px;
+    cursor: help;
+}
+
 #ui_panel .control {
     width: 380px;
     height: auto;

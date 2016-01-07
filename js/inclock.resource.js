@@ -125,6 +125,36 @@ function getStandardTemplate() {
     return profile;
 };
 
+function justifyElements(parent, yOffset) {
+    var parentXdim = parseInt(window.getComputedStyle(parent).width);
+    var freeSpace = parentXdim;
+    var children = parent.children;
+    var realChildren = [];
+    // Gather children
+    for (var child in children) {
+        if (children.hasOwnProperty(child)) {
+            realChildren.push(children[child]);
+        };
+    };
+    // Filter real children
+    for (var child = 0; child < children.length; child++) {
+        freeSpace -= realChildren[child].clientWidth;
+    };
+    var interSpace = Math.floor(freeSpace / children.length / 2);
+    var errorMargin = window.getComputedStyle(parent).marginLeft;
+    try {
+        errorMargin = parseInt(errorMargin) / 2;
+    } catch (e) {
+        errorMargin = errorMargin.slice(0, errorMargin.left - 1);
+        errorMargin = (parseInt(errorMargin) * parentXdim) / 2;
+    };
+    // Re-position elements
+    for (var child = 0; child < children.length; child++) {
+        children[child].style.marginLeft = (child === 0) ? (interSpace * 2) - errorMargin : interSpace;
+        if (yOffset !== undefined) {children[child].style.marginTop = yOffset;};
+    };
+};
+
 function getClusterName(clusterId) {
     clusterId = 'cluster' + clusterId;
     var name = window.languageDict['dashboard'][clusterId];

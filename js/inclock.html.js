@@ -210,7 +210,18 @@ function addSuggestedSitesToHTML(sites, canvasHandle) {
         if (canvasHandle.activePoints.hasOwnProperty(sites[site][0])) {
             document.getElementById('remote' + sites[site][0]).onclick = canvasHandle.activePoints[sites[site][0]].remoteActivation;
         } else {
-            // Implem
+            // Implement new handlers
         };
+    };
+};
+
+function makeLegendHTML(parent, scheme) {
+    var colors = getColorScheme(scheme);
+    for (var color in colors) {
+        var title = [languageDict['dashboard']['tooltip2'], colors.length - color, "|",
+                     languageDict['dashboard']['tooltip1'], (color < 8) ? '~'+color : '+'+color,
+                     languageDict['dashboard']['other2']].join(' ');
+        parent.innerHTML += ('<div class="legend-block" style="background:' + colors[colors.length - color - 1]
+                             + ';" title="' + title +'"></div>');
     };
 };
