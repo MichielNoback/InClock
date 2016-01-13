@@ -2,11 +2,11 @@
     "home": {
 
         "title1": "What is InClock?",
-        "text1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit facilisis enim mollis tempor. Etiam vitae ullamcorper orci, at venenatis libero. Quisque in lectus sit amet libero molestie pharetra. Phasellus pellentesque velit nec lorem maximus, id iaculis lectus dictum. Vivamus nec metus et nibh ultricies blandit. Nullam nec enim magna. Mauris sit amet mollis eros. Vivamus quis nisi venenatis, porta augue eget, posuere ipsum. In vitae leo at sapien eleifend congue sed vitae arcu. Suspendisse bibendum dignissim quam rhoncus volutpat. Nulla laoreet enim et vestibulum viverra. Sed dapibus porttitor augue nec aliquam. Donec ultrices viverra nulla. Sed sit amet bibendum nulla, sed feugiat purus. Aenean porta, est non laoreet tempor, justo elit luctus lectus, tincidunt condimentum metus metus auctor erat. Duis interdum lobortis tempor. Donec quis maximus nisi, ac euismod nibh. In dictum enim sit amet orci luctus condimentum.",
+        "text1": "If you are in a situation that requires you to inject yourself with a drug on regular occasions, it can be a challenge to keep track of your injection “history”. Cycling between injection sites is important, but deciding where to inject next can be tricky. InClock is an application that can help you keep track of your injection history and help you decide where to inject next.",
         "title2": "How can I use InClock",
-        "text2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit facilisis enim mollis tempor. Etiam vitae ullamcorper orci, at venenatis libero. Quisque in lectus sit amet libero molestie pharetra. Phasellus pellentesque velit nec lorem maximus, id iaculis lectus dictum. Vivamus nec metus et nibh ultricies blandit. Nullam nec enim magna. Mauris sit amet mollis eros. Vivamus quis nisi venenatis, porta augue eget, posuere ipsum.",
+        "text2": "With InClock you can register injection sites on arms, legs, buttocks, and stomach. InClock comes with a set of predefined injection site patterns, these can be combined with custom sites. InClock also allows you to design your own injection site map. InClock uses color scales to indicate the status of a site and shows the reactivity of a site by means of variable size dot. There is a range of color scales available including once suited for colorblindness.",
         "title3": "Terms and Conditions",
-        "text3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit facilisis enim mollis tempor. Etiam vitae ullamcorper orci, at venenatis libero. Quisque in lectus sit amet libero molestie pharetra. Phasellus pellentesque velit nec lorem maximus, id iaculis lectus dictum. Vivamus nec metus et nibh ultricies blandit. Nullam nec enim magna. Mauris sit amet mollis eros. Vivamus quis nisi venenatis, porta augue eget, posuere ipsum.",
+        "text3": "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. See <a href='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</a>",
 
         "button1": "Sign Up!",
         "button2": "Redeem",
@@ -22,7 +22,7 @@
         "input2": "Example: AQJKLP",
 
         "other1": "Or",
-        "other2": "Try InClock now! (Alpha-codes only)",
+        "other2": "Try InClock now! (Beta&#769;-codes only)",
 
         "error1": "Invalid Code",
 
@@ -41,10 +41,10 @@
         "title7": "Front",
         "title8": "Back",
 
-        "subtitle1": "1. Anonymous account with custom username and online-storage.",
-        "subtitle2": "2. Normal account with custom username, recovery email, and online-storage.",
-        "subtitle3": "3. No account, access through file upload. <span>With</span> AES-256 encryption.",
-        "subtitle4": "4. No account, access through file upload. <span>Without</span> encryption.",
+        "subtitle1": "<b>Register with user name, password and email.</b> This level has the advantage that your data are always available to you, from any device with a web browser and internet connection. Also, when you lose your password, you can request a reset sent to you via email. However, your data reside (encrypted) with us. Also, your data will be removed from our server after 6 months account inactivity.",
+        "subtitle2": "<b>Register with user name, password but without email.</b> This level has the advantage that your data are always available to you, from any device with a web browser and internet connection. However, when you lose your password your data are not recoverable and will be removed from our server after 6 months account inactivity. Also, your data reside (encrypted) with us.",
+        "subtitle3": "<b>No registry, own encrypted data file with decryption key.</b> With this level, you are responsible for your own –encrypted- data. You could keep it on your device, or on some cloud service. You need to upload it every time you use the app, and download afterwards. We do not make or keep copies of your data. If you lose your decryption key, your data is lost.",
+        "subtitle4": "<b>No registry, own unencrypted data file.</b> With this level, you are responsible for your own –unencrypted- data. You could keep it on your device, or on some cloud service. You need to upload it every time you use the app, and download afterwards. We do not make or keep copies of your data. If anyone gets your data file, they can read it and distribute it.",
         "subtitle5": "Pick a colorscheme to use",
         "subtitle6": "Adjust time zone offset below to fit desired time zone. (GMT standard is 0)",
         "subtitle7": "Select prefered language",

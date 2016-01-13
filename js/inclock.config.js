@@ -358,7 +358,8 @@ function ProfileConfigurator() {
                 } else {
                     comms.newPlainFile(profile, self.userData.code);
                 };
-            };  
+            };
+            //document.getElementById('btnComplete').onclick = '';
         };
         
         document.getElementById('btnComplete').onclick = complete;

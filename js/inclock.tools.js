@@ -22,7 +22,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ******************************************************************/
 
-function SVGCanvas(dataLink, templateId, mode) {
+function SVGCanvas(dataLink, templateId, mode, updateSuggestions) {
     /**************************************************************
     *   Class   >> SVGCanvas
     *   Desc    >> All SVG related methods
@@ -33,6 +33,7 @@ function SVGCanvas(dataLink, templateId, mode) {
     this.templateId = templateId;
     this.activePoints = {};
     this.mode = mode;
+    this.updateSuggestions = updateSuggestions;
     var self = this;
     
     this.paintCanvas = function () {
@@ -46,6 +47,7 @@ function SVGCanvas(dataLink, templateId, mode) {
             newPoint.init(self.mode);
         };
         if (self.mode === undefined || self.mode === null) {
+            self.updateSuggestions();
             document.getElementById('btnADNP').onclick = self.addNewPoint; // Add Point
         };
     };
@@ -117,7 +119,7 @@ function SVGCanvas(dataLink, templateId, mode) {
         self.dataLink[self.templateId][newId] = newPoint;
         newPoint = new Point(self.dataLink, self.dataLink[self.templateId][newId], self);
         self.activePoints[newId] = newPoint;
-        newPoint.init('config');
+        newPoint.init(null, 'config');
         return newId;
     };
 
@@ -386,6 +388,7 @@ function PointConfigurator(dataLink, localData, canvasHandle, toolHandle, parent
         // Update tooltip
         self.toolHandle.removeFromCanvas();
         self.toolHandle.placeOnCanvas();
+        self.canvasHandle.updateSuggestions();
     };
     
     this.slideUp = function () {

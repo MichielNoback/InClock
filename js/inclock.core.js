@@ -259,7 +259,7 @@ function AppConstructor() {
         *   Desc        >> Initiate SVGCanvas for template 
         *********************************************************/
         // Load Canvas
-        var svg = new SVGCanvas(self.dataLink, self.userTemplates[self.currentTemplate], self.mode);
+        var svg = new SVGCanvas(self.dataLink, self.userTemplates[self.currentTemplate], self.mode, self.getTopTenPoints);
         self.canvasHandle = svg;
         svg.paintCanvas();
     };
@@ -377,14 +377,16 @@ function Comms(callback) {
             };
             document.body.appendChild(tempForm);
             if (hasTarget === true) {
-                console.log(tempForm);
                 self.createHiddenIFrame();
                 tempForm.target = self.STANDARD_IFRAME_NAME;
                 tempForm.id = self.STANDARD_FORM_NAME;
-                tempForm.submit();
-                self.removeHiddenIFrameAndForm();
+                document.body.appendChild(tempForm);
+                document.getElementById(self.STANDARD_FORM_NAME).submit();
+                //self.removeHiddenIFrameAndForm();
             } else {
-                tempForm.submit();
+                tempForm.id = self.STANDARD_FORM_NAME;
+                document.body.appendChild(tempForm);
+                document.getElementById(self.STANDARD_FORM_NAME).submit();
             };
         } else {
             var xmlhttp = self.createXMLHttpObject();
