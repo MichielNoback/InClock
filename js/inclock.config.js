@@ -32,7 +32,7 @@ function ProfileConfigInit() {
             profile.init();
         };
 
-        determineLanguageAndLoadFile(start);
+        loadConfig(determineLanguageAndLoadFile, start);
     });
 };
 

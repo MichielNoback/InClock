@@ -86,7 +86,7 @@ function rootPlusPath(path) {
     *   Desc        >> Convert relative path to full path
     *********************************************************/
     var root = window.location.origin;
-    var appFolder = 'InClock';  // Custom sub-directory
+    var appFolder = window.EnvironmentConfig.APP_FOLDER;  // Custom sub-directory
     path = root + '/' + appFolder + '/' + path;
     return path;
 };

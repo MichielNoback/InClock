@@ -52,8 +52,25 @@ function dashBoardInit(userData) {
             justifyElements(document.getElementById('dashboard-inject-controls'));
             };
 
-        determineLanguageAndLoadFile(start);
+        loadConfig(determineLanguageAndLoadFile, start)
     });
+};
+
+function loadConfig(callback, args) {
+    var fileLoaded = function (response) {
+        window.EnvironmentConfig = response;
+        (callback !== undefined) ? callback(args) : null;
+    };
+    var xmlhttp = new XMLHttpRequest();
+    var path = (/cgi-bin/.test(window.location.pathname) === true) ? '../resource/config/conf.json' : 'resource/config/conf.json';
+    xmlhttp.open("GET", path, true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function () {
+        // If server responds with "OK"
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            fileLoaded(JSON.parse(xmlhttp.responseText));
+        };
+    };
 };
 
 function determineLanguageAndLoadFile(callback){
@@ -326,7 +343,7 @@ function Comms(callback) {
     this.callback = callback;
     this.STANDARD_IFRAME_NAME = "inclockTarget";
     this.STANDARD_FORM_NAME = "inclockSaveForm";
-    this.HOMEPAGE = "http://localhost/InClock";
+    this.HOMEPAGE = window.EnvironmentConfig.HOME_PAGE;
     var self = this;
 	
     this.createXMLHttpObject = function () {

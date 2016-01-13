@@ -31,6 +31,7 @@ import cgitb
 import base64
 import json
 import traceback
+from InClock import conf
 from InClock import Comms
 from InClock import Error
 
@@ -45,7 +46,7 @@ class Page:
         Load the homepage
         :return: None
         """
-        index_location = 'http://localhost/InClock/'
+        index_location = conf.INDEX_LOCATION
         print("Location: {}\n\n".format(index_location))
 
     @staticmethod

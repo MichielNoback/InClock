@@ -22,7 +22,7 @@
 
 function HomePageInit() {
     document.addEventListener("DOMContentLoaded", function () {
-        determineLanguageAndLoadFile();
+        loadConfig(determineLanguageAndLoadFile);
     });
 };
 

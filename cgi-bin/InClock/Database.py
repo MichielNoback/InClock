@@ -31,6 +31,7 @@ import base64
 import random
 import mysql.connector as pymysql
 import hashlib
+from InClock import conf
 from InClock import Error
 from Crypto.Cipher import AES
 from Crypto import Random
@@ -66,10 +67,9 @@ class DatabaseHandler:
     """ Provide a simple inheritable MySQL-client """
 
     def __init__(self):
-        filename = '.inclock.cnf'
+        filename = conf.MYSQL_CONF_FILE
         self.conf_file = ''.join([os.path.expanduser('~'), '/', filename])
-        self.table_names = {'users': 'inclock_users', 'keys': 'inclock_ukeys', 'data': 'inclock_udata',
-                            'codes': 'inclock_codes', 'session': 'inclock_sessions'}
+        self.table_names = conf.TABLE_NAMES
         self.cursor, self.connection = None, None
 
     def __enter__(self):
@@ -253,7 +253,7 @@ class DatabaseGet(DatabaseHandler):
         :param code: [string] access code e.g. QWERTY
         :return: boolean
         """
-        sql = "SELECT EXISTS(SELECT 1 FROM `{}` WHERE `code`=%s AND `status`=0)".format(self.table_names['codes'])
+        sql = "SELECT 1 FROM `{}` WHERE `code`=%s AND `status`='0'".format(self.table_names['codes'])
         args = (code,)
         if self.query(sql, args):
             is_user = self.cursor.fetchone()[0]
