@@ -81,6 +81,7 @@ function determineLanguageAndLoadFile(callback){
     // Check for language specification in url
     var url = window.location.href;
     lang = url.split('?lang=')[1];
+    lang = 'en'; // Temporary fix untill more languages are supported
     // Load language data
     var fileLoaded = function (response) {
         window.languageDict = response;
