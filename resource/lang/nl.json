@@ -1,0 +1,136 @@
+{
+    "home": {
+
+        "title1": "Wat is InClock?",
+        "text1": "Als je in een situatie bent waarin je jezelf regelmatig moet injecteren kan het een uitdaging zijn om goed bij te houden waar en wanneer je geprikt hebt. Ruoleren tussen injectie plekken is belangrijk, maar bepalen waar de volgende moet komen kan best lastig zijn. InClock is een app die je kan helpen je injectiegeschiedenis bij te houden en je helpen beslissen waar de volgende te plaatsen.",
+        "title2": "Hoe kan ik InClock gebruiken?",
+        "text2": "Je kan InClock gebruiken om injecties op armen, benen, billen en buik te registreren. InClock biedt een aantal voorgedefinieerde injectie patronen. Deze kunnen aangepast worden naar eigen wens, of je definieerd je eigen patronen. InClock gebruikt kleurschalen en om de status van een injectieplek aan te geven. Er is een aantal kleurschalen beschikbaar die rekening houden met kleurenblindheid.",
+        "title3": "Voorwaarden",
+        "text3": "Al uw data worden compleet versleuteld zodat niemand anders dan u deze kan bekijken. Daarnaast is onze software code openbaar voor controle door u of anderen. Zie <a href='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</a> voor een gedetailleerde software licentie",
+
+        "button1": "Registreer!",
+        "button2": "Gebruik beta code",
+        "button3": "Annuleer",
+        "button4": "OK!",
+        "button5": "Upload!",
+
+        "subtitle1": "Log in",
+        "subtitle2": "Upload versleuteld bestand",
+        "subtitle3": "Upload niet-versleuteld bestand",
+
+        "input1": "Gebruikersnaam",
+        "input2": "Voorbeeld: AQJKLP",
+
+        "other1": "Of",
+        "other2": "Probeer InClock nu! (alleen met Beta-codes)",
+
+        "error1": "Ongeldige Code",
+
+        "hover1": "Nederlands",
+        "hover2": "English",
+        "hover3": "Deutsch"
+    },
+    "config": {
+
+        "title1": "Kies Account Type",
+        "title2": "Account Settings",
+        "title3": "Account Voorkeuren",
+        "title4": "Profiel Opties",
+        "title5": "Template Builder",
+        "title6": "Cre&euml;er Account",
+        "title7": "Voor",
+        "title8": "Achter",
+
+        "subtitle1": "<b>Registeer met gebruikersnaam, wachtwoord en email.</b> Deze vorm heeft het voordeel dat uw data altijd beschikbaar zijn, van elk apparaat met een web browser en een internet connectie. Als u uw wachtwoord kwijtraakt kunt u een wachtwoord reset aanvragen via uw email. Uw data worden echter wel versleuteld bij ons opgeslagen. Ook zullen uw data worden verwijderd na 12 maanden inactiviteit op uw account.",
+        "subtitle2": "<b>Registeer met gebruikersnaam en wachtwoord maar zonder email.</b> Deze vorm heeft het voordeel dat uw data altijd beschikbaar zijn, van elk apparaat met een web browser en een internet connectie. Als u uw wachtwoord kwijtraakt kunt u niet meer bij uw data komen omdat wij geen email voor een wachtwoord reset hebben. Uw versleutelde data zullen dan automatisch worden verwijderd na 12 maanden inactiviteit op uw account.",
+        "subtitle3": "<b>Geen registratie. Gebruik een versleuteld bestand dat u zelf beheert.</b> In deze vorm beheert u zelf uw (versleutelde) data. U kiest een wachtwoord om uw data te ontsleutelen. U kunt het bestand op uw computer bewaren of ergens in de "cloud" (zoals DropBox). U moet dit bestand elke keer uploaden als u de app wilt gebruiken, en daarna weer downloaden. Wij maken hier geen kopie van dus als u het bestand of het wachtwoord kwijtraakt zijn uw data verloren.",
+        "subtitle4": "<b>Geen registratie. Geen versleuteling.</b> In deze vorm beheert u zelf uw (niet versleutelde) data. U kunt het bestand op uw computer bewaren of ergens in de "cloud" (zoals DropBox). U moet dit bestand elke keer uploaden als u de app wilt gebruiken, en daarna weer downloaden. Wij maken hier geen kopie van dus als u het bestand kwijtraakt zijn uw data verloren. Als iemand uw bestand krijgt kan die de data inzien en verspreiden.",
+        "subtitle5": "Kies een kleurenschema",
+
+        "subtitle6": "Als de gedetecteerde tijdszone niet correct is kunt u dit hier aanpassen. GMT is 0.",
+        "subtitle7": "Selecteer voorkeurstaal",
+        "subtitle8": "Bovenarmen",
+        "subtitle9": "Bovenbenen",
+        "subtitle10": "Buitenkant buik",
+        "subtitle11": "Binnenkant buik",
+        "subtitle12": "Billen",
+        "subtitle13": "Onderarmen",
+        "subtitle14": ["De gedetecteerde tijdszone is<b>", "</b>. U bent in de GMT tijdszone<b>", "</b>"],
+        "subtitle15": "<b>Belangrijk</b>: U moet nu inloggen voordat u InClock kunt gebruiken.",
+
+        "button1": "Kies",
+        "button2": "Doorgaan",
+        "button3": "Klaar!",
+        "button4": "Draai om",
+
+        "input1": "Kies een gebruikersnaam",
+        "input2": "Kies een wachtwoord",
+        "input3": "e-mail adres voor wachtwoord herstel",
+        "input4": "English",
+        "input5": "Nederlands",
+        "input6": "Deutsch"
+    },
+    "dashboard": {
+
+        "cluster0": "Aangepast",
+        "cluster1": "Biceps",
+        "cluster2": "Benen",
+        "cluster3": "Buik",
+        "cluster4": "Billen",
+        "cluster5": "Benen",
+        "cluster6": "Biceps",
+        "cluster7": "Onderarm",
+        "cluster8": "Triceps",
+
+        "title1": "Settings",
+        "title2": "Controls",
+        "title3": "Eigenschappen van injectie plek",
+        "title4": "Suggesties voor injectie plekken",
+
+        "subtitle1": "Verander reactiviteit",
+        "subtitle2": "Injectie Datum &amp; Tijd",
+        "subtitle3": "Notitie (optioneel)",
+
+        "button1": "Bewaar",
+        "button2": "Draai om",
+        "button3": "+ Plek",
+        "button4": "Notities",
+        "button5": "+ Notitie",
+        "button6": "+ Injectie",
+        "button7": "Verwijder plek",
+        "button8": "Bewaar",
+        "button9": "Annuleer",
+        "button10": "Log uit",
+        "button11": "Selecteer",
+        "button12": "Legenda",
+        "button13": "Verwijder",
+
+        "warning1": "Heeft u wel alle wijzigingen opgeslagen?",
+        "warning2": "Wilt u echt deze injectie plek verwijderen?",
+
+        "general1": "Klik op een plek om een injectie toe te voegen of de geschiedenis te bekijken.",
+        "general2": "Opslaan geslaagd!",
+
+        "tooltip1": "Tijd sinds laatste injectie",
+        "tooltip2": "Reactiviteit",
+        "tooltip3": "Cre&euml;eer een nieuwe injectie plek",
+        "tooltip4": "Toon notities voor deze plek",
+        "tooltip5": "Voeg een notitie toe voor deze plek",
+        "tooltip6": "Registreer een nieuwe injectie voor deze plek",
+        "tooltip7": "Verwijder deze plek en de bijbehorende geschiedenis",
+
+        "other1": "Nooit",
+        "other2": "dagen"
+    },
+
+    "site": {
+
+        "softwareTitle1": "InClock",
+        "softwareVersionShort1": "Beta",
+        "softwareVersionLong1": "&copy; 2015 [Beta v0.3a]",
+
+        "titleHomepage1": "InClock - de injectie geheugensteun!",
+        "titleConfigpage1": "InClock | Cre&euml;er uw profiel!",
+        "titleDashboard1": "InClock | Dashboard"
+    }
+}

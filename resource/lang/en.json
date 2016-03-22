@@ -6,7 +6,7 @@
         "title2": "How can I use InClock",
         "text2": "With InClock you can register injection sites on arms, legs, buttocks, and stomach. InClock comes with a set of predefined injection site patterns, these can be combined with custom sites. InClock also allows you to design your own injection site map. InClock uses color scales to indicate the status of a site and shows the reactivity of a site by means of variable size dot. There is a range of color scales available including once suited for colorblindness.",
         "title3": "Terms and Conditions",
-        "text3": "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. See <a href='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</a>",
+        "text3": "Your data are completely encrypted, only to be viewed by you. Moreover, you can look at the source code of this tool to verify its workings. See <a href='http://www.gnu.org/licenses/'>http://www.gnu.org/licenses/</a> for the detailed legal software licence",
 
         "button1": "Sign Up!",
         "button2": "Redeem",
@@ -41,19 +41,19 @@
         "title7": "Front",
         "title8": "Back",
 
-        "subtitle1": "<b>Register with user name, password and email.</b> This level has the advantage that your data are always available to you, from any device with a web browser and internet connection. Also, when you lose your password, you can request a reset sent to you via email. However, your data reside (encrypted) with us. Also, your data will be removed from our server after 6 months account inactivity.",
-        "subtitle2": "<b>Register with user name, password but without email.</b> This level has the advantage that your data are always available to you, from any device with a web browser and internet connection. However, when you lose your password your data are not recoverable and will be removed from our server after 6 months account inactivity. Also, your data reside (encrypted) with us.",
+        "subtitle1": "<b>Register with user name, password and email.</b> This level has the advantage that your data are always available to you, from any device with a web browser and internet connection. Also, when you lose your password, you can request a reset sent to you via email. However, your data reside (encrypted) with us. Also, your data will be removed from our server after 12 months account inactivity.",
+        "subtitle2": "<b>Register with user name, password but without email.</b> This level has the advantage that your data are always available to you, from any device with a web browser and internet connection. However, when you lose your password your data are not recoverable and will be removed from our server after 12 months account inactivity. Also, your data reside (encrypted) with us.",
         "subtitle3": "<b>No registry, own encrypted data file with decryption key.</b> With this level, you are responsible for your own –encrypted- data. You could keep it on your device, or on some cloud service. You need to upload it every time you use the app, and download afterwards. We do not make or keep copies of your data. If you lose your decryption key, your data is lost.",
         "subtitle4": "<b>No registry, own unencrypted data file.</b> With this level, you are responsible for your own –unencrypted- data. You could keep it on your device, or on some cloud service. You need to upload it every time you use the app, and download afterwards. We do not make or keep copies of your data. If anyone gets your data file, they can read it and distribute it.",
-        "subtitle5": "Pick a colorscheme to use",
-        "subtitle6": "If autodetected timezone is incorred you can change it below. GMT is 0.",
-        "subtitle7": "Select prefered language",
-        "subtitle8": "Upper-arms",
-        "subtitle9": "Upper-legs",
-        "subtitle10": "Outer-stomach",
-        "subtitle11": "Inner-stomach",
+        "subtitle5": "Pick a color scheme to use",
+        "subtitle6": "If autodetected timezone is incorrect you can change it below. GMT is 0.",
+        "subtitle7": "Select preferred language",
+        "subtitle8": "Upper arms",
+        "subtitle9": "Upper legs",
+        "subtitle10": "Outer stomach",
+        "subtitle11": "Inner stomach",
         "subtitle12": "Buttocks",
-        "subtitle13": "Lower-arms",
+        "subtitle13": "Lower arms",
         "subtitle14": ["Timezone detected to be<b>", "</b>. You are at GMT<b>", "</b>"],
         "subtitle15": "<b>Important</b>: You will need to log in before you can start using InClock.",
 
@@ -88,7 +88,7 @@
 
         "subtitle1": "Change the reactivity",
         "subtitle2": "Injection Date &amp; Time",
-        "subtitle3": "Optional note",
+        "subtitle3": "Note (optional)",
 
         "button1": "Save",
         "button2": "Turn around",
@@ -107,8 +107,8 @@
         "warning1": "Are you sure you've saved all your changes?",
         "warning2": "Are you sure you want to permanently remove this site?",
 
-        "general1": "Click a site to select or inspect.",
-        "general2": "Save succesfull!",
+        "general1": "Click a site to enter an injection or inspect its history.",
+        "general2": "Save successful!",
 
         "tooltip1": "Time since last injection",
         "tooltip2": "Reactivity",
