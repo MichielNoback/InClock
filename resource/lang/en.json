@@ -46,7 +46,7 @@
         "subtitle3": "<b>No registry, own encrypted data file with decryption key.</b> With this level, you are responsible for your own –encrypted- data. You could keep it on your device, or on some cloud service. You need to upload it every time you use the app, and download afterwards. We do not make or keep copies of your data. If you lose your decryption key, your data is lost.",
         "subtitle4": "<b>No registry, own unencrypted data file.</b> With this level, you are responsible for your own –unencrypted- data. You could keep it on your device, or on some cloud service. You need to upload it every time you use the app, and download afterwards. We do not make or keep copies of your data. If anyone gets your data file, they can read it and distribute it.",
         "subtitle5": "Pick a colorscheme to use",
-        "subtitle6": "Adjust time zone offset below to fit desired time zone. (GMT standard is 0)",
+        "subtitle6": "If autodetected timezone is incorred you can change it below. GMT is 0.",
         "subtitle7": "Select prefered language",
         "subtitle8": "Upper-arms",
         "subtitle9": "Upper-legs",
@@ -54,6 +54,7 @@
         "subtitle11": "Inner-stomach",
         "subtitle12": "Buttocks",
         "subtitle13": "Lower-arms",
+        "subtitle14": ["Timezone detected to be<b>", "</b>. You are at GMT<b>", "</b>"],
 
         "button1": "Choose",
         "button2": "Continue",

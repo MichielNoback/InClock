@@ -250,8 +250,23 @@ function ProfileConfigurator() {
         $("#fldOption2 input[name='newpwd']").attr('disabled', 'disabled');
         $("#fldOption2 input[name='newmail']").attr('disabled', 'disabled');
         $('#fldOption2a').slideDown();
+        // Deal with timezone settings
         var currentOffset = 0;
         
+        var getTimeZone = function() {
+            var offset = new Date().getTimezoneOffset();
+            offset = Math.floor(offset/60); // Adjust for weird offsets + convert to hours
+            // Check for Safari
+            if (/Apple/.test(navigator.vendor)){
+                var zone = '?';
+            } else {
+                var zone = Intl.DateTimeFormat().resolved.timeZone;
+            };
+            currentOffset = offset;
+            var zoneText = languageDict['config']['subtitle14'];
+            return [zoneText[0], zone, zoneText[1], offset, zoneText[2]].join(' ');
+        };
+
         var addOne = function () {
             currentOffset += 1;
             document.getElementById('btnDecrease').nextElementSibling.innerHTML = currentOffset;
@@ -269,10 +284,11 @@ function ProfileConfigurator() {
             self.chooseTemplate();
         };
         
+        document.getElementById('timeZoneDetect').innerHTML = getTimeZone();
         document.getElementById('btnIncrease').onclick = addOne;
         document.getElementById('btnDecrease').onclick = subOne;
         document.getElementById('btnContinue2').onclick = inputDone;
-        document.getElementById('btnDecrease').nextElementSibling.innerHTML = 0;
+        document.getElementById('btnDecrease').nextElementSibling.innerHTML = currentOffset;
         
     };
     
